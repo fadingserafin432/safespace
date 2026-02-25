@@ -3,14 +3,14 @@ body.profile-body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    /* Fixed prevents cutting/seams, repeat ensures coverage */
+    /* Fixed prevents cutting, repeat ensures it covers very long pages */
     background: url('assets/ro1.jpg') no-repeat center center fixed;
     background-size: cover;
     min-height: 100vh;
     width: 100%;
 }
 
-/* Background overlay for better text contrast */
+/* Optional overlay for background readability */
 body.profile-body::before {
     content: "";
     position: fixed;
@@ -20,7 +20,7 @@ body.profile-body::before {
     z-index: 0;
 }
 
-/* ===== COVER SECTION (Locked size for mobile consistency) ===== */
+/* ===== COVER SECTION (Locked at 1100px) ===== */
 .cover-container {
     position: relative;
     width: 1100px; 
@@ -63,7 +63,7 @@ body.profile-body::before {
     z-index: 3;
 }
 
-/* ===== FEATURE SECTION (Side-by-side locked) ===== */
+/* ===== FEATURE SECTION (Locked side-by-side) ===== */
 .profile-options {
     width: 1100px; 
     margin: 40px auto 60px auto;
@@ -76,7 +76,7 @@ body.profile-body::before {
 
 .option-card {
     position: relative;
-    flex: 1; 
+    flex: 1; /* Allows cards to share the 1100px space equally */
     height: 260px;
     border-radius: 16px;
     overflow: hidden;
@@ -97,7 +97,7 @@ body.profile-body::before {
     object-fit: cover;
 }
 
-/* GRADIENT OVERLAY (Darkens the bottom so labels are readable) */
+/* GRADIENT OVERLAY (Brings back the dark tint at the bottom of cards) */
 .option-card::after {
     content: "";
     position: absolute;
@@ -106,7 +106,7 @@ body.profile-body::before {
     z-index: 1;
 }
 
-/* TITLE ON IMAGE (The Labels) */
+/* TITLE ON IMAGE (Brings back your labels) */
 .option-card h2 {
     position: absolute;
     bottom: 20px;
@@ -118,4 +118,6 @@ body.profile-body::before {
     text-shadow: 1px 1px 6px rgba(0,0,0,0.8);
 }
 
-/* NO @MEDIA QUERIES - Layout stays Desktop mode always */
+/* NOTE: I have completely left out the @media section.
+   This ensures the boxes never stack or change size on mobile.
+*/
