@@ -1,205 +1,114 @@
-/* Homepage specific styles */
-.homepage-body {
-    background: url('assets/ro1.jpg') no-repeat center center fixed;
-    background-size: cover;
-    color: #fff;
-}
-
-.homepage-body header {
-    height: 250px;
-    text-align: center;
-    margin-bottom: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.header-overlay {
-    background-color: rgba(0,0,0,0.4); /* dark overlay for readability */
-    width: 100%;
-    padding: 40px 20px;
-    text-align: center;
-}
-
-.header-overlay h1 {
-    font-size: 2.5em;
-    margin: 0;
-    color: #f5f5f0;
-}
-
-.header-overlay p {
-    font-size: 1.2em;
-    margin-top: 10px;
-    color: #faf5ef;
-}
-
-/* Homepage link card */
-.homepage-links {
-    max-width: 800px;
-    margin: 40px auto;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.homepage-card {
-    background-color: rgba(250,245,239,0.95); /* soft pastel background for card */
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    text-align: center;
-    max-width: 350px;
-}
-
-.homepage-card h2 {
-    color: #4b3621;
-    margin-bottom: 10px;
-}
-
-.homepage-card p {
-    color: #556b2f;
-    margin-bottom: 15px;
-}
-
-.homepage-card a {
-    display: inline-block;
-    padding: 8px 15px;
-    background-color: #c1a16b;
-    color: #fff;
-    border-radius: 6px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.homepage-card a:hover {
-    background-color: #556b2f;
-}
-
-/* Footer */
-footer {
-    text-align: center;
-    padding: 15px;
-    background-color: rgba(75,54,33,0.9);
-    color: #faf5ef;
-}
-
-/* Global Styles */
-body {
-    font-family: 'Segoe UI', Arial, sans-serif;
+/* ===== GLOBAL PROFILE BACKGROUND ===== */
+.profile-body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    color: #3e2f2f; /* dark brown */
-    background: url('assets/ro1.jpg') no-repeat center center fixed;
+
+    /* Overall website background */
+    background: url('assets/ro1.webp') no-repeat center center fixed;
     background-size: cover;
 }
 
-/* Header */
-header {
-    height: 250px;
+/* ===== COVER SECTION ===== */
+.cover-container {
     position: relative;
-    text-align: center;
-    color: #fff;
-    margin-bottom: 30px;
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
 }
 
-.header-overlay {
-    background-color: rgba(0,0,0,0.4);
+/* Cover Photo */
+.cover-photo {
+    width: 100%;
     height: 100%;
+    object-fit: cover;
+}
+
+/* ===== PROFILE PICTURE (SMALL SQUARE) ===== */
+.profile-pic {
+    width: 140px;
+    height: 140px;
+    border-radius: 12px;
+    border: 5px solid #ffffff;
+    position: absolute;
+    bottom: -70px;
+    left: 40px;
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+/* ===== PROFILE NAME ===== */
+.profile-name {
+    position: absolute;
+    bottom: 20px;
+    left: 210px;
+    font-size: 64px;
+    color: #ffffff;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+    margin: 0;
+}
+
+/* ===== OPTIONS SECTION ===== */
+.profile-options {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 120px;
+    padding: 40px 20px;
+    flex-wrap: wrap;
+}
+
+/* ===== OPTION CARDS ===== */
+.option-card {
+    width: 220px;
+    height: 260px;
+    background-color: rgba(255, 255, 255, 0.92);
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-header h1 {
-    font-size: 2.5em;
+/* Hover Effect */
+.option-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+}
+
+/* Card Images */
+.option-card img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+/* Card Titles */
+.option-card h2 {
     margin: 0;
-    color: #f5f5f0;
+    font-size: 18px;
+    color: #333;
 }
 
-header p {
-    font-size: 1.2em;
-    margin-top: 10px;
-    color: #faf5ef;
-}
+/* ===== RESPONSIVE FIX ===== */
+@media (max-width: 768px) {
+    .profile-name {
+        font-size: 36px;
+        left: 190px;
+    }
 
-/* Sections */
-section {
-    max-width: 800px;
-    margin: auto;
-    background-color: rgba(250,245,239,0.9);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    margin-bottom: 30px;
-}
+    .profile-pic {
+        width: 110px;
+        height: 110px;
+        bottom: -55px;
+    }
 
-section h2 {
-    color: #556b2f;
-    border-bottom: 2px solid #c1a16b;
-    padding-bottom: 5px;
-}
-
-/* Images */
-img {
-    width: 100%;
-    max-width: 400px;
-    margin: 10px 0;
-    border-radius: 12px;
-    box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
-}
-
-/* Download Items */
-.download-item {
-    margin-bottom: 20px;
-    padding: 12px;
-    background-color: #faf5ef;
-    border-radius: 10px;
-    box-shadow: 0 0 6px rgba(0,0,0,0.1);
-}
-
-.download-item h3 {
-    color: #4b3621;
-    margin-bottom: 5px;
-}
-
-.download-item p {
-    color: #556b2f;
-    margin-bottom: 10px;
-}
-
-.download-item a {
-    display: inline-block;
-    padding: 8px 15px;
-    background-color: #c1a16b;
-    color: #fff;
-    border-radius: 6px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.download-item a:hover {
-    background-color: #556b2f;
-}
-.photo-gallery {
-    display: flex;             /* Arrange items in a row */
-    justify-content: center;   /* Center the images horizontally */
-    gap: 20px;                 /* Space between the images */
-    flex-wrap: wrap;           /* Wrap to next line if screen is small */
-}
-
-.photo-gallery img {
-    max-width: 100%;           /* Scale images to fit container */
-    height: auto;
-    width: 300px;              /* Optional fixed width */
-    border-radius: 8px;        /* Optional rounded corners */
-}
-}
-/* Footer */
-footer {
-    text-align: center;
-    padding: 15px;
-    background-color: rgba(75,54,33,0.9);
-    color: #faf5ef;
+    .profile-options {
+        margin-top: 100px;
+    }
 }
