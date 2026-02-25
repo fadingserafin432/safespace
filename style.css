@@ -3,14 +3,14 @@ body.profile-body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    /* Fixed prevents cutting/seams, repeat ensures coverage */
+    /* Uses .jpg as requested, fixed to prevent cutting */
     background: url('assets/ro1.jpg') no-repeat center center fixed;
     background-size: cover;
     min-height: 100vh;
     width: 100%;
 }
 
-/* Background overlay for better text contrast */
+/* Background dark overlay for readability */
 body.profile-body::before {
     content: "";
     position: fixed;
@@ -20,10 +20,10 @@ body.profile-body::before {
     z-index: 0;
 }
 
-/* ===== COVER SECTION (Locked size for mobile consistency) ===== */
+/* ===== COVER SECTION ===== */
 .cover-container {
     position: relative;
-    width: 1100px; 
+    width: 1100px; /* Fixed width */
     height: 350px;
     margin: 40px auto;
     border-radius: 16px;
@@ -59,16 +59,16 @@ body.profile-body::before {
     color: #ffffff;
     margin: 0;
     white-space: nowrap;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+    text-shadow: 2px 2px 12px rgba(0,0,0,0.8);
     z-index: 3;
 }
 
-/* ===== FEATURE SECTION (Side-by-side locked) ===== */
+/* ===== FEATURE SECTION ===== */
 .profile-options {
-    width: 1100px; 
+    width: 1100px; /* Matches cover width */
     margin: 40px auto 60px auto;
     display: flex;
-    flex-direction: row; 
+    flex-direction: row; /* Forces side-by-side always */
     justify-content: space-between;
     gap: 25px;
     z-index: 1;
@@ -97,7 +97,7 @@ body.profile-body::before {
     object-fit: cover;
 }
 
-/* GRADIENT OVERLAY (Darkens the bottom so labels are readable) */
+/* Gradient for label readability */
 .option-card::after {
     content: "";
     position: absolute;
@@ -106,7 +106,7 @@ body.profile-body::before {
     z-index: 1;
 }
 
-/* TITLE ON IMAGE (The Labels) */
+/* Box Labels */
 .option-card h2 {
     position: absolute;
     bottom: 20px;
@@ -117,5 +117,3 @@ body.profile-body::before {
     z-index: 2;
     text-shadow: 1px 1px 6px rgba(0,0,0,0.8);
 }
-
-/* NO @MEDIA QUERIES - Layout stays Desktop mode always */
