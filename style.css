@@ -93,3 +93,34 @@ footer {
     font-size: 0.9em;
     color: #4b3621; /* deep caramel */
 }
+.download-item {
+    margin-bottom: 20px;
+    padding: 12px;
+    background-color: #faf5ef; /* soft pastel caramel */
+    border-radius: 10px;
+    box-shadow: 0 0 6px rgba(0,0,0,0.1);
+}
+
+.download-item h3 {
+    color: #4b3621; /* deep caramel */
+    margin-bottom: 5px;
+}
+
+.download-item p {
+    color: #556b2f; /* moss green */
+    margin-bottom: 10px;
+}
+
+.download-item a {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: #c1a16b; /* caramel button */
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.download-item a:hover {
+    background-color: #556b2f; /* moss green on hover */
+}
