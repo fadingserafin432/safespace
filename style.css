@@ -4,7 +4,7 @@
     margin: 0;
     padding: 0;
     /* This points to your assets folder - check if you need '../assets/' if CSS is in a subfolder */
-    background: url('assets/ro1.webp') no-repeat center center fixed;
+    background: url('assets/ro1.jpg') no-repeat center center fixed;
     background-size: cover;
     
     /* Ensures the background covers the entire screen even if content is short */
