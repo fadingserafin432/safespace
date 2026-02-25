@@ -1,35 +1,40 @@
-/* ===== FULL PAGE BACKGROUND ===== */
+/* ===== GLOBAL NEUTRAL THEME ===== */
 body.profile-body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Arial, sans-serif;
     margin: 0;
     padding: 0;
-    /* Uses .jpg as requested, fixed to prevent cutting */
+    color: #4a4a4a;
+    /* Background ro1.jpg - Fixed for looping effect */
     background: url('assets/ro1.jpg') no-repeat center center fixed;
     background-size: cover;
     min-height: 100vh;
     width: 100%;
 }
 
-/* Background dark overlay for readability */
+/* Neutral mist overlay to soften the background */
 body.profile-body::before {
     content: "";
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background-color: rgba(0, 0, 0, 0.25);
+    background-color: rgba(255, 255, 255, 0.15); 
     z-index: 0;
 }
 
-/* ===== COVER SECTION ===== */
+.cover-container, .profile-options {
+    position: relative;
+    z-index: 1;
+}
+
+/* ===== HOMEPAGE COVER (1100px) ===== */
 .cover-container {
     position: relative;
-    width: 1100px; /* Fixed width */
-    height: 350px;
-    margin: 40px auto;
-    border-radius: 16px;
+    width: 1100px; 
+    height: 380px;
+    margin: 60px auto 40px auto;
     overflow: hidden;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-    z-index: 1;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    background: #fff;
 }
 
 .cover-photo {
@@ -38,58 +43,58 @@ body.profile-body::before {
     object-fit: cover;
 }
 
+/* Profile Picture (Square Box) */
 .profile-pic {
     position: absolute;
-    width: 150px;
-    height: 150px;
-    bottom: 20px;
-    right: 40px;
-    border-radius: 14px;
-    border: 5px solid #ffffff;
+    width: 160px;
+    height: 160px;
+    bottom: 30px;
+    right: 50px;
+    border: 6px solid #ffffff;
     object-fit: cover;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     z-index: 3;
 }
 
+/* Profile Name (Fading Spaces) */
 .profile-name {
     position: absolute;
-    bottom: 60px;
-    right: 210px;
-    font-size: 64px;
+    bottom: 80px;
+    right: 240px;
+    font-size: 58px;
     color: #ffffff;
     margin: 0;
     white-space: nowrap;
-    text-shadow: 2px 2px 12px rgba(0,0,0,0.8);
+    letter-spacing: 6px;
+    font-weight: 300;
+    text-transform: uppercase;
+    text-shadow: 0 4px 12px rgba(0,0,0,0.3);
     z-index: 3;
 }
 
-/* ===== FEATURE SECTION ===== */
+/* ===== HOMEPAGE BOXES (Side-by-Side) ===== */
 .profile-options {
-    width: 1100px; /* Matches cover width */
-    margin: 40px auto 60px auto;
+    width: 1100px; 
+    margin: 40px auto 80px auto;
     display: flex;
-    flex-direction: row; /* Forces side-by-side always */
+    flex-direction: row; 
     justify-content: space-between;
-    gap: 25px;
-    z-index: 1;
+    gap: 30px;
 }
 
 .option-card {
     position: relative;
-    flex: 1; 
-    height: 260px;
-    border-radius: 16px;
+    flex: 1;
+    height: 280px;
     overflow: hidden;
     cursor: pointer;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.35);
-    transition: transform 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: transform 0.4s ease;
     text-decoration: none;
-    color: inherit;
+    background: #fff;
 }
 
-.option-card:hover {
-    transform: translateY(-8px);
-}
+.option-card:hover { transform: translateY(-8px); }
 
 .option-card img {
     width: 100%;
@@ -97,23 +102,23 @@ body.profile-body::before {
     object-fit: cover;
 }
 
-/* Gradient for label readability */
 .option-card::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.1));
+    background: linear-gradient(to top, rgba(0,0,0,0.4), transparent 70%);
     z-index: 1;
 }
 
-/* Box Labels */
 .option-card h2 {
     position: absolute;
-    bottom: 20px;
-    left: 20px;
+    bottom: 25px;
+    left: 25px;
     margin: 0;
-    color: #f5d2a1;
-    font-size: 22px;
+    color: #ffffff;
+    font-size: 18px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 400;
     z-index: 2;
-    text-shadow: 1px 1px 6px rgba(0,0,0,0.8);
 }
