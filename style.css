@@ -96,19 +96,19 @@ img {
 .download-item a:hover {
     background-color: #556b2f;
 }
-/* Photo gallery side-by-side */
 .photo-gallery {
-    display: flex;
-    gap: 20px; /* space between images */
-    flex-wrap: wrap; /* stack on small screens */
-    justify-content: center; /* center the gallery */
+    display: flex;             /* Arrange items in a row */
+    justify-content: center;   /* Center the images horizontally */
+    gap: 20px;                 /* Space between the images */
+    flex-wrap: wrap;           /* Wrap to next line if screen is small */
 }
 
 .photo-gallery img {
-    flex: 1 1 300px; /* grow/shrink, minimum width 300px */
-    max-width: 400px; /* keeps images reasonable size */
-    border-radius: 12px;
-    box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+    max-width: 100%;           /* Scale images to fit container */
+    height: auto;
+    width: 300px;              /* Optional fixed width */
+    border-radius: 8px;        /* Optional rounded corners */
+}
 }
 /* Footer */
 footer {
