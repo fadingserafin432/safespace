@@ -2,40 +2,61 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Lightroom Presets</title>
+    <title>White Vintage Preset</title>
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('assets/ro1.webp') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 40px 20px 10px 20px;
+            font-size: 48px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+        }
+
+        p {
+            text-align: center;
+            font-size: 20px;
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 6px rgba(0,0,0,0.6);
+        }
+
+        /* Photo gallery side-by-side */
+        .photo-gallery {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding-bottom: 60px;
+        }
+
+        .photo-gallery img {
+            flex: 1 1 300px;
+            max-width: 400px;
+            border-radius: 12px;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+        }
+    </style>
 </head>
+
 <body>
-    <!-- Header Section -->
-    <header>
-        <div class="header-overlay">
-            <h1>My Lightroom Presets</h1>
-            <p>Enhance your photos with curated presets</p>
-        </div>
-    </header>
 
-    <!-- Pictures Section -->
-    <section id="pictures">
-        <h2 style="text-align:center;">Sample Photos</h2>
-        <div class="photo-gallery">
-            <img src="assets/lightroomsampleimage.webp" alt="Lightroom Sample - White Vintage">
-            <img src="assets/lightroomsample2.jpg" alt="Lightroom Sample 2">
-        </div>
-    </section>
+    <h1>White Vintage Preset</h1>
+    <p>Create your photo using this Lightroom preset.</p>
 
-    <!-- Downloads Section -->
-    <section id="downloads">
-        <h2>Download Presets</h2>
-        <div class="download-item">
-            <h3>White Vintage</h3>
-            <p>Create your photo using this Lightroom preset, White Vintage.</p>
-            <a href="assets/lightroom1.dng" download>Download lightroom1 .DNG File</a>
-        </div>
-    </section>
+    <div class="photo-gallery">
+        <img src="assets/lightroomsampleimage.webp" alt="Sample 1">
+        <img src="assets/lightroomsample2.jpg" alt="Sample 2">
+    </div>
 
-    <footer>
-        <p>© 2026 My Lightroom Presets</p>
-    </footer>
 </body>
 </html>
