@@ -3,43 +3,33 @@ body.profile-body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-
-    /* Background image - Added 'fixed' and 'min-height' */
+    /* Fixed prevents cutting, min-height ensures it covers the bottom */
     background: url('assets/ro1.jpg') no-repeat center center fixed;
     background-size: cover;
     min-height: 100vh;
-    position: relative;
+    width: 100%;
 }
 
-/* Optional overlay to improve readability */
+/* Optional overlay */
 body.profile-body::before {
     content: "";
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     background-color: rgba(0, 0, 0, 0.25);
     z-index: 0;
 }
 
-/* Ensure main content appears above overlay */
-.cover-container,
-.profile-options {
-    position: relative;
-    z-index: 1;
-}
-
-/* ===== COVER SECTION ===== */
+/* ===== COVER SECTION (Keeps same size everywhere) ===== */
 .cover-container {
     position: relative;
-    width: 90%;
-    max-width: 1100px;
-    height: 350px; /* Locked height */
+    width: 1100px; /* Changed from 90% to fixed px to prevent shrinking */
+    height: 350px;
     margin: 40px auto;
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+    z-index: 1;
 }
 
 .cover-photo {
@@ -48,7 +38,6 @@ body.profile-body::before {
     object-fit: cover;
 }
 
-/* ===== PROFILE PICTURE (OVERLAY) ===== */
 .profile-pic {
     position: absolute;
     width: 150px;
@@ -62,13 +51,11 @@ body.profile-body::before {
     z-index: 3;
 }
 
-/* ===== PROFILE NAME (OVERLAY) ===== */
 .profile-name {
     position: absolute;
     bottom: 60px;
     right: 210px;
-    /* Added clamp to keep text within screen bounds on mobile while staying large */
-    font-size: clamp(32px, 8vw, 64px); 
+    font-size: 64px;
     color: #ffffff;
     margin: 0;
     white-space: nowrap;
@@ -76,19 +63,20 @@ body.profile-body::before {
     z-index: 3;
 }
 
-/* ===== FEATURE SECTION ===== */
+/* ===== FEATURE SECTION (Forces side-by-side everywhere) ===== */
 .profile-options {
-    width: 90%;
-    max-width: 1100px;
+    width: 1100px; /* Fixed width matching cover */
     margin: 40px auto 60px auto;
     display: flex;
+    flex-direction: row; /* Forces side-by-side even on mobile */
     justify-content: space-between;
     gap: 25px;
+    z-index: 1;
 }
 
 .option-card {
     position: relative;
-    flex: 1;
+    width: 350px; /* Fixed width for each card */
     height: 260px;
     border-radius: 16px;
     overflow: hidden;
@@ -99,79 +87,12 @@ body.profile-body::before {
     color: inherit;
 }
 
-.option-card:hover {
-    transform: translateY(-8px);
-}
-
 .option-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.option-card::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.1));
-}
-
-.option-card h2 {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    margin: 0;
-    color: #f5d2a1;
-    font-size: 22px;
-    z-index: 2;
-    text-shadow: 1px 1px 6px rgba(0,0,0,0.8);
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 900px) {
-    .profile-options {
-        flex-direction: column;
-    }
-
-    /* REMOVED the profile-name and profile-pic overrides so 
-       they look the same as they do on desktop */
-}    object-fit: cover;
-}
-
-/* GRADIENT OVERLAY ON CARDS */
-.option-card::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.1));
-}
-
-/* TITLE ON IMAGE */
-.option-card h2 {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    margin: 0;
-    color: #f5d2a1;
-    font-size: 22px;
-    z-index: 2;
-    text-shadow: 1px 1px 6px rgba(0,0,0,0.8);
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 900px) {
-    .profile-options {
-        flex-direction: column;
-    }
-
-    .profile-name {
-        font-size: 36px;
-        right: 170px;
-        bottom: 40px;
-    }
-
-    .profile-pic {
-        width: 120px;
-        height: 120px;
-    }
-}
+/* REMOVED ALL @MEDIA QUERIES */
+/* By deleting the @media (max-width: 900px) section, 
+   the browser will no longer change the layout on mobile. */
