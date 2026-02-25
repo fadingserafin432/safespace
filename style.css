@@ -30,7 +30,7 @@
     position: absolute;
     width: 150px;
     height: 150px;
-    bottom: 20px; /* fully visible inside cover */
+    bottom: 20px;       /* fully visible inside cover */
     right: 40px;
     border-radius: 14px;
     border: 5px solid #ffffff;
@@ -42,8 +42,8 @@
 /* ===== PROFILE NAME (OVERLAY) ===== */
 .profile-name {
     position: absolute;
-    bottom: 60px; /* vertically centered next to profile pic */
-    right: 210px; /* next to profile pic */
+    bottom: 60px;       /* vertically aligned with profile picture */
+    right: 210px;       /* next to profile picture */
     font-size: 64px;
     color: #ffffff;
     margin: 0;
@@ -116,25 +116,6 @@
         font-size: 36px;
         right: 170px;
         bottom: 40px;
-    }
-
-    .profile-pic {
-        width: 120px;
-        height: 120px;
-    }
-}    font-size: 22px;
-    z-index: 2;
-    text-shadow: 1px 1px 6px rgba(0,0,0,0.8);
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 900px) {
-    .profile-options {
-        flex-direction: column;
-    }
-
-    .profile-name {
-        font-size: 36px;
     }
 
     .profile-pic {
