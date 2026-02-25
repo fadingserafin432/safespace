@@ -96,7 +96,20 @@ img {
 .download-item a:hover {
     background-color: #556b2f;
 }
+/* Photo gallery side-by-side */
+.photo-gallery {
+    display: flex;
+    gap: 20px; /* space between images */
+    flex-wrap: wrap; /* stack on small screens */
+    justify-content: center; /* center the gallery */
+}
 
+.photo-gallery img {
+    flex: 1 1 300px; /* grow/shrink, minimum width 300px */
+    max-width: 400px; /* keeps images reasonable size */
+    border-radius: 12px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+}
 /* Footer */
 footer {
     text-align: center;
