@@ -10,8 +10,8 @@ html, body {
 body.profile-body {
     font-family: 'Segoe UI', Arial, sans-serif;
     color: #4a4a4a;
-    /* Background ro1.jpg looping */
-    background: url('assets/ro1.jpg') no-repeat center center fixed;
+    /* Background head2.jpg looping */
+    background: url('assets/head2.jpg') no-repeat center center fixed;
     background-size: cover;
     min-height: 100vh;
 }
