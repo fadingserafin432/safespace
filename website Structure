@@ -1,0 +1,7 @@
+my-website/
+├── index.html
+├── style.css
+└── assets/
+    ├── ro1.jpg                  <-- Background image
+    ├── lightroomsampleimage.webp <-- Sample image for White Vintage
+    └── lightroom1.dng           <-- Lightroom preset download
