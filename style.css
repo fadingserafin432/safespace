@@ -1,4 +1,4 @@
-/* ===== PAGE BACKGROUND ===== */
+/* ===== FULL PAGE BACKGROUND ===== */
 .profile-body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -9,7 +9,6 @@
 
 /* ===== COVER SECTION ===== */
 .cover-container {
-    position: relative;
     width: 90%;
     max-width: 1100px;
     height: 320px;
@@ -19,51 +18,55 @@
     box-shadow: 0 8px 25px rgba(0,0,0,0.4);
 }
 
-/* Horizontal Cover Image */
 .cover-photo {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-/* ===== PROFILE PICTURE (BOTTOM RIGHT OVERLAY) ===== */
-.profile-pic {
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    bottom: -75px;
-    right: 40px;
-    border-radius: 14px;
-    border: 5px solid #c68e53; /* caramel border */
-    object-fit: cover;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.4);
-    z-index: 3;
+/* ===== PROFILE INFO BAR ===== */
+.profile-info {
+    width: 90%;
+    max-width: 1100px;
+    margin: -60px auto 50px auto;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 20px 30px;
+    background-color: rgba(198, 142, 83, 0.95);
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.35);
 }
 
-/* ===== PROFILE NAME (RIGHT OF PROFILE PIC) ===== */
+/* PROFILE PICTURE */
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 14px;
+    border: 5px solid #ffffff;
+    object-fit: cover;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+}
+
+/* PROFILE NAME */
 .profile-name {
-    position: absolute;
-    bottom: -40px;                /* aligns with profile pic center */
-    right: 210px;                 /* profile width (150) + spacing */
     font-size: 64px;
     color: #ffffff;
     margin: 0;
-    z-index: 3;
     white-space: nowrap;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
 }
 
-/* ===== FEATURE BOXES SECTION ===== */
+/* ===== FEATURE SECTION ===== */
 .profile-options {
     width: 90%;
     max-width: 1100px;
-    margin: 110px auto 60px auto;
+    margin: 0 auto 60px auto;
     display: flex;
     justify-content: space-between;
     gap: 25px;
 }
 
-/* ===== FEATURE CARDS ===== */
+/* FEATURE CARDS (NOW LINKS) */
 .option-card {
     position: relative;
     flex: 1;
@@ -73,20 +76,21 @@
     cursor: pointer;
     box-shadow: 0 8px 20px rgba(0,0,0,0.35);
     transition: transform 0.3s ease;
+    text-decoration: none;
+    color: inherit;
 }
 
 .option-card:hover {
     transform: translateY(-8px);
 }
 
-/* Card Images */
 .option-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-/* Dark Gradient Overlay */
+/* GRADIENT OVERLAY */
 .option-card::after {
     content: "";
     position: absolute;
@@ -94,13 +98,13 @@
     background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.1));
 }
 
-/* Overlay Title */
+/* TITLE ON IMAGE */
 .option-card h2 {
     position: absolute;
     bottom: 20px;
     left: 20px;
     margin: 0;
-    color: #f5d2a1; /* caramel tone */
+    color: #f5d2a1;
     font-size: 22px;
     z-index: 2;
     text-shadow: 1px 1px 6px rgba(0,0,0,0.8);
@@ -112,15 +116,12 @@
         flex-direction: column;
     }
 
+    .profile-name {
+        font-size: 36px;
+    }
+
     .profile-pic {
         width: 120px;
         height: 120px;
-        bottom: -60px;
-    }
-
-    .profile-name {
-        font-size: 36px;
-        right: 170px;
-        bottom: -30px;
     }
 }
