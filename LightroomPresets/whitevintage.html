@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Lightroom Presets</title>
+    <title>White Vintage - Lightroom Presets</title>
     <meta name="viewport" content="width=1100">
     <style>
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
             margin: 0; padding: 0; color: #3e2f2f;
-            /* Added ../ to find the background image */
+            /* ../ goes up one level to find assets */
             background: url('../assets/ro1.jpg') no-repeat center center fixed;
             background-size: cover;
             min-height: 100vh;
@@ -30,16 +30,22 @@
         .download-item { margin-bottom: 20px; padding: 15px; background-color: #fff; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
         .download-item h3 { color: #4b3621; margin: 0; }
         .download-item p { color: #556b2f; margin-bottom: 15px; }
-        .download-item a { display: inline-block; padding: 10px 20px; background-color: #c1a16b; color: #fff; border-radius: 6px; text-decoration: none; font-weight: bold; }
+        .download-item a { display: inline-block; padding: 10px 20px; background-color: #c1a16b; color: #fff; border-radius: 6px; text-decoration: none; font-weight: bold; transition: 0.3s; }
+        .download-item a:hover { background-color: #556b2f; }
         
         footer { text-align: center; padding: 20px; background-color: rgba(75,54,33,0.95); color: #faf5ef; margin-top: 50px; }
+        
+        .back-home { position: absolute; top: 20px; left: 20px; color: white; text-decoration: none; background: rgba(0,0,0,0.4); padding: 10px 15px; border-radius: 8px; font-weight: bold; }
+        .back-home:hover { background: rgba(0,0,0,0.6); }
     </style>
 </head>
 <body>
 
+    <a href="../index.html" class="back-home">← Back to Home</a>
+
     <header>
         <div class="header-overlay">
-            <h1>My Lightroom Presets</h1>
+            <h1>White Vintage</h1>
             <p>Enhance your photos with curated presets</p>
         </div>
     </header>
@@ -47,8 +53,8 @@
     <section id="pictures">
         <h2>Edited Photos</h2>
         <div class="photo-gallery">
-            <img src="../assets/lightroomsampleimage.webp" alt="Lightroom Sample 1">
-            <img src="../assets/lightroomsample2.jpg" alt="Lightroom Sample 2">
+            <img src="../assets/lightroomsampleimage.webp" alt="Sample 1">
+            <img src="../assets/lightroomsample2.jpg" alt="Sample 2">
         </div>
     </section>
 
@@ -61,6 +67,6 @@
         </div>
     </section>
 
-    <footer><p>© 2026 My Lightroom Presets</p></footer>
+    <footer><p>© 2026 Fading Spaces</p></footer>
 </body>
 </html>
