@@ -5,18 +5,15 @@
     <title>My Lightroom Presets</title>
     <meta name="viewport" content="width=1100">
     <style>
-        /* ===== INTERNAL CSS ===== */
-        
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
             margin: 0;
             padding: 0;
             color: #3e2f2f;
-            /* 2. Fixed background that won't cut off */
             background: url('assets/ro1.jpg') no-repeat center center fixed;
             background-size: cover;
             min-height: 100vh;
-            width: 1100px; /* Forces body to stay desktop width */
+            width: 1100px;
             margin: 0 auto;
         }
 
@@ -38,7 +35,7 @@
         }
 
         header h1 {
-            font-size: 3em; /* Keep it large */
+            font-size: 3em;
             margin: 0;
             color: #f5f5f0;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
@@ -51,7 +48,7 @@
         }
 
         section {
-            width: 900px; /* Fixed width */
+            width: 900px;
             margin: 0 auto 30px auto;
             background-color: rgba(250,245,239,0.95);
             padding: 25px;
@@ -67,23 +64,21 @@
             margin-bottom: 20px;
         }
 
-        /* ===== PHOTO GALLERY FIXED SIDE-BY-SIDE ===== */
         .photo-gallery {
             display: flex;
             gap: 20px;
-            flex-wrap: nowrap; /* 3. FORCES photos to stay side-by-side */
+            flex-wrap: nowrap;
             justify-content: center;
         }
 
         .photo-gallery img {
-            width: 400px; /* Fixed width for photos */
+            width: 400px;
             height: auto;
             border-radius: 12px;
             box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
             object-fit: cover;
         }
 
-        /* Download Items */
         .download-item {
             margin-bottom: 20px;
             padding: 15px;
@@ -125,8 +120,6 @@
             color: #faf5ef;
             margin-top: 50px;
         }
-
-        /* 4. REMOVED ALL @MEDIA QUERIES to stop mobile changes */
     </style>
 </head>
 <body>
@@ -151,7 +144,7 @@
         <div class="download-item">
             <h3>White Vintage</h3>
             <p>Create your photo using this Lightroom preset, White Vintage.</p>
-            <a href="assets/Lightroom1.dng" download>Download .DNG File</a>
+            <a href="assets/Lightroom1.dng" download>Download Lightroom1 .DNG File</a>
         </div>
     </section>
 
