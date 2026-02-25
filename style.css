@@ -1,40 +1,40 @@
-/* ===== FULL PAGE BACKGROUND ===== */
+/* ===== FULL PAGE BACKGROUND (Always Edge-to-Edge) ===== */
 body.profile-body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    /* Updated background to head2.jpg */
+    /* This stays behind everything and stretches to the full screen */
     background: url('assets/head2.jpg') no-repeat center center fixed;
     background-size: cover;
     position: relative;
-    /* Forces the browser to maintain desktop proportions */
-    min-width: 1100px; 
+    /* Ensures the canvas is wide enough for the desktop layout */
+    min-width: 1200px; 
 }
 
-/* Mist overlay for readability */
+/* Optional dark mist overlay for the background only */
 body.profile-body::before {
     content: "";
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background-color: rgba(0, 0, 0, 0.15); 
+    background-color: rgba(0, 0, 0, 0.2); 
     z-index: 0;
 }
 
-/* Center Container to prevent hugging edges */
+/* ===== THE CENTERING WRAPPER (This creates your margins) ===== */
 .main-wrapper {
-    width: 1100px;
-    margin: 0 auto;
+    width: 1100px; /* The content width */
+    margin: 0 auto; /* Centers the content, leaving 50px on each side of a 1200px view */
     position: relative;
-    z-index: 1;
+    z-index: 1; /* Puts content above the background mist */
+    padding: 40px 0; /* Space at the very top and bottom of the page */
 }
 
 /* ===== COVER SECTION ===== */
 .cover-container {
     position: relative;
-    width: 100%; /* Uses full width of the 1100px wrapper */
+    width: 100%; 
     height: 400px;
-    margin-top: 40px;
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 8px 25px rgba(0,0,0,0.4);
@@ -46,14 +46,13 @@ body.profile-body::before {
     object-fit: cover;
 }
 
-/* ===== PROFILE OVERLAY (BOTTOM-LEFT) ===== */
-/* This containers holds both the pic and name together */
+/* ===== PROFILE OVERLAY (Bottom-Left) ===== */
 .profile-overlay {
     position: absolute;
     bottom: 30px;
     left: 40px;
     display: flex;
-    align-items: center; /* Aligns name to middle of photo */
+    align-items: center; 
     z-index: 3;
 }
 
@@ -67,7 +66,7 @@ body.profile-body::before {
 }
 
 .profile-name {
-    margin-left: 25px; /* Space between pic and name */
+    margin-left: 25px;
     font-size: 58px;
     color: #ffffff;
     white-space: nowrap;
@@ -75,13 +74,13 @@ body.profile-body::before {
     font-weight: bold;
 }
 
-/* ===== FEATURE SECTION (Always side-by-side) ===== */
+/* ===== FEATURE SECTION (Always Side-by-Side) ===== */
 .profile-options {
-    width: 100%;
-    margin: 40px 0 60px 0;
     display: flex;
     justify-content: space-between;
+    margin-top: 40px;
     gap: 25px;
+    width: 100%;
 }
 
 .option-card {
@@ -90,7 +89,6 @@ body.profile-body::before {
     height: 280px;
     border-radius: 16px;
     overflow: hidden;
-    cursor: pointer;
     box-shadow: 0 8px 20px rgba(0,0,0,0.35);
     transition: transform 0.3s ease;
     text-decoration: none;
@@ -123,5 +121,4 @@ body.profile-body::before {
     z-index: 2;
     text-shadow: 1px 1px 6px rgba(0,0,0,0.8);
     text-transform: uppercase;
-    letter-spacing: 1px;
 }
