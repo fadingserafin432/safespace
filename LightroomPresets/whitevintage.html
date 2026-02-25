@@ -8,7 +8,6 @@
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
             margin: 0; padding: 0; color: #3e2f2f;
-            /* ../ goes up one level to find assets */
             background: url('../assets/ro1.jpg') no-repeat center center fixed;
             background-size: cover;
             min-height: 100vh;
@@ -35,13 +34,27 @@
         
         footer { text-align: center; padding: 20px; background-color: rgba(75,54,33,0.95); color: #faf5ef; margin-top: 50px; }
         
-        .back-home { position: absolute; top: 20px; left: 20px; color: white; text-decoration: none; background: rgba(0,0,0,0.4); padding: 10px 15px; border-radius: 8px; font-weight: bold; }
+        /* The button style remains the same */
+        .back-home { 
+            position: absolute; 
+            top: 20px; 
+            left: 20px; 
+            color: white; 
+            text-decoration: none; 
+            background: rgba(0,0,0,0.4); 
+            padding: 10px 15px; 
+            border-radius: 8px; 
+            font-weight: bold; 
+            cursor: pointer; /* Shows it is clickable */
+            border: none;
+            z-index: 1000;
+        }
         .back-home:hover { background: rgba(0,0,0,0.6); }
     </style>
 </head>
 <body>
 
-    <a href="../index.html" class="back-home">← Back to Home</a>
+    <button onclick="history.back()" class="back-home">← Back</button>
 
     <header>
         <div class="header-overlay">
