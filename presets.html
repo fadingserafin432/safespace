@@ -5,20 +5,18 @@
     <title>My Lightroom Presets</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        /* ===== INTERNAL CSS (Protects this page from homepage changes) ===== */
+        /* ===== INTERNAL CSS ===== */
         
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            color: #3e2f2f; /* dark brown */
-            /* Updated to your new webp background */
+            color: #3e2f2f;
             background: url('assets/ro1.webp') no-repeat center center fixed;
             background-size: cover;
             min-height: 100vh;
         }
 
-        /* Header */
         header {
             height: 250px;
             position: relative;
@@ -28,7 +26,7 @@
         }
 
         .header-overlay {
-            background-color: rgba(0,0,0,0.5); /* Slightly darker for better contrast */
+            background-color: rgba(0,0,0,0.5);
             height: 100%;
             display: flex;
             flex-direction: column;
@@ -49,12 +47,11 @@
             color: #faf5ef;
         }
 
-        /* Sections */
         section {
-            max-width: 800px;
+            max-width: 900px; /* Widened slightly to fit side-by-side photos better */
             margin: 0 auto 30px auto;
-            background-color: rgba(250,245,239,0.95); /* Semi-transparent white-ish */
-            padding: 20px;
+            background-color: rgba(250,245,239,0.95);
+            padding: 25px;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
@@ -64,20 +61,24 @@
             border-bottom: 2px solid #c1a16b;
             padding-bottom: 5px;
             margin-top: 0;
+            margin-bottom: 20px;
         }
 
-        /* Images */
-        .img-container {
-            text-align: center;
+        /* ===== PHOTO GALLERY SIDE-BY-SIDE ===== */
+        .photo-gallery {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
-        img {
-            width: 100%;
-            max-width: 500px;
+        .photo-gallery img {
+            flex: 1 1 300px;
+            max-width: 400px;
             height: auto;
-            margin: 10px 0;
             border-radius: 12px;
             box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+            object-fit: cover;
         }
 
         /* Download Items */
@@ -115,7 +116,6 @@
             transform: scale(1.02);
         }
 
-        /* Footer */
         footer {
             text-align: center;
             padding: 20px;
@@ -124,14 +124,14 @@
             margin-top: 50px;
         }
 
-        /* Responsive adjustment */
         @media (max-width: 600px) {
             header h1 { font-size: 1.8em; }
-            section { width: 90%; }
+            section { width: 90%; padding: 15px; }
         }
     </style>
 </head>
 <body>
+
     <header>
         <div class="header-overlay">
             <h1>My Lightroom Presets</h1>
@@ -141,10 +141,11 @@
 
     <section id="pictures">
         <h2>Edited Photos</h2>
-        <div class="img-container">
-            <img src="assets/lightroomsampleimage.webp" alt="Lightroom Sample - White Vintage">
+        <div class="photo-gallery">
+            <img src="assets/lightroomsampleimage.webp" alt="Lightroom Sample 1">
+            <img src="assets/lightroomsampleimage2.webp" alt="Lightroom Sample 2">
         </div>
-    </section>
+        </section>
 
     <section id="downloads">
         <h2>Download Presets</h2>
@@ -158,5 +159,6 @@
     <footer>
         <p>© 2026 My Lightroom Presets</p>
     </footer>
+
 </body>
 </html>
