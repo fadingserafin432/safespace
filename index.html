@@ -2,79 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Website</title>
+    <title>My Lightroom Presets</title>
+    <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-
-        header {
-            background: #111;
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-        }
-
-        .sections {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            padding: 60px 20px;
-        }
-
-        .card {
-            background: #f4f4f4;
-            padding: 40px;
-            width: 250px;
-            text-align: center;
-            border-radius: 10px;
-            transition: 0.3s;
-            text-decoration: none;
-            color: black;
-        }
-
-        .card:hover {
-            background: #ddd;
-            transform: translateY(-5px);
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #111;
-            color: white;
-        }
-    </style>
 </head>
 <body>
+    <!-- Header Section -->
+    <header>
+        <div class="header-overlay">
+            <h1>My Lightroom Presets</h1>
+            <p>Enhance your photos with curated presets</p>
+        </div>
+    </header>
 
-<header>
-    <h1>Welcome to My Website</h1>
-    <p>Photography | Presets | Portfolio</p>
-</header>
-
-<section class="sections">
-    <a href="lightroom.html" class="card">
-        <h2>LIGHTROOM PRESET</h2>
-        <p>View and download my Lightroom presets</p>
-    </a>
-
-    <div class="card">
-        <h2>PORTFOLIO</h2>
-        <p>My photography works</p>
-    </div>
-
-    <div class="card">
-        <h2>CONTACT</h2>
-        <p>Get in touch with me</p>
+    <!-- Pictures Section -->
+<section id="pictures">
+    <h2 style="text-align:center;">Sample Photos</h2>
+    <div class="photo-gallery">
+        <img src="assets/lightroomsampleimage.webp" alt="Lightroom Sample - White Vintage">
+        <img src="assets/lightroomsample2.jpg" alt="Lightroom Sample 2">
     </div>
 </section>
 
-<footer>
-    <p>© 2026 My Website</p>
-</footer>
+    <!-- Downloads Section -->
+    <section id="downloads">
+        <h2>Download Presets</h2>
+        <div class="download-item">
+            <h3>White Vintage</h3>
+            <p>Create your photo using this Lightroom preset, White Vintage.</p>
+            <a href="assets/lightroom1.dng" download>Download lightroom1 .DNG File</a>
+        </div>
+    </section>
 
+    <footer>
+        <p>© 2026 My Lightroom Presets</p>
+    </footer>
 </body>
 </html>
