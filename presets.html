@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>My Lightroom Presets</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=1100">
     <style>
         /* ===== INTERNAL CSS ===== */
         
@@ -12,9 +12,12 @@
             margin: 0;
             padding: 0;
             color: #3e2f2f;
+            /* 2. Fixed background that won't cut off */
             background: url('assets/ro1.jpg') no-repeat center center fixed;
             background-size: cover;
             min-height: 100vh;
+            width: 1100px; /* Forces body to stay desktop width */
+            margin: 0 auto;
         }
 
         header {
@@ -35,20 +38,20 @@
         }
 
         header h1 {
-            font-size: 2.5em;
+            font-size: 3em; /* Keep it large */
             margin: 0;
             color: #f5f5f0;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
         header p {
-            font-size: 1.2em;
+            font-size: 1.5em;
             margin-top: 10px;
             color: #faf5ef;
         }
 
         section {
-            max-width: 900px; 
+            width: 900px; /* Fixed width */
             margin: 0 auto 30px auto;
             background-color: rgba(250,245,239,0.95);
             padding: 25px;
@@ -64,17 +67,16 @@
             margin-bottom: 20px;
         }
 
-        /* ===== PHOTO GALLERY SIDE-BY-SIDE ===== */
+        /* ===== PHOTO GALLERY FIXED SIDE-BY-SIDE ===== */
         .photo-gallery {
             display: flex;
             gap: 20px;
-            flex-wrap: wrap;
+            flex-wrap: nowrap; /* 3. FORCES photos to stay side-by-side */
             justify-content: center;
         }
 
         .photo-gallery img {
-            flex: 1 1 300px;
-            max-width: 400px;
+            width: 400px; /* Fixed width for photos */
             height: auto;
             border-radius: 12px;
             box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
@@ -124,10 +126,7 @@
             margin-top: 50px;
         }
 
-        @media (max-width: 600px) {
-            header h1 { font-size: 1.8em; }
-            section { width: 90%; padding: 15px; }
-        }
+        /* 4. REMOVED ALL @MEDIA QUERIES to stop mobile changes */
     </style>
 </head>
 <body>
