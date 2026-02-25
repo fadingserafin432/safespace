@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Lightroom Presets</title>
+    <meta name="viewport" content="width=1100">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0; padding: 0; color: #3e2f2f;
+            /* Added ../ to find the background image */
+            background: url('../assets/ro1.jpg') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            width: 1100px;
+            margin: 0 auto;
+        }
+
+        header { height: 250px; position: relative; text-align: center; color: #fff; margin-bottom: 30px; }
+        .header-overlay { background-color: rgba(0,0,0,0.5); height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        header h1 { font-size: 3em; margin: 0; color: #f5f5f0; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        header p { font-size: 1.5em; margin-top: 10px; color: #faf5ef; }
+        
+        section { width: 900px; margin: 0 auto 30px auto; background-color: rgba(250,245,239,0.95); padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        section h2 { color: #556b2f; border-bottom: 2px solid #c1a16b; padding-bottom: 5px; margin-top: 0; margin-bottom: 20px; }
+
+        .photo-gallery { display: flex; gap: 20px; flex-wrap: nowrap; justify-content: center; }
+        .photo-gallery img { width: 400px; height: auto; border-radius: 12px; box-shadow: 2px 2px 8px rgba(0,0,0,0.2); object-fit: cover; }
+
+        .download-item { margin-bottom: 20px; padding: 15px; background-color: #fff; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+        .download-item h3 { color: #4b3621; margin: 0; }
+        .download-item p { color: #556b2f; margin-bottom: 15px; }
+        .download-item a { display: inline-block; padding: 10px 20px; background-color: #c1a16b; color: #fff; border-radius: 6px; text-decoration: none; font-weight: bold; }
+        
+        footer { text-align: center; padding: 20px; background-color: rgba(75,54,33,0.95); color: #faf5ef; margin-top: 50px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-overlay">
+            <h1>My Lightroom Presets</h1>
+            <p>Enhance your photos with curated presets</p>
+        </div>
+    </header>
+
+    <section id="pictures">
+        <h2>Edited Photos</h2>
+        <div class="photo-gallery">
+            <img src="../assets/lightroomsampleimage.webp" alt="Lightroom Sample 1">
+            <img src="../assets/lightroomsample2.jpg" alt="Lightroom Sample 2">
+        </div>
+    </section>
+
+    <section id="downloads">
+        <h2>Download Presets</h2>
+        <div class="download-item">
+            <h3>White Vintage</h3>
+            <p>Create your photo using this Lightroom preset, White Vintage.</p>
+            <a href="../assets/lightroom1.dng" download="lightroom1.dng">Download lightroom1 .DNG File</a>
+        </div>
+    </section>
+
+    <footer><p>© 2026 My Lightroom Presets</p></footer>
+</body>
+</html>
