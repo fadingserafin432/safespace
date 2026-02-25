@@ -1,55 +1,115 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>My Lightroom Presets</title>
-    <link rel="stylesheet" href="style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-    <!-- Header Section -->
-    <header>
-        <div class="header-overlay">
-            <h1>My Lightroom Presets</h1>
-            <p>Enhance your photos with curated presets</p>
-        </div>
-    </header>
+/* Global Styles */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #3e2f2f; /* dark brown */
+    background: url('assets/ro1.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
 
-    <!-- Pictures Section -->
-<section id="pictures">
-    <h2 style="text-align:center;">Sample Photos</h2>
-    <div class="photo-gallery">
-        <img src="assets/lightroomsampleimage.webp" alt="Lightroom Sample - White Vintage">
-        <img src="assets/lightroomsample2.jpg" alt="Lightroom Sample 2">
-    </div>
-</section>
+/* Header */
+header {
+    height: 250px;
+    position: relative;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 30px;
+}
 
-    <!-- Downloads Section -->
-    <section id="downloads">
-        <h2>Download Presets</h2>
-        <div class="download-item">
-            <h3>White Vintage</h3>
-            <p>Create your photo using this Lightroom preset, White Vintage.</p>
-            <a href="assets/lightroom1.dng" download>Download lightroom1 .DNG File</a>
-        </div>
-    </section>
+.header-overlay {
+    background-color: rgba(0,0,0,0.4);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
-    <footer>
-        <p>© 2026 My Lightroom Presets</p>
-    </footer>
-</body>
-</html>    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
+header h1 {
+    font-size: 2.5em;
+    margin: 0;
+    color: #f5f5f0;
+}
+
+header p {
+    font-size: 1.2em;
+    margin-top: 10px;
+    color: #faf5ef;
+}
+
+/* Sections */
+section {
+    max-width: 800px;
+    margin: auto;
+    background-color: rgba(250,245,239,0.9);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+section h2 {
+    color: #556b2f;
+    border-bottom: 2px solid #c1a16b;
+    padding-bottom: 5px;
+}
+
+/* Images */
+img {
+    width: 100%;
+    max-width: 400px;
+    margin: 10px 0;
+    border-radius: 12px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+}
+
+/* Download Items */
+.download-item {
+    margin-bottom: 20px;
+    padding: 12px;
+    background-color: #faf5ef;
+    border-radius: 10px;
+    box-shadow: 0 0 6px rgba(0,0,0,0.1);
+}
+
+.download-item h3 {
+    color: #4b3621;
+    margin-bottom: 5px;
+}
+
+.download-item p {
+    color: #556b2f;
+    margin-bottom: 10px;
+}
+
+.download-item a {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #c1a16b;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.download-item a:hover {
+    background-color: #556b2f;
+}
+.photo-gallery {
+    display: flex;             /* Arrange items in a row */
+    justify-content: center;   /* Center the images horizontally */
+    gap: 20px;                 /* Space between the images */
+    flex-wrap: wrap;           /* Wrap to next line if screen is small */
 }
 
 .photo-gallery img {
-    width: 300px;
-    max-width: 100%;
+    max-width: 100%;           /* Scale images to fit container */
     height: auto;
-    border-radius: 8px;
+    width: 300px;              /* Optional fixed width */
+    border-radius: 8px;        /* Optional rounded corners */
 }
-
+}
 /* Footer */
 footer {
     text-align: center;
