@@ -91,14 +91,16 @@
             margin-top: -20px;
         }
 
-        /* BOOK LIST CARDS */
+        /* BOOK LIST CARDS - Adjusted to sit BELOW the cover */
         .book-list-container {
             width: 900px; 
-            margin: -40px auto 100px auto; /* Overlap with cover slightly */
+            margin: 0 auto; /* Removed the negative top margin */
+            padding-top: 50px; /* Space between cover and list */
+            padding-bottom: 100px;
             display: flex;
             flex-direction: column;
             gap: 20px; 
-            z-index: 5;
+            z-index: 1; /* Sit behind the cover's shadow if needed */
         }
 
         .list-item {
@@ -161,7 +163,7 @@
             opacity: 0.4;
             user-select: none;
             pointer-events: none;
-            z-index: 1;
+            z-index: 0;
             animation: float 10s infinite linear;
         }
 
@@ -196,7 +198,6 @@
             </div>
             <div class="view-btn">Read More</div>
         </a>
-
 
     </section>
 
