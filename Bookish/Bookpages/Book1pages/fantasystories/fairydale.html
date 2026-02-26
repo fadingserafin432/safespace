@@ -2,53 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Nocticadia | Keri Lake</title>
+    <title>Fairydale | Veronica Lancet</title>
     <meta name="viewport" content="width=1100">
-    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Playfair+Display:ital,wght@0,400;1,700&family=Special+Elite&display=swap" rel="stylesheet">
-    
     <style>
         :root {
             --cream-white: #faf5ef;
-            --ink-black: #0a0a0c;
-            --parchment: #d9d2c5;
-            --glass-black: rgba(0, 0, 0, 0.85);
-            --border-accent: rgba(217, 210, 197, 0.3);
+            --cream-muted: #e0d8c3;
+            --glass-white: rgba(255, 255, 255, 0.12);
+            --bg-overlay: rgba(10, 12, 10, 0.88);
         }
 
         body {
             margin: 0; padding: 0;
-            font-family: 'Playfair Display', serif;
-            color: var(--parchment);
+            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+            color: var(--cream-white);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             overflow-x: hidden;
+            /* Page cover matches the book cover */
             background: url('img/fairydale.jpg') no-repeat center center fixed;
             background-size: cover;
         }
 
+        /* Ambient background blur */
         body::before {
             content: "";
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(circle, rgba(10,10,12,0.7) 0%, rgba(5,5,5,1) 100%);
-            backdrop-filter: blur(30px) grayscale(0.3);
+            background: var(--bg-overlay);
+            backdrop-filter: blur(25px);
             z-index: -1;
         }
 
         .back-nav {
             position: fixed; top: 30px; left: 30px;
-            color: var(--ink-black); text-decoration: none;
-            background: var(--cream-white);
-            padding: 12px 25px; border-radius: 2px;
-            font-size: 12px; z-index: 100;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-family: 'IM Fell English SC', serif;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-            transition: 0.4s;
+            color: var(--cream-white); text-decoration: none;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 10px 20px; border-radius: 50px;
+            font-size: 14px; z-index: 100;
+            border: 1px solid var(--glass-white);
+            transition: 0.3s;
+            text-transform: lowercase;
+            font-style: italic;
         }
+        .back-nav:hover { background: var(--cream-white); color: #121212; }
 
         .container {
             width: 850px;
@@ -57,30 +56,30 @@
             z-index: 1;
         }
 
+        /* Header Section */
         .header-section {
             display: flex;
-            gap: 50px;
-            margin-bottom: 50px;
+            gap: 40px;
+            margin-bottom: 40px;
             align-items: center;
-            border-bottom: 1px solid var(--border-accent);
-            padding-bottom: 40px;
         }
 
         .book-cover {
             width: 260px;
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+            border-radius: 6px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.7);
             flex-shrink: 0;
-            border: 1px solid var(--border-accent);
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
-        h1 { 
-            font-family: 'IM Fell English SC', serif;
-            font-size: 4em; margin: 0; letter-spacing: 4px; 
-            color: var(--cream-white);
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+        .book-meta {
+            flex-grow: 1;
         }
 
-        /* Star Rating CSS */
+        h1 { font-size: 3.2em; margin: 0; letter-spacing: -1px; color: var(--cream-white); }
+        .author { font-size: 1.3em; color: var(--cream-muted); margin-bottom: 15px; font-style: italic; }
+
+        /* Interactive Star Rating with Cream Highlight */
         .star-rating {
             display: flex;
             flex-direction: row-reverse;
@@ -90,91 +89,104 @@
         .star-rating input { display: none; }
         .star-rating label {
             font-size: 32px;
-            color: rgba(255,255,255,0.05);
+            color: rgba(255,255,255,0.15);
             cursor: pointer;
-            transition: 0.3s;
+            transition: 0.2s;
+            padding: 0 2px;
         }
         .star-rating label:hover,
         .star-rating label:hover ~ label,
         .star-rating input:checked ~ label {
             color: var(--cream-white);
-            text-shadow: 0 0 15px rgba(250, 245, 239, 0.5);
+            text-shadow: 0 0 10px rgba(250, 245, 239, 0.5);
         }
 
+        /* Description & Content Cards */
         section {
-            background: var(--glass-black);
-            padding: 45px;
-            margin-bottom: 30px;
-            border-left: 3px solid var(--cream-white);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            background: var(--glass-white);
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
-        h2 { 
-            font-family: 'IM Fell English SC', serif;
-            font-size: 1.4em; text-transform: uppercase; 
-            letter-spacing: 4px; margin-top: 0; color: var(--cream-white);
-        }
+        h2 { font-size: 1.1em; text-transform: uppercase; letter-spacing: 3px; margin-top: 0; color: var(--cream-muted); opacity: 0.8; }
 
+        .description-text { line-height: 1.9; font-size: 1.1em; color: #f0f0f0; }
+
+        /* Download Button */
+        .download-container { text-align: center; }
         .download-btn {
             display: inline-block;
-            background: transparent;
-            color: var(--cream-white);
-            padding: 15px 50px;
+            background: var(--cream-white);
+            color: #1a1f16;
+            padding: 16px 45px;
             text-decoration: none;
-            border: 1px solid var(--cream-white);
-            font-family: 'IM Fell English SC', serif;
-            transition: 0.5s;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            margin-top: 10px;
         }
-        .download-btn:hover { background: var(--cream-white); color: var(--ink-black); }
+        .download-btn:hover { transform: scale(1.03); box-shadow: 0 0 20px rgba(250, 245, 239, 0.3); }
 
-        /* Comment Styling */
+        /* Comments Area */
         textarea {
-            width: 100%; height: 120px;
-            background: rgba(10,10,10,0.9);
-            border: 1px solid #333;
-            padding: 20px; color: var(--parchment);
-            font-family: 'Special Elite', cursive;
-            resize: none; box-sizing: border-box;
+            width: 100%;
+            height: 110px;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 15px;
+            color: white;
+            font-family: inherit;
+            resize: none;
+            margin-top: 10px;
+            box-sizing: border-box;
         }
-
         .post-btn {
             margin-top: 15px;
-            background: var(--cream-white);
-            color: var(--ink-black);
-            border: none; padding: 12px 40px;
-            cursor: pointer; font-family: 'IM Fell English SC', serif;
+            background: transparent;
+            color: var(--cream-white);
+            border: 1px solid var(--cream-white);
+            padding: 10px 30px;
+            border-radius: 4px;
+            cursor: pointer;
             transition: 0.3s;
+            font-weight: 600;
         }
+        .post-btn:hover { background: var(--cream-white); color: #1a1f16; }
 
-        /* New: Styles for reflected responses */
-        #response-list {
-            margin-top: 30px;
-            border-top: 1px solid var(--border-accent);
-            padding-top: 20px;
+        /* Style for loaded comments */
+        .saved-comments { margin-top: 30px; }
+        .comment-box { 
+            background: rgba(255,255,255,0.05); 
+            padding: 15px; 
+            border-radius: 8px; 
+            margin-bottom: 10px; 
+            font-size: 0.95em;
+            border-left: 2px solid var(--cream-muted);
         }
-        .saved-comment {
-            background: rgba(255,255,255,0.03);
-            padding: 15px;
-            margin-bottom: 10px;
-            border-bottom: 1px style solid rgba(255,255,255,0.1);
-            font-family: 'Special Elite', cursive;
-            font-size: 0.9em;
-        }
-        .saved-comment span { color: var(--cream-white); display: block; margin-bottom: 5px; }
+        .comment-time { display: block; font-size: 0.7em; color: var(--cream-muted); margin-bottom: 5px; opacity: 0.6; }
 
-        footer { text-align: center; padding: 60px; font-size: 0.8em; font-family: 'Special Elite', cursive; color: var(--cream-white); opacity: 0.5; }
+        footer { text-align: center; padding: 50px; font-size: 0.85em; color: var(--cream-muted); opacity: 0.5; letter-spacing: 2px; }
     </style>
 </head>
 <body>
 
-    <a href="../../fantasy.html" class="back-nav">← Back to Library</a>
+    <a href="../../fantasy.html" class="back-nav">← back to fantasy</a>
 
     <div class="container">
+        
         <div class="header-section">
-            <img src="img/nocticadia.jpg" alt="Nocticadia Cover" class="book-cover">
+            <img src="img/fairydale.jpg" alt="Fairydale Cover" class="book-cover">
+            
             <div class="book-meta">
-                <h1>Nocticadia</h1>
-                <div class="author">By Keri Lake</div>
+                <h1>Fairydale</h1>
+                <div class="author">By Veronica Lancet</div>
                 
                 <div class="star-rating">
                     <input type="radio" name="rate" id="rate-5" value="5"><label for="rate-5">★</label>
@@ -183,93 +195,90 @@
                     <input type="radio" name="rate" id="rate-2" value="2"><label for="rate-2">★</label>
                     <input type="radio" name="rate" id="rate-1" value="1"><label for="rate-1">★</label>
                 </div>
-                <p id="rating-status" style="font-family: 'Special Elite'; font-size: 0.8em; opacity: 0.5;">Rate this Book</p>
+                <p id="rating-label" style="font-size: 0.9em; opacity: 0.7;">Rate this book</p>
             </div>
         </div>
 
         <section>
-            <h2>About this Book</h2>
+            <h2>Description</h2>
             <div class="description-text">
-                <p>Welcome to Nocticadia, a dark academia gothic romance where the air is thick with the scent of decay...</p>
+                <p>Fairydale by Veronica Lancet is a dark, atmospheric romance set in a secluded town filled with secrets. When the heroine arrives in Fairydale, she finds herself drawn into a web of mystery tied to her past and to a brooding, powerful man who seems connected to the town’s shadowed history.</p>
+                <p>As hidden truths surface, the story explores fate, obsession, trauma, and a love that blurs the line between salvation and destruction. Enter the haunting world of Fairydale, where ancient folklore breathes life into the shadows of a secluded village.</p>
             </div>
         </section>
 
-        <section class="download-container" style="text-align: center;">
-            <h2>DOWNLOAD HERE</h2>
-            <a href="files/nocticadia.epub" class="download-btn" download>Nocticadia by Keri Lake</a>
+        <section class="download-container">
+            <h2>Download Here</h2>
+            <p style="margin-bottom: 20px;">Access the full digital version of Fairydale below.</p>
+            <a href="files/fairydale.epub" class="download-btn" download>Fairydale by Veronica Lancet</a>
         </section>
 
         <section>
-            <h2>Observation Notes</h2>
+            <h2>Visitor Reactions</h2>
             <div class="comment-area">
-                <textarea id="comment-input" placeholder="Type your observation here..."></textarea>
-                <button class="post-btn" onclick="saveResponse()">Log Response</button>
+                <textarea id="comment-input" placeholder="Write your thoughts on this journey..."></textarea>
+                <button class="post-btn" onclick="saveComment()">Post Response</button>
             </div>
-            
-            <div id="response-list"></div>
+            <div id="comment-list" class="saved-comments"></div>
         </section>
 
-        <footer>© FADING SPACES | NOCTICADIA ARCHIVE</footer>
+        <footer>© 2026 FADING SPACES | FANTASY ARCHIVE</footer>
+
     </div>
 
     <script>
-        // 1. Load data when page opens
+        // Load data when page opens
         window.onload = function() {
             displayComments();
             loadRating();
         };
 
-        // 2. Handle Star Rating recording
+        // --- Rating Logic ---
         const stars = document.querySelectorAll('input[name="rate"]');
         stars.forEach(star => {
-            star.addEventListener('change', function() {
-                localStorage.setItem('nocticadia_rating', this.value);
-                document.getElementById('rating-status').innerText = "Rating Recorded: " + this.value + " Stars";
-            });
+            star.onclick = function() {
+                localStorage.setItem('fairydale_rating', this.value);
+                document.getElementById('rating-label').innerText = "You rated this " + this.value + " stars";
+            }
         });
 
         function loadRating() {
-            const savedRating = localStorage.getItem('nocticadia_rating');
-            if(savedRating) {
+            const savedRating = localStorage.getItem('fairydale_rating');
+            if (savedRating) {
                 document.getElementById('rate-' + savedRating).checked = true;
-                document.getElementById('rating-status').innerText = "Your Saved Rating: " + savedRating + " Stars";
+                document.getElementById('rating-label').innerText = "You rated this " + savedRating + " stars";
             }
         }
 
-        // 3. Handle Comment recording
-        function saveResponse() {
-            const commentInput = document.getElementById('comment-input');
-            const commentText = commentInput.value.trim();
+        // --- Comment Logic ---
+        function saveComment() {
+            const input = document.getElementById('comment-input');
+            const text = input.value.trim();
+            if (text === "") return;
 
-            if (commentText === "") return;
+            const comments = JSON.parse(localStorage.getItem('fairydale_comments') || "[]");
+            comments.unshift({
+                text: text,
+                time: new Date().toLocaleString()
+            });
 
-            // Get existing comments or empty array
-            let comments = JSON.parse(localStorage.getItem('nocticadia_comments')) || [];
-            
-            // Add new comment with a timestamp
-            const newEntry = {
-                text: commentText,
-                date: new Date().toLocaleString()
-            };
-            
-            comments.unshift(newEntry); // Put new comment at top
-            localStorage.setItem('nocticadia_comments', JSON.stringify(comments));
-            
-            commentInput.value = ""; // Clear box
-            displayComments(); // Refresh list
+            localStorage.setItem('fairydale_comments', JSON.stringify(comments));
+            input.value = "";
+            displayComments();
         }
 
         function displayComments() {
-            const responseList = document.getElementById('response-list');
-            let comments = JSON.parse(localStorage.getItem('nocticadia_comments')) || [];
+            const list = document.getElementById('comment-list');
+            const comments = JSON.parse(localStorage.getItem('fairydale_comments') || "[]");
             
-            responseList.innerHTML = comments.map(c => `
-                <div class="saved-comment">
-                    <span>Observed on ${c.date}:</span>
-                    ${c.text}
+            list.innerHTML = comments.map(c => `
+                <div class="comment-box">
+                    <span class="comment-time">${c.time}</span>
+                    <div>${c.text}</div>
                 </div>
             `).join('');
         }
     </script>
+
 </body>
 </html>
