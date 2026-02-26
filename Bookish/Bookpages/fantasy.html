@@ -22,9 +22,43 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
+            overflow-x: hidden; /* Prevents horizontal scroll from floating items */
         }
 
-        /* Nav Button */
+        /* --- FANTASY ANIMATIONS LAYER --- */
+        .fantasy-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none; /* Allows clicking through to buttons */
+            z-index: 1; 
+        }
+
+        .creature {
+            position: absolute;
+            font-size: 24px;
+            user-select: none;
+            opacity: 0.7;
+            filter: drop-shadow(0 0 5px rgba(255,255,255,0.5));
+        }
+
+        /* Floating Movement for flowers/petals */
+        @keyframes drift {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Flying Movement for birds/butterflies */
+        @keyframes fly {
+            0% { left: -10%; top: 70%; transform: scaleX(1); }
+            49% { transform: scaleX(1); }
+            50% { left: 110%; top: 20%; transform: scaleX(-1); } /* Turn around */
+            100% { left: -10%; top: 70%; transform: scaleX(-1); }
+        }
+
+        /* --- EXISTING STYLES --- */
         .back-nav {
             position: absolute; top: 30px; left: 30px;
             color: #555; text-decoration: none; 
@@ -34,7 +68,6 @@
             border-radius: 50px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        /* THE COVER SECTION */
         .cover-container {
             position: relative;
             width: 100%;
@@ -50,48 +83,30 @@
         .cover-photo { 
             width: 100%; height: 100%; 
             object-fit: cover; 
-            /* Added a slight blur and sepia to make the center text "pop" */
             filter: brightness(0.9) sepia(0.3); 
         }
 
-        /* HIGH VISIBILITY GOTHIC TITLE */
         .cover-title {
             position: absolute; 
-            top: 50%;
-            left: 50%;
+            top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            
-            /* Font Choice: Uncial Antiqua gives a very visible, bold Gothic look */
             font-family: 'Uncial Antiqua', serif;
-            font-size: 140px; /* Large and bold */
+            font-size: 140px;
             color: var(--dark-brown);
-            
             margin: 0;
             text-align: center;
             width: 100%;
             z-index: 3;
             letter-spacing: 12px;
-            
-            /* Visibility Trick: Light glow/halo behind dark text */
-            text-shadow: 
-                3px 3px 0px rgba(255, 255, 255, 0.4),
-                -1px -1px 0px rgba(255, 255, 255, 0.4),
-                0 0 40px rgba(255, 255, 255, 0.6);
+            text-shadow: 3px 3px 0px rgba(255, 255, 255, 0.4), 0 0 40px rgba(255, 255, 255, 0.6);
         }
 
-        /* Decoration line under title */
         .cover-title::after {
-            content: "";
-            display: block;
-            width: 200px;
-            height: 3px;
-            background: var(--dark-brown);
-            margin: -10px auto 0 auto;
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(255,255,255,0.5);
+            content: ""; display: block; width: 200px; height: 3px;
+            background: var(--dark-brown); margin: -10px auto 0 auto;
+            border-radius: 50%; box-shadow: 0 0 10px rgba(255,255,255,0.5);
         }
 
-        /* BOOK LIST CARDS */
         .book-list-container {
             width: 950px; 
             margin: 60px auto;
@@ -111,6 +126,8 @@
             text-decoration: none;
             transition: all 0.3s ease;
             border: 1px solid rgba(255,255,255,0.8);
+            position: relative;
+            z-index: 5;
         }
 
         .list-item:hover {
@@ -148,23 +165,20 @@
             font-weight: bold;
             transition: 0.3s;
         }
-
-        .view-btn:hover { background: #5a4646; }
-
     </style>
 </head>
 <body>
+
+    <div class="fantasy-overlay" id="overlay"></div>
 
     <a href="../book1.html" class="back-nav">← back to genres</a>
 
     <div class="cover-container">
         <img src="Book1pages/fantasystories/img/fanta.jpg" class="cover-photo" alt="Fantasy Banner">
-        
         <h1 class="cover-title">Fantasy</h1>
     </div>
 
     <section class="book-list-container">
-        
         <a href="Book1pages/fantasystories/fairydale.html" class="list-item">
             <img src="Book1pages/fantasystories/img/fairydale.jpg" alt="Fairydale">
             <div class="list-info">
@@ -175,15 +189,50 @@
         </a>
 
          <a href="Book1pages/fantasystories/nocticadia.html" class="list-item">
-            <img src="Book1pages/fantasystories/img/nocticadia.jpg" alt="Fairydale">
+            <img src="Book1pages/fantasystories/img/nocticadia.jpg" alt="Nocticadia">
             <div class="list-info">
                 <h2>Nocticadia</h2>
                 <h3>by Keri Lake</h3>
             </div>
             <div class="view-btn">Discover</div>
         </a>
-
     </section>
+
+    <script>
+        const overlay = document.getElementById('overlay');
+        const creatures = ['🌸', '✨', '🦋', '🕊️', '🍃'];
+
+        function createCreature() {
+            const el = document.createElement('div');
+            el.className = 'creature';
+            el.innerText = creatures[Math.floor(Math.random() * creatures.length)];
+            
+            // Random start position
+            el.style.left = Math.random() * 100 + 'vw';
+            el.style.top = (Math.random() * 50 + 50) + 'vh'; // Start from lower half
+            
+            // Random size
+            const size = Math.random() * 20 + 15;
+            el.style.fontSize = size + 'px';
+
+            // Randomize animation type
+            if (el.innerText === '🕊️' || el.innerText === '🦋') {
+                el.style.animation = `fly ${Math.random() * 15 + 20}s linear infinite`;
+            } else {
+                el.style.animation = `drift ${Math.random() * 10 + 10}s linear forwards`;
+            }
+
+            overlay.appendChild(el);
+
+            // Remove element after animation to keep performance clean
+            setTimeout(() => {
+                el.remove();
+            }, 25000);
+        }
+
+        // Generate a new item every 1.5 seconds
+        setInterval(createCreature, 1500);
+    </script>
 
 </body>
 </html>
