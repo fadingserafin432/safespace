@@ -18,7 +18,6 @@
         body {
             margin: 0; padding: 0;
             font-family: 'Special Elite', serif;
-            /* Dark gradient background if the image fails to load */
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('../../assets/t.png') no-repeat center center fixed;
             background-size: cover;
             display: flex;
@@ -42,11 +41,9 @@
             position: absolute;
             user-select: none;
             opacity: 0.5;
-            /* Gloomy shadow for the objects */
             filter: drop-shadow(0 0 8px rgba(0,0,0,0.8));
         }
 
-        /* Falling/Drifting movement (Rain/Leaves/Droplets) */
         @keyframes driftDown {
             0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0; }
             20% { opacity: 0.6; }
@@ -54,7 +51,6 @@
             100% { transform: translateY(110vh) translateX(20px) rotate(20deg); opacity: 0; }
         }
 
-        /* Stalking movement (Crows/Shadows) */
         @keyframes stalk {
             0% { left: -10%; top: 20%; transform: scaleX(1); opacity: 0; }
             10% { opacity: 0.4; }
@@ -85,7 +81,6 @@
             max-width: 1200px;
             height: 550px;
             overflow: hidden;
-            /* Squarer, harsher borders for thriller feel */
             border-bottom: 5px solid var(--blood-red);
             box-shadow: 0 10px 60px rgba(0,0,0,0.9);
             z-index: 2;
@@ -103,13 +98,15 @@
             transform: translate(-50%, -50%);
             font-family: 'Creepster', cursive;
             font-size: 160px;
-            color: var(--blood-red);
+            /* Changed from Blood Red to White */
+            color: #ffffff; 
             margin: 0;
             text-align: center;
             width: 100%;
             z-index: 3;
             letter-spacing: 15px;
-            text-shadow: 5px 5px 0px #000, 0 0 30px rgba(139, 0, 0, 0.8);
+            /* Updated shadow to give it a red 'glow' against the white text */
+            text-shadow: 4px 4px 0px #000, 0 0 25px rgba(139, 0, 0, 0.9);
         }
 
         .book-list-container {
@@ -182,7 +179,7 @@
 
     <div class="thriller-overlay" id="overlay"></div>
 
-    <a href="../Bookpages/book1.html" class="back-nav">← Exit to Safety</a>
+    <a href="../Bookpages/book1.html" class="back-nav">← Back to Library</a>
 
     <div class="cover-container">
         <img src="Book1pages/thrillerstories/img/t2.jpg" class="cover-photo" alt="Thriller Banner">
@@ -196,47 +193,34 @@
                 <h2>The Hunt for Red October</h2>
                 <h3>by Tom Clancy</h3>
             </div>
-            <div class="view-btn">Investigate</div>
+            <div class="view-btn">Read More</div>
         </a>
     </section>
 
     <script>
         const overlay = document.getElementById('overlay');
-        // Thriller-themed emojis: Crow, Knife, Drop of blood, Fog, Skull
         const objects = ['🐦‍⬛', '🔪', '🩸', '🌫️', '💀', '👣'];
 
         function createObject() {
             const el = document.createElement('div');
             el.className = 'thriller-obj';
             el.innerText = objects[Math.floor(Math.random() * objects.length)];
-            
-            // Random start position
             el.style.left = Math.random() * 100 + 'vw';
-            
-            // Random size
             const size = Math.random() * 25 + 20;
             el.style.fontSize = size + 'px';
 
-            // Animation Logic
             if (el.innerText === '🐦‍⬛' || el.innerText === '👣') {
-                // Crows and footsteps move across the screen
                 el.style.top = Math.random() * 80 + 'vh';
                 el.style.animation = `stalk ${Math.random() * 10 + 15}s linear forwards`;
             } else {
-                // Knives, blood, and fog drift down
                 el.style.top = '-50px';
                 el.style.animation = `driftDown ${Math.random() * 8 + 7}s linear forwards`;
             }
 
             overlay.appendChild(el);
-
-            // Cleanup
-            setTimeout(() => {
-                el.remove();
-            }, 20000);
+            setTimeout(() => { el.remove(); }, 20000);
         }
 
-        // Slightly faster interval for a "hectic" thriller feel
         setInterval(createObject, 1200);
     </script>
 
