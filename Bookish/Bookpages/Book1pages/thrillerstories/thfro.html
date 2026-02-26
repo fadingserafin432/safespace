@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Hunt for Red October | Tom Clancy</title>
+    <meta name="viewport" content="width=1100">
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Special+Elite&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Thriller Theme Palette */
+            --blood-red: #8b0000;
+            --deep-black: #0a0a0a;
+            --danger-red: #ff0000;
+            --stark-white: #ffffff;
+            --metal-grey: #2c2c2c;
+            --bg-overlay: rgba(10, 10, 10, 0.9); /* Darker, more claustrophobic overlay */
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Special Elite', serif; /* Typewriter font */
+            color: var(--stark-white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            /* Using the background image you specified */
+            background: url('img/t1.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        /* Darkening the background for a tense atmosphere */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: var(--bg-overlay);
+            backdrop-filter: blur(8px); /* Reduced blur to keep it gritty */
+            z-index: -1;
+        }
+
+        .back-nav {
+            position: fixed; top: 30px; left: 30px;
+            color: var(--stark-white); text-decoration: none;
+            background: var(--blood-red);
+            padding: 10px 25px; border-radius: 4px; /* Squarer buttons for thriller */
+            font-size: 14px; z-index: 100;
+            border: 1px solid var(--danger-red);
+            transition: 0.3s;
+            text-transform: uppercase;
+            font-weight: bold;
+            box-shadow: 0 0 15px rgba(139, 0, 0, 0.6);
+        }
+        .back-nav:hover { background: var(--danger-red); transform: scale(1.1); }
+
+        .container {
+            width: 850px;
+            margin-top: 60px;
+            padding-bottom: 80px;
+            z-index: 1;
+        }
+
+        /* Header Section */
+        .header-section {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 40px;
+            align-items: center;
+        }
+
+        .book-cover {
+            width: 260px;
+            border-radius: 4px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.8);
+            flex-shrink: 0;
+            border: 2px solid var(--metal-grey);
+            filter: grayscale(0.3) contrast(1.2); /* Makes the cover look grittier */
+        }
+
+        h1 { 
+            font-family: 'Creepster', cursive;
+            font-size: 4em; 
+            margin: 0; 
+            color: var(--stark-white); 
+            text-shadow: 0 0 20px var(--blood-red);
+            letter-spacing: 2px;
+        }
+        
+        .author { 
+            font-family: 'Special Elite', serif;
+            font-size: 1.8em; 
+            color: var(--blood-red); 
+            margin-bottom: 15px; 
+            text-transform: uppercase;
+        }
+
+        /* Star Rating with Red Alert Highlight */
+        .star-rating {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+            margin: 15px 0;
+        }
+        .star-rating input { display: none; }
+        .star-rating label {
+            font-size: 32px;
+            color: rgba(255,255,255,0.1);
+            cursor: pointer;
+            transition: 0.2s;
+            padding: 0 2px;
+        }
+        .star-rating label:hover,
+        .star-rating label:hover ~ label,
+        .star-rating input:checked ~ label {
+            color: var(--danger-red);
+            text-shadow: 0 0 15px var(--danger-red);
+        }
+
+        /* Description & Content Cards */
+        section {
+            background: rgba(20, 20, 20, 0.85); /* Industrial dark panels */
+            padding: 40px;
+            border-radius: 4px;
+            margin-bottom: 25px;
+            border: 1px solid var(--blood-red);
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        h2 { 
+            font-size: 1.2em; 
+            text-transform: uppercase; 
+            letter-spacing: 5px; 
+            margin-top: 0; 
+            color: var(--blood-red); 
+            font-weight: bold;
+            border-bottom: 1px solid var(--blood-red);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .description-text { line-height: 1.8; font-size: 1.1em; color: #ccc; }
+
+        /* Download Button - Hazard Style */
+        .download-container { text-align: center; }
+        .download-btn {
+            display: inline-block;
+            background: var(--blood-red);
+            color: white;
+            padding: 18px 50px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: 0.3s;
+            border: 2px solid var(--danger-red);
+            box-shadow: 0 0 15px rgba(139, 0, 0, 0.5);
+        }
+        .download-btn:hover { 
+            background: var(--danger-red); 
+            box-shadow: 0 0 30px var(--danger-red);
+            color: black;
+        }
+
+        /* Comments Area */
+        textarea {
+            width: 100%;
+            height: 110px;
+            background: #000;
+            border: 1px solid var(--metal-grey);
+            border-radius: 0;
+            padding: 15px;
+            color: #00ff00; /* Radar/Hacker green text */
+            font-family: 'Special Elite', serif;
+            resize: none;
+            margin-top: 10px;
+            box-sizing: border-box;
+        }
+        
+        .post-btn {
+            margin-top: 15px;
+            background: transparent;
+            color: var(--stark-white);
+            border: 1px solid var(--blood-red);
+            padding: 10px 35px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 2px;
+        }
+        .post-btn:hover { background: var(--blood-red); }
+
+        .comment-box { 
+            background: rgba(0,0,0,0.5); 
+            padding: 20px; 
+            border-radius: 0; 
+            margin-bottom: 12px; 
+            border-left: 4px solid var(--blood-red);
+            font-family: 'Special Elite', serif;
+        }
+        .comment-time { display: block; font-size: 0.75em; color: var(--danger-red); margin-bottom: 8px; opacity: 0.8; }
+
+        footer { text-align: center; padding: 60px; font-size: 0.8em; color: var(--blood-red); letter-spacing: 5px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <a href="../../thriller.html" class="back-nav">← back to thriller</a>
+
+    <div class="container">
+        
+        <div class="header-section">
+            <img src="img/t1.jpg" alt="The Hunt for Red October" class="book-cover">
+            
+            <div class="book-meta">
+                <h1>The Hunt for Red October</h1>
+                <div class="author">by Tom Clancy</div>
+                
+                <div class="star-rating">
+                    <input type="radio" name="rate" id="rate-5" value="5"><label for="rate-5">★</label>
+                    <input type="radio" name="rate" id="rate-4" value="4"><label for="rate-4">★</label>
+                    <input type="radio" name="rate" id="rate-3" value="3"><label for="rate-3">★</label>
+                    <input type="radio" name="rate" id="rate-2" value="2"><label for="rate-2">★</label>
+                    <input type="radio" name="rate" id="rate-1" value="1"><label for="rate-1">★</label>
+                </div>
+                <p id="rating-label" style="font-size: 0.9em; opacity: 0.8; font-style: italic; color: var(--danger-red);">Rate this Book</p>
+            </div>
+        </div>
+
+        <section>
+            <h2>About this Story</h2>
+            <div class="description-text">
+               This is a Cold War military thriller about a high-stakes submarine chase between the United States and the Soviet Union.
+               <br><br>
+               The story centers on a brand-new Soviet nuclear submarine called the <strong>Red October</strong>. Its captain, Marko Ramius, suddenly turns the vessel toward the United States. The Soviet government believes he has gone rogue and orders their navy to destroy the submarine before it reaches American waters.
+            </div>
+        </section>
+
+        <section class="download-container">
+            <h2>Download Here</h2>
+            <p style="margin-bottom: 25px; font-style: italic; opacity: 0.9; color: var(--danger-red);">"Until the hunt begins..."</p>
+            <a href="files/thfro.epub" class="download-btn" download>The Hunt for Red October by Tom Clancy</a>
+        </section>
+
+        <section>
+            <h2>Debriefing Notes</h2>
+            <div class="comment-area">
+                <textarea id="comment-input" placeholder="Enter classified reflection..."></textarea>
+                <button class="post-btn" onclick="saveComment()">Submit Report</button>
+            </div>
+            <div id="comment-list" class="saved-comments"></div>
+        </section>
+
+        <footer> © FADING SPACES | THRILLER ARCHIVE </footer>
+
+    </div>
+
+    <script>
+        window.onload = function() {
+            displayComments();
+            loadRating();
+        };
+
+        const stars = document.querySelectorAll('input[name="rate"]');
+        stars.forEach(star => {
+            star.onclick = function() {
+                localStorage.setItem('iimyh_rating', this.value);
+                document.getElementById('rating-label').innerText = "THREAT LEVEL: " + this.value + " STARS";
+                document.getElementById('rating-label').style.color = "var(--danger-red)";
+            }
+        });
+
+        function loadRating() {
+            const savedRating = localStorage.getItem('thfro_rating');
+            if (savedRating) {
+                document.getElementById('rate-' + savedRating).checked = true;
+                document.getElementById('rating-label').innerText = "THREAT LEVEL: " + savedRating + " STARS";
+            }
+        }
+
+        function saveComment() {
+            const input = document.getElementById('comment-input');
+            const text = input.value.trim();
+            if (text === "") return;
+
+            const comments = JSON.parse(localStorage.getItem('thfro_comments') || "[]");
+            comments.unshift({ text: text, time: new Date().toLocaleString() });
+            localStorage.setItem('thfro_comments', JSON.stringify(comments));
+            input.value = "";
+            displayComments();
+        }
+
+        function displayComments() {
+            const list = document.getElementById('comment-list');
+            const comments = JSON.parse(localStorage.getItem('thfro_comments') || "[]");
+            list.innerHTML = comments.map(c => `
+                <div class="comment-box">
+                    <span class="comment-time">TIMESTAMP: ${c.time}</span>
+                    <div style="color: #00ff00;">> ${c.text}</div>
+                </div>
+            `).join('');
+        }
+    </script>
+
+</body>
+</html>
