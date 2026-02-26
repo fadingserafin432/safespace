@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fairydale - A Gothic Tale</title>
+      <h1> By Veronica Lancet</h>
+    <meta name="viewport" content="width=1100">
+    <style>
+        body {
+            font-family: 'Garamond', 'Georgia', serif; /* More literary feel */
+            margin: 0; padding: 0; 
+            color: #e0d8c3;
+            /* Background remains or you can update the path */
+            background: #1a1f16 url('../assets/forest-bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            width: 1100px;
+            margin: 0 auto;
+        }
+
+        header { height: 200px; position: relative; text-align: center; color: #fff; }
+        .header-overlay { background-color: rgba(13, 20, 10, 0.7); height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        header h1 { font-size: 3.5em; margin: 0; color: #d4af37; text-shadow: 0px 0px 15px rgba(212,175,55,0.6); letter-spacing: 3px; }
+
+        section { 
+            width: 850px; 
+            margin: 0 auto 30px auto; 
+            background-color: rgba(26, 31, 22, 0.92); 
+            padding: 35px; 
+            border-radius: 8px; 
+            border: 1px solid #3d4632;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+        }
+
+        h2 { color: #d4af37; border-bottom: 1px solid #556b2f; padding-bottom: 10px; }
+
+        /* Book Cover & Rating */
+        .book-container { text-align: center; margin-bottom: 40px; }
+        .book-cover { 
+            width: 320px; 
+            border-radius: 4px; 
+            box-shadow: 0 5px 25px rgba(0,0,0,0.8);
+            border: 3px solid #d4af37;
+        }
+        .star-rating { color: #d4af37; font-size: 1.8em; margin-top: 15px; }
+
+        /* Story Description */
+        .story-description { line-height: 1.8; font-size: 1.1em; color: #c5cbb4; font-style: italic; }
+
+        /* Download Section */
+        .download-box { 
+            background: #252d1f; 
+            padding: 20px; 
+            border-radius: 5px; 
+            text-align: center; 
+            border: 1px dashed #d4af37;
+        }
+        .btn-download { 
+            display: inline-block; 
+            padding: 12px 30px; 
+            background-color: #556b2f; 
+            color: white; 
+            text-decoration: none; 
+            font-weight: bold; 
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+        .btn-download:hover { background-color: #d4af37; color: #1a1f16; }
+
+        /* Comments Section */
+        .comment-area { margin-top: 30px; }
+        textarea { 
+            width: 100%; 
+            height: 100px; 
+            background: #0d140a; 
+            color: white; 
+            border: 1px solid #556b2f; 
+            border-radius: 5px; 
+            padding: 10px; 
+            box-sizing: border-box;
+            resize: none;
+        }
+        .btn-submit { 
+            margin-top: 10px; 
+            padding: 8px 20px; 
+            background: transparent; 
+            color: #d4af37; 
+            border: 1px solid #d4af37; 
+            cursor: pointer; 
+        }
+        .btn-submit:hover { background: #d4af37; color: #0d140a; }
+
+        footer { text-align: center; padding: 30px; background-color: rgba(13,20,10,0.9); color: #d4af37; margin-top: 50px; }
+
+        .back-home { 
+            position: absolute; top: 20px; left: 20px; color: white; 
+            text-decoration: none; background: rgba(0,0,0,0.5); 
+            padding: 10px 15px; border-radius: 5px; font-weight: bold; z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="javascript:history.back()" class="back-home">← Back to Library</a>
+
+    <header>
+        <div class="header-overlay">
+            <h1>Fairydale</h1>
+        </div>
+    </header>
+
+    <div class="book-container">
+        <img src="Bookish/Bookpages/Book1pages/fantasystories/img/fairydale.jpg" alt="Fairydale Book Cover" class="book-cover">
+        <div class="star-rating">
+            ★★★★★
+        </div>
+    </div>
+
+    <section id="description">
+        <h2>About the Story</h2>
+        <div class="story-description">
+            <p>
+              Fairydale by Veronica Lancet is a dark, atmospheric romance set in a secluded town filled with secrets. When the heroine arrives in Fairydale, she finds herself drawn into a web of mystery tied to her past and to a brooding, powerful man who seems connected to the town’s shadowed history.
+              As hidden truths surface, the story explores fate, obsession, trauma, and a love that blurs the line between salvation and destruction. 
+              With emotional intensity and suspense woven throughout, Fairydale delivers a haunting tale of passion, revenge, 
+              and long-buried secrets waiting to be uncovered.  
+              Enter the haunting world of Fairydale, where ancient folklore breathes life into the shadows of a secluded village. 
+                As secrets unspool and the boundary between the human world and the old gods thins, one must wonder... 
+                some stories are better left untold.
+            </p>
+        </div>
+    </section>
+
+    <section id="downloads">
+        <h2>Read the Manuscript</h2>
+        <div class="download-box">
+            <p>Access the digital version of Fairydale below.</p>
+            <a href="Bookish/Bookpages/Book1pages/fantasystories/files/fairydale.pdf" class="btn-download" download>Download Story File</a>
+        </div>
+    </section>
+
+    <section id="comments">
+        <h2>Reader Responses</h2>
+        <div class="comment-area">
+            <textarea placeholder="Leave your thoughts on the journey through Fairydale..."></textarea>
+            <button class="btn-submit">Post Comment</button>
+        </div>
+    </section>
+
+    <footer><p>© 2026 Fading Spaces | A Gothic Fantasy Archive</p></footer>
+
+</body>
+</html>
