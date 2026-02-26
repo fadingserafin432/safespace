@@ -15,7 +15,8 @@
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Arial, sans-serif;
-            background: url('../Bookimages/fantasy.jpg') no-repeat center center fixed;
+            /* Pointing to your main background */
+            background: url('../../assets/cover2.jpg') no-repeat center center fixed;
             background-size: cover;
             display: flex;
             flex-direction: column;
@@ -47,12 +48,12 @@
         /* WATTPAD STYLE BIG & WIDE COVER */
         .cover-container {
             position: relative;
-            width: 100%; /* Full width of the container */
-            max-width: 1200px; /* Limits it just enough to stay centered */
-            height: 500px; /* Much taller for that Wattpad profile feel */
-            margin-top: 0; /* Starts at the very top */
+            width: 100%;
+            max-width: 1200px;
+            height: 500px;
+            margin-top: 0;
             overflow: hidden;
-            border-bottom-left-radius: 60px; /* Deep curves for a modern look */
+            border-bottom-left-radius: 60px;
             border-bottom-right-radius: 60px;
             box-shadow: 0 15px 40px rgba(0,0,0,0.2);
             z-index: 2;
@@ -67,11 +68,11 @@
 
         .cover-title {
             position: absolute; 
-            bottom: 60px; /* Positioned near the bottom like Wattpad titles */
+            bottom: 60px;
             left: 50%;
             transform: translateX(-50%);
             font-family: 'Courier New', Courier, monospace;
-            font-size: 70px; /* Bigger presence */
+            font-size: 70px;
             color: var(--cream-white); 
             letter-spacing: 15px; 
             font-weight: 700; 
@@ -99,13 +100,15 @@
             border-radius: 40px;
             display: flex;
             align-items: center;
+            text-decoration: none; /* Make the whole bar clickable */
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, background 0.3s ease;
             border: 1px solid rgba(255,255,255,0.8);
         }
 
         .list-item:hover {
             transform: scale(1.02);
+            background: #ffffff;
         }
 
         .list-item img { 
@@ -122,35 +125,29 @@
         .list-info h2 {
             margin: 0; 
             color: #4a4a4a;
-            font-size: 22px; 
+            font-size: 24px; 
             letter-spacing: 0.5px;
         }
 
-        .list-info p {
-            margin: 10px 0 0 0;
+        .list-info h3 {
+            margin: 5px 0 0 0;
             color: var(--text-muted);
-            font-size: 15px; 
+            font-size: 16px; 
+            font-weight: 400;
             font-style: italic;
         }
 
-        .download-btn {
+        .view-btn {
             text-decoration: none;
-            padding: 14px 28px;
+            padding: 12px 25px;
             background: #fff;
             color: var(--text-muted);
             border-radius: 50px;
-            font-size: 12px;
+            font-size: 11px;
             letter-spacing: 1.5px;
             text-transform: uppercase;
             border: 1px solid #ddd;
-            transition: 0.3s;
-            font-weight: 600;
-        }
-
-        .download-btn:hover { 
-            background: #4a4a4a; 
-            color: #fff; 
-            border-color: #4a4a4a; 
+            font-weight: 600; 
         }
     </style>
 </head>
@@ -165,14 +162,16 @@
 
     <section class="book-list-container">
         
-        <a href="fairytale.html" class="genre-card">
-            <img src="../Book1pages/fantasystories/img/fairaydale.jpg" alt="Fantasy">
-            <h2>Fairydale</h2>
-            <h3> by Veronica Lancet</h3>
+        <a href="fairytale.html" class="list-item">
+            <img src="Book1pages/fantasystories/img/fairaydale.jpg" alt="Fairydale">
+            <div class="list-info">
+                <h2>Fairydale</h2>
+                <h3>by Veronica Lancet</h3>
+            </div>
+            <div class="view-btn">Read More</div>
         </a>
-        
-    </div>
-    </section>
+
+        </section>
 
 </body>
 </html>
