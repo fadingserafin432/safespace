@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fantasy Stories - Fading Spaces</title>
+    <meta name="viewport" content="width=1200">
+    <style>
+        :root {
+            --silk-white: rgba(255, 255, 255, 0.85);
+            --text-muted: #8a8481;
+            --cream-white: #FFFDD0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: url('../../assets/cover2.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .back-nav {
+            position: absolute; top: 30px; left: 30px;
+            color: var(--text-muted); text-decoration: none; 
+            background: rgba(255, 255, 255, 0.9);
+            padding: 12px 24px; font-weight: 500; z-index: 10;
+            text-transform: lowercase; font-style: italic; font-size: 13px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        /* WATTPAD STYLE BIG & WIDE COVER */
+        .cover-container {
+            position: relative;
+            width: 100%; /* Full width of the container */
+            max-width: 1200px; /* Limits it just enough to stay centered */
+            height: 500px; /* Much taller for that Wattpad profile feel */
+            margin-top: 0; /* Starts at the very top */
+            overflow: hidden;
+            border-bottom-left-radius: 60px; /* Deep curves for a modern look */
+            border-bottom-right-radius: 60px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            z-index: 2;
+        }
+
+        .cover-photo { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            filter: brightness(0.75); 
+        }
+
+        .cover-title {
+            position: absolute; 
+            bottom: 60px; /* Positioned near the bottom like Wattpad titles */
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 70px; /* Bigger presence */
+            color: var(--cream-white); 
+            letter-spacing: 15px; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            z-index: 3;
+            text-align: center;
+            width: 100%;
+            text-shadow: 4px 4px 15px rgba(0,0,0,0.5);
+        }
+
+        /* BOOK LIST */
+        .book-list-container {
+            width: 950px; 
+            margin: 60px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px; 
+            z-index: 2;
+            padding-bottom: 100px;
+        }
+
+        .list-item {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+
+        .list-item:hover {
+            transform: scale(1.02);
+        }
+
+        .list-item img { 
+            width: 100px; 
+            height: 145px; 
+            object-fit: cover; 
+            border-radius: 20px;
+            margin-right: 35px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .list-info { flex-grow: 1; }
+
+        .list-info h2 {
+            margin: 0; 
+            color: #4a4a4a;
+            font-size: 22px; 
+            letter-spacing: 0.5px;
+        }
+
+        .list-info p {
+            margin: 10px 0 0 0;
+            color: var(--text-muted);
+            font-size: 15px; 
+            font-style: italic;
+        }
+
+        .download-btn {
+            text-decoration: none;
+            padding: 14px 28px;
+            background: #fff;
+            color: var(--text-muted);
+            border-radius: 50px;
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border: 1px solid #ddd;
+            transition: 0.3s;
+            font-weight: 600;
+        }
+
+        .download-btn:hover { 
+            background: #4a4a4a; 
+            color: #fff; 
+            border-color: #4a4a4a; 
+        }
+    </style>
+</head>
+<body>
+
+    <a href="book1.html" class="back-nav">← back to genres</a>
+
+    <div class="cover-container">
+        <img src="Book1pages/fantasystories/img/fantasy_header.jpg" class="cover-photo" alt="Fantasy Banner">
+        <h1 class="cover-title">Fantasy</h1>
+    </div>
+
+    <section class="book-list-container">
+        
+        <div class="list-item">
+            <img src="Book1pages/fantasystories/img/book1.jpg" alt="Book 1">
+            <div class="list-info">
+                <h2>The Throne of Ashes</h2>
+                <p>A tale of kingdoms lost and found.</p>
+            </div>
+            <a href="../Files/fantasy1.pdf" download class="download-link">Download PDF</a>
+        </div>
+
+        <div class="list-item">
+            <img src="Book1pages/fantasystories/img/book2.jpg" alt="Book 2">
+            <div class="list-info">
+                <h2>Moonlight Whispers</h2>
+                <p>By Author Name</p>
+            </div>
+            <a href="../Files/fantasy2.pdf" download class="download-link">Download PDF</a>
+        </div>
+
+    </section>
+
+</body>
+</html>
