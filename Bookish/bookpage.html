@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Hub - Fading Spaces</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            /* Powdery Palette */
+            --powder-pink: #f7ede2; /* Soft base */
+            --dusty-rose: #d5bdaf;  /* Muted accent */
+            --silk-white: rgba(255, 255, 255, 0.8);
+            --text-gray: #6d6875;   /* Soft purple-gray text */
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', 'Cormorant Garamond', serif; /* Serif adds a "bookish" feel */
+            background: linear-gradient(135deg, #f5ebe0 0%, #e3d5ca 100%);
+            background-attachment: fixed;
+            color: var(--text-gray);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Soft floating Back Button */
+        .back-home {
+            position: fixed; top: 30px; left: 30px;
+            color: var(--text-gray); text-decoration: none; 
+            background: var(--silk-white);
+            padding: 12px 24px; font-weight: 500; z-index: 10;
+            text-transform: lowercase; font-style: italic; font-size: 14px;
+            border-radius: 50px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+
+        .back-home:hover {
+            background: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* Header Area */
+        .cover-container {
+            position: relative;
+            width: 90%;
+            max-width: 1100px; 
+            height: 400px;
+            margin: 60px auto 20px;
+            overflow: hidden;
+            border-radius: 30px; /* Soft rounded edges */
+            box-shadow: 0 20px 40px rgba(109, 104, 117, 0.1);
+        }
+
+        .cover-photo { 
+            width: 100%; height: 100%; 
+            object-fit: cover; 
+            filter: sepia(20%) brightness(1.05); /* Gives images a dusty/vintage look */
+        }
+
+        .cover-title {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: clamp(30px, 5vw, 60px); 
+            color: #ffffff; 
+            letter-spacing: 8px;
+            font-weight: 300; 
+            text-transform: lowercase; 
+            z-index: 2;
+            width: 100%; text-align: center; margin: 0;
+            text-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Selection Area */
+        .selection-area {
+            width: 90%; max-width: 1100px; 
+            margin: 40px auto;
+            display: flex; justify-content: center;
+        }
+
+        .preset-card {
+            position: relative;
+            width: 350px; height: 450px;
+            overflow: hidden;
+            border-radius: 20px;
+            text-decoration: none;
+            background-color: var(--silk-white);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 8px solid white; /* Polaroid effect */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .preset-card:hover {
+            transform: scale(1.02) rotate(1deg);
+        }
+
+        .preset-card img { 
+            width: 100%; height: 85%; 
+            object-fit: cover; 
+            border-radius: 12px 12px 0 0;
+        }
+
+        .preset-card h2 {
+            margin: 0;
+            height: 15%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-gray);
+            font-size: 18px; 
+            letter-spacing: 2px; 
+            text-transform: uppercase;
+            font-weight: 400;
+        }
+
+        /* Subtle texture overlay for that "paper" feel */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="../index.html" class="back-home">← back to spaces</a>
+
+    <div class="cover-container">
+        <img src="https://images.unsplash.com/photo-1491843331263-d710037740e5?auto=format&fit=crop&q=80&w=1100" class="cover-photo" alt="Header">
+        <h1 class="cover-title">fading's pages</h1>
+    </div>
+
+    <section class="selection-area">
+        <a href="book1.html" class="preset-card">
+            <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&q=80&w=400" alt="E-Books">
+            <h2>E-Books</h2>
+        </a>
+    </section>
+
+</body>
+</html>
