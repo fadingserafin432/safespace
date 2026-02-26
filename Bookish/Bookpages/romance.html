@@ -8,7 +8,6 @@
     
     <style>
         :root {
-            /* New Romance Palette */
             --deep-rose: #8e4444;
             --soft-pink: #fce4ec;
             --petal-pink: #ffc1cc;
@@ -20,7 +19,6 @@
         body {
             margin: 0; padding: 0;
             font-family: 'Jost', sans-serif;
-            /* Using a soft gradient overlay on the background */
             background: linear-gradient(rgba(252, 228, 236, 0.5), rgba(252, 228, 236, 0.5)), 
                         url('../../assets/cover4.jpg') no-repeat center center fixed;
             background-size: cover;
@@ -28,6 +26,7 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
+            overflow-x: hidden; /* Prevents hearts from causing side-scroll */
         }
 
         /* Nav Button */
@@ -58,7 +57,7 @@
             border-bottom-left-radius: 120px;
             border-bottom-right-radius: 120px;
             box-shadow: 0 20px 40px rgba(142, 68, 68, 0.2);
-            z-index: 2;
+            z-index: 10; /* Keep header above floating hearts */
         }
 
         .cover-photo { 
@@ -67,11 +66,9 @@
             filter: brightness(0.85) saturate(1.2); 
         }
 
-        /* ROMANCE TITLE */
         .cover-title {
             position: absolute; 
-            top: 50%;
-            left: 50%;
+            top: 50%; left: 50%;
             transform: translate(-50%, -50%);
             font-family: 'Parisienne', cursive;
             font-size: 160px;
@@ -79,7 +76,7 @@
             margin: 0;
             text-align: center;
             width: 100%;
-            z-index: 3;
+            z-index: 11;
             text-shadow: 2px 4px 10px rgba(0,0,0,0.2);
         }
 
@@ -91,22 +88,23 @@
             margin-top: -20px;
         }
 
-        /* BOOK LIST CARDS - Adjusted to sit BELOW the cover */
+        /* BOOK LIST CARDS - Positioned BELOW the cover */
         .book-list-container {
             width: 900px; 
-            margin: 0 auto; /* Removed the negative top margin */
-            padding-top: 50px; /* Space between cover and list */
+            margin: 0 auto; 
+            padding-top: 60px; /* Space so it's clearly below the cover curve */
             padding-bottom: 100px;
             display: flex;
             flex-direction: column;
             gap: 20px; 
-            z-index: 1; /* Sit behind the cover's shadow if needed */
+            position: relative;
+            z-index: 10; /* Above hearts, below nav */
         }
 
         .list-item {
             background: white;
             padding: 15px 35px;
-            border-radius: 100px; /* Pill shape for a softer look */
+            border-radius: 100px;
             display: flex;
             align-items: center;
             text-decoration: none;
@@ -153,33 +151,42 @@
             letter-spacing: 2px;
             text-transform: uppercase;
             font-weight: bold;
-            box-shadow: 0 4px 15px rgba(142, 68, 68, 0.3);
         }
 
-        /* Soft Floating Decoration */
+        /* FLOATING HEARTS - Fixed Visibility */
         .floating-heart {
             position: fixed;
+            bottom: -50px; /* Start below the screen */
             color: var(--petal-pink);
-            opacity: 0.4;
+            opacity: 0.6;
             user-select: none;
             pointer-events: none;
-            z-index: 0;
-            animation: float 10s infinite linear;
+            z-index: 1; /* Sits between background and content */
+            animation: float-up 10s infinite linear;
         }
 
-        @keyframes float {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            50% { opacity: 0.4; }
-            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        @keyframes float-up {
+            0% { 
+                transform: translateY(0) rotate(0deg); 
+                opacity: 0; 
+            }
+            20% { 
+                opacity: 0.6; 
+            }
+            100% { 
+                transform: translateY(-110vh) rotate(360deg); 
+                opacity: 0; 
+            }
         }
 
     </style>
 </head>
 <body>
 
-    <div class="floating-heart" style="left: 10%; font-size: 20px; animation-delay: 0s;">❤</div>
-    <div class="floating-heart" style="left: 85%; font-size: 30px; animation-delay: 3s;">❤</div>
-    <div class="floating-heart" style="left: 20%; font-size: 15px; animation-delay: 7s;">❤</div>
+    <div class="floating-heart" style="left: 10%; font-size: 20px; animation-duration: 12s; animation-delay: 0s;">❤</div>
+    <div class="floating-heart" style="left: 85%; font-size: 35px; animation-duration: 15s; animation-delay: 3s;">❤</div>
+    <div class="floating-heart" style="left: 20%; font-size: 18px; animation-duration: 10s; animation-delay: 7s;">❤</div>
+    <div class="floating-heart" style="left: 70%; font-size: 25px; animation-duration: 14s; animation-delay: 5s;">❤</div>
 
     <a href="../Bookpages/book1.html" class="back-nav">← back to genres</a>
 
