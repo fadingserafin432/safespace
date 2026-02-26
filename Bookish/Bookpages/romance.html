@@ -12,33 +12,64 @@
             --soft-pink: #fce4ec;
             --petal-pink: #ffc1cc;
             --cream-white: #fffaf0;
-            --silk-white: rgba(255, 255, 255, 0.85);
-            --gold-accent: #d4af37;
+            --silk-white: rgba(255, 255, 255, 0.9);
         }
 
         body {
             margin: 0; padding: 0;
             font-family: 'Jost', sans-serif;
-            background: linear-gradient(rgba(252, 228, 236, 0.5), rgba(252, 228, 236, 0.5)), 
+            /* Update this path to your romance background assets */
+            background: linear-gradient(rgba(252, 228, 236, 0.4), rgba(252, 228, 236, 0.4)), 
                         url('../../assets/cover4.jpg') no-repeat center center fixed;
             background-size: cover;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            overflow-x: hidden; /* Prevents hearts from causing side-scroll */
+            overflow-x: hidden;
         }
 
-        /* Nav Button */
+        /* --- ROMANCE ANIMATIONS LAYER --- */
+        .romance-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none; 
+            z-index: 1; 
+        }
+
+        .element {
+            position: absolute;
+            user-select: none;
+            opacity: 0.7;
+            filter: drop-shadow(0 0 5px rgba(255,255,255,0.5));
+        }
+
+        /* Drifting upwards (Hearts/Petals) */
+        @keyframes drift {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Swaying flight (Butterflies) */
+        @keyframes sway-fly {
+            0% { left: -10%; top: 80%; transform: scaleX(1); }
+            50% { left: 110%; top: 10%; transform: scaleX(1); }
+            51% { transform: scaleX(-1); }
+            100% { left: -10%; top: 80%; transform: scaleX(-1); }
+        }
+
+        /* --- STYLES --- */
         .back-nav {
             position: absolute; top: 30px; left: 30px;
             color: var(--deep-rose); text-decoration: none; 
             background: var(--silk-white);
-            padding: 10px 25px; font-weight: 500; z-index: 100;
+            padding: 12px 24px; font-weight: 500; z-index: 100;
             text-transform: lowercase; font-style: italic;
-            border-radius: 50px; 
+            border-radius: 50px; box-shadow: 0 4px 15px rgba(233, 30, 99, 0.1);
             border: 1px solid var(--petal-pink);
-            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.1);
             transition: 0.3s;
         }
 
@@ -47,23 +78,22 @@
             color: white;
         }
 
-        /* THE COVER SECTION */
         .cover-container {
             position: relative;
             width: 100%;
             max-width: 1200px;
-            height: 500px;
+            height: 550px;
             overflow: hidden;
             border-bottom-left-radius: 120px;
             border-bottom-right-radius: 120px;
-            box-shadow: 0 20px 40px rgba(142, 68, 68, 0.2);
-            z-index: 10; /* Keep header above floating hearts */
+            box-shadow: 0 20px 50px rgba(142, 68, 68, 0.2);
+            z-index: 2;
         }
 
         .cover-photo { 
             width: 100%; height: 100%; 
             object-fit: cover; 
-            filter: brightness(0.85) saturate(1.2); 
+            filter: brightness(0.9) saturate(1.1); 
         }
 
         .cover-title {
@@ -71,122 +101,87 @@
             top: 50%; left: 50%;
             transform: translate(-50%, -50%);
             font-family: 'Parisienne', cursive;
-            font-size: 160px;
+            font-size: 150px;
             color: white;
             margin: 0;
             text-align: center;
             width: 100%;
-            z-index: 11;
-            text-shadow: 2px 4px 10px rgba(0,0,0,0.2);
+            z-index: 3;
+            text-shadow: 3px 5px 15px rgba(0,0,0,0.2);
         }
 
         .cover-title::after {
-            content: "♥";
-            display: block;
+            content: "♥"; 
+            display: block; 
             font-size: 30px;
             color: var(--petal-pink);
             margin-top: -20px;
         }
 
-        /* BOOK LIST CARDS - Positioned BELOW the cover */
         .book-list-container {
-            width: 900px; 
-            margin: 0 auto; 
-            padding-top: 60px; /* Space so it's clearly below the cover curve */
-            padding-bottom: 100px;
+            width: 950px; 
+            margin: 60px auto;
             display: flex;
             flex-direction: column;
-            gap: 20px; 
-            position: relative;
-            z-index: 10; /* Above hearts, below nav */
+            gap: 25px; 
+            z-index: 2;
+            padding-bottom: 100px;
         }
 
         .list-item {
-            background: white;
-            padding: 15px 35px;
-            border-radius: 100px;
+            background: rgba(255, 255, 255, 0.94);
+            padding: 20px 40px;
+            border-radius: 100px; /* Pill shape for romance */
             display: flex;
             align-items: center;
             text-decoration: none;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 1px solid var(--soft-pink);
-            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.05);
+            position: relative;
+            z-index: 5;
         }
 
         .list-item:hover {
-            transform: scale(1.02);
-            box-shadow: 0 15px 45px rgba(142, 68, 68, 0.15);
+            transform: translateY(-5px) scale(1.01);
+            background: #fff;
+            box-shadow: 0 15px 35px rgba(142, 68, 68, 0.1);
             border-color: var(--petal-pink);
         }
 
         .list-item img { 
-            width: 80px; height: 120px; 
-            object-fit: cover; border-radius: 8px;
-            margin-right: 30px;
-            box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
+            width: 90px; height: 130px; 
+            object-fit: cover; border-radius: 10px;
+            margin-right: 35px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
         }
 
         .list-info h2 {
-            margin: 0; 
-            color: var(--deep-rose);
-            font-size: 26px; 
-            font-family: 'Metamorphous', serif;
+            margin: 0; color: var(--deep-rose);
+            font-size: 28px; font-family: 'Metamorphous', serif;
         }
 
         .list-info h3 {
-            margin: 5px 0 0 0; 
-            color: #b08d8d;
-            font-size: 15px; 
-            font-weight: 300; 
-            letter-spacing: 1px;
+            margin: 5px 0 0 0; color: #b08d8d;
+            font-size: 16px; font-weight: 300; letter-spacing: 1px;
         }
 
         .view-btn {
             margin-left: auto;
-            padding: 12px 35px;
+            padding: 12px 30px;
             background: linear-gradient(45deg, var(--deep-rose), var(--petal-pink));
             color: white;
             border-radius: 50px;
-            font-size: 10px;
+            font-size: 11px;
             letter-spacing: 2px;
             text-transform: uppercase;
             font-weight: bold;
+            box-shadow: 0 4px 10px rgba(142, 68, 68, 0.2);
         }
-
-        /* FLOATING HEARTS - Fixed Visibility */
-        .floating-heart {
-            position: fixed;
-            bottom: -50px; /* Start below the screen */
-            color: var(--petal-pink);
-            opacity: 0.6;
-            user-select: none;
-            pointer-events: none;
-            z-index: 1; /* Sits between background and content */
-            animation: float-up 10s infinite linear;
-        }
-
-        @keyframes float-up {
-            0% { 
-                transform: translateY(0) rotate(0deg); 
-                opacity: 0; 
-            }
-            20% { 
-                opacity: 0.6; 
-            }
-            100% { 
-                transform: translateY(-110vh) rotate(360deg); 
-                opacity: 0; 
-            }
-        }
-
     </style>
 </head>
 <body>
 
-    <div class="floating-heart" style="left: 10%; font-size: 20px; animation-duration: 12s; animation-delay: 0s;">❤</div>
-    <div class="floating-heart" style="left: 85%; font-size: 35px; animation-duration: 15s; animation-delay: 3s;">❤</div>
-    <div class="floating-heart" style="left: 20%; font-size: 18px; animation-duration: 10s; animation-delay: 7s;">❤</div>
-    <div class="floating-heart" style="left: 70%; font-size: 25px; animation-duration: 14s; animation-delay: 5s;">❤</div>
+    <div class="romance-overlay" id="romanceOverlay"></div>
 
     <a href="../Bookpages/book1.html" class="back-nav">← back to genres</a>
 
@@ -196,7 +191,6 @@
     </div>
 
     <section class="book-list-container">
-        
         <a href="Book1pages/romancestories/iimyh.html" class="list-item">
             <img src="Book1pages/romancestories/img/iimyh.jpg" alt="If It Makes You Happy">
             <div class="list-info">
@@ -205,8 +199,46 @@
             </div>
             <div class="view-btn">Read More</div>
         </a>
+        
+        </section>
 
-    </section>
+    <script>
+        const overlay = document.getElementById('romanceOverlay');
+        const romanceElements = ['❤', '🌸', '✨', '🦋', '❣', '🌹'];
+
+        function createRomanceElement() {
+            const el = document.createElement('div');
+            el.className = 'element';
+            el.innerText = romanceElements[Math.floor(Math.random() * romanceElements.length)];
+            
+            // Random horizontal start
+            el.style.left = Math.random() * 100 + 'vw';
+            // Start from bottom
+            el.style.bottom = '-50px'; 
+            
+            // Random size
+            const size = Math.random() * 20 + 15;
+            el.style.fontSize = size + 'px';
+            el.style.color = (el.innerText === '✨') ? '#ffd700' : '#ffb1c1';
+
+            // Randomize animation type
+            if (el.innerText === '🦋') {
+                el.style.animation = `sway-fly ${Math.random() * 15 + 20}s linear infinite`;
+            } else {
+                el.style.animation = `drift ${Math.random() * 8 + 12}s linear forwards`;
+            }
+
+            overlay.appendChild(el);
+
+            // Clean up
+            setTimeout(() => {
+                el.remove();
+            }, 20000);
+        }
+
+        // Spawn faster for a livelier feel
+        setInterval(createRomanceElement, 1200);
+    </script>
 
 </body>
 </html>
