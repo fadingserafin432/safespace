@@ -2,21 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Fantasy Stories - Fading Spaces</title>
+    <title>Romance Stories - Fading Spaces</title>
     <meta name="viewport" content="width=1200">
-    <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Metamorphous&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Metamorphous&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --cream-pink: #3e2f2f;
-            --cream-white: #FFFDD0;
-            --silk-white: rgba(255, 255, 255, 0.9);
+            /* New Romance Palette */
+            --deep-rose: #8e4444;
+            --soft-pink: #fce4ec;
+            --petal-pink: #ffc1cc;
+            --cream-white: #fffaf0;
+            --silk-white: rgba(255, 255, 255, 0.85);
+            --gold-accent: #d4af37;
         }
 
         body {
             margin: 0; padding: 0;
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: url('../../assets/cover4.png') no-repeat center center fixed;
+            font-family: 'Jost', sans-serif;
+            /* Using a soft gradient overlay on the background */
+            background: linear-gradient(rgba(252, 228, 236, 0.5), rgba(252, 228, 236, 0.5)), 
+                        url('../../assets/cover4.png') no-repeat center center fixed;
             background-size: cover;
             display: flex;
             flex-direction: column;
@@ -27,11 +33,19 @@
         /* Nav Button */
         .back-nav {
             position: absolute; top: 30px; left: 30px;
-            color: #555; text-decoration: none; 
+            color: var(--deep-rose); text-decoration: none; 
             background: var(--silk-white);
-            padding: 12px 24px; font-weight: 500; z-index: 100;
+            padding: 10px 25px; font-weight: 500; z-index: 100;
             text-transform: lowercase; font-style: italic;
-            border-radius: 50px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 50px; 
+            border: 1px solid var(--petal-pink);
+            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.1);
+            transition: 0.3s;
+        }
+
+        .back-nav:hover {
+            background: var(--petal-pink);
+            color: white;
         }
 
         /* THE COVER SECTION */
@@ -39,127 +53,136 @@
             position: relative;
             width: 100%;
             max-width: 1200px;
-            height: 550px;
+            height: 500px;
             overflow: hidden;
-            border-bottom-left-radius: 80px;
-            border-bottom-right-radius: 80px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            border-bottom-left-radius: 120px;
+            border-bottom-right-radius: 120px;
+            box-shadow: 0 20px 40px rgba(142, 68, 68, 0.2);
             z-index: 2;
         }
 
         .cover-photo { 
             width: 100%; height: 100%; 
             object-fit: cover; 
-            /* Added a slight blur and sepia to make the center text "pop" */
-            filter: brightness(0.9) sepia(0.3); 
+            filter: brightness(0.85) saturate(1.2); 
         }
 
-        /* HIGH VISIBILITY GOTHIC TITLE */
+        /* ROMANCE TITLE */
         .cover-title {
             position: absolute; 
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            
-            /* Font Choice: Uncial Antiqua gives a very visible, bold Gothic look */
-            font-family: 'Parisienne', serif;
-            font-size: 140px; /* Large and bold */
-            color: var(--dark-pink);
-            
+            font-family: 'Parisienne', cursive;
+            font-size: 160px;
+            color: white;
             margin: 0;
             text-align: center;
             width: 100%;
             z-index: 3;
-            letter-spacing: 12px;
-            
-            /* Visibility Trick: Light glow/halo behind dark text */
-            text-shadow: 
-                3px 3px 0px rgba(255, 255, 255, 0.4),
-                -1px -1px 0px rgba(255, 255, 255, 0.4),
-                0 0 40px rgba(255, 255, 255, 0.6);
+            text-shadow: 2px 4px 10px rgba(0,0,0,0.2);
         }
 
-        /* Decoration line under title */
         .cover-title::after {
-            content: "";
+            content: "♥";
             display: block;
-            width: 200px;
-            height: 3px;
-            background: var(--light-pink);
-            margin: -10px auto 0 auto;
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(255,255,255,0.5);
+            font-size: 30px;
+            color: var(--petal-pink);
+            margin-top: -20px;
         }
 
         /* BOOK LIST CARDS */
         .book-list-container {
-            width: 950px; 
-            margin: 60px auto;
+            width: 900px; 
+            margin: -40px auto 100px auto; /* Overlap with cover slightly */
             display: flex;
             flex-direction: column;
-            gap: 25px; 
-            z-index: 2;
-            padding-bottom: 100px;
+            gap: 20px; 
+            z-index: 5;
         }
 
         .list-item {
-            background: rgba(255, 255, 255, 0.94);
-            padding: 20px 40px;
-            border-radius: 50px;
+            background: white;
+            padding: 15px 35px;
+            border-radius: 100px; /* Pill shape for a softer look */
             display: flex;
             align-items: center;
             text-decoration: none;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.8);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid var(--soft-pink);
+            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.05);
         }
 
         .list-item:hover {
-            transform: translateY(-5px);
-            background: #fff;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transform: scale(1.02);
+            box-shadow: 0 15px 45px rgba(142, 68, 68, 0.15);
+            border-color: var(--petal-pink);
         }
 
         .list-item img { 
-            width: 90px; height: 130px; 
-            object-fit: cover; border-radius: 12px;
-            margin-right: 35px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            width: 80px; height: 120px; 
+            object-fit: cover; border-radius: 8px;
+            margin-right: 30px;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
         }
 
         .list-info h2 {
-            margin: 0; color: var(--dark-brown);
-            font-size: 28px; font-family: 'Metamorphous', serif;
+            margin: 0; 
+            color: var(--deep-rose);
+            font-size: 26px; 
+            font-family: 'Metamorphous', serif;
         }
 
         .list-info h3 {
-            margin: 5px 0 0 0; color: #888;
-            font-size: 16px; font-weight: 400; font-style: italic;
+            margin: 5px 0 0 0; 
+            color: #b08d8d;
+            font-size: 15px; 
+            font-weight: 300; 
+            letter-spacing: 1px;
         }
 
         .view-btn {
             margin-left: auto;
-            padding: 12px 30px;
-            background: var(--dark-pink);
-            color: var(--cream-white);
+            padding: 12px 35px;
+            background: linear-gradient(45deg, var(--deep-rose), var(--petal-pink));
+            color: white;
             border-radius: 50px;
-            font-size: 11px;
+            font-size: 10px;
             letter-spacing: 2px;
             text-transform: uppercase;
             font-weight: bold;
-            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(142, 68, 68, 0.3);
         }
 
-        .view-btn:hover { background: #5a4646; }
+        /* Soft Floating Decoration */
+        .floating-heart {
+            position: fixed;
+            color: var(--petal-pink);
+            opacity: 0.4;
+            user-select: none;
+            pointer-events: none;
+            z-index: 1;
+            animation: float 10s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            50% { opacity: 0.4; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
 
     </style>
 </head>
 <body>
 
+    <div class="floating-heart" style="left: 10%; font-size: 20px; animation-delay: 0s;">❤</div>
+    <div class="floating-heart" style="left: 85%; font-size: 30px; animation-delay: 3s;">❤</div>
+    <div class="floating-heart" style="left: 20%; font-size: 15px; animation-delay: 7s;">❤</div>
+
     <a href="../book1.html" class="back-nav">← back to genres</a>
 
     <div class="cover-container">
         <img src="Book1pages/romancestories/img/roma.jpg" class="cover-photo" alt="Romance Banner">
-        
         <h1 class="cover-title">Romance</h1>
     </div>
 
@@ -173,6 +196,7 @@
             </div>
             <div class="view-btn">Read More</div>
         </a>
+
 
     </section>
 
