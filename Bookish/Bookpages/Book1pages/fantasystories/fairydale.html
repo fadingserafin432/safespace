@@ -2,152 +2,202 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Fairydale - A Gothic Tale</title>
-      <h1> By Veronica Lancet</h>
+    <title>Fairydale | Veronica Lancet</title>
     <meta name="viewport" content="width=1100">
     <style>
+        :root {
+            --wattpad-orange: #ff6122;
+            --glass-white: rgba(255, 255, 255, 0.15);
+            --bg-overlay: rgba(15, 15, 15, 0.85);
+        }
+
         body {
-            font-family: 'Garamond', 'Georgia', serif; /* More literary feel */
-            margin: 0; padding: 0; 
-            color: #e0d8c3;
-            /* Background remains or you can update the path */
-            background: #1a1f16 url('../assets/forest-bg.jpg') no-repeat center center fixed;
-            background-size: cover;
+            margin: 0; padding: 0;
+            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+            color: #ffffff;
             min-height: 100vh;
-            width: 1100px;
-            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            /* Background matches the Book Cover */
+            background: url('img/fairydale.jpg') no-repeat center center fixed;
+            background-size: cover;
         }
 
-        header { height: 200px; position: relative; text-align: center; color: #fff; }
-        .header-overlay { background-color: rgba(13, 20, 10, 0.7); height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-        header h1 { font-size: 3.5em; margin: 0; color: #d4af37; text-shadow: 0px 0px 15px rgba(212,175,55,0.6); letter-spacing: 3px; }
-
-        section { 
-            width: 850px; 
-            margin: 0 auto 30px auto; 
-            background-color: rgba(26, 31, 22, 0.92); 
-            padding: 35px; 
-            border-radius: 8px; 
-            border: 1px solid #3d4632;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+        /* This creates the blurred background effect while keeping the content sharp */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: var(--bg-overlay);
+            backdrop-filter: blur(25px); /* Blurs the background book cover */
+            z-index: -1;
         }
 
-        h2 { color: #d4af37; border-bottom: 1px solid #556b2f; padding-bottom: 10px; }
-
-        /* Book Cover & Rating */
-        .book-container { text-align: center; margin-bottom: 40px; }
-        .book-cover { 
-            width: 320px; 
-            border-radius: 4px; 
-            box-shadow: 0 5px 25px rgba(0,0,0,0.8);
-            border: 3px solid #d4af37;
-        }
-        .star-rating { color: #d4af37; font-size: 1.8em; margin-top: 15px; }
-
-        /* Story Description */
-        .story-description { line-height: 1.8; font-size: 1.1em; color: #c5cbb4; font-style: italic; }
-
-        /* Download Section */
-        .download-box { 
-            background: #252d1f; 
-            padding: 20px; 
-            border-radius: 5px; 
-            text-align: center; 
-            border: 1px dashed #d4af37;
-        }
-        .btn-download { 
-            display: inline-block; 
-            padding: 12px 30px; 
-            background-color: #556b2f; 
-            color: white; 
-            text-decoration: none; 
-            font-weight: bold; 
-            border-radius: 4px;
+        .back-nav {
+            position: fixed; top: 30px; left: 30px;
+            color: white; text-decoration: none;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 10px 20px; border-radius: 50px;
+            font-size: 14px; z-index: 100;
+            border: 1px solid var(--glass-white);
             transition: 0.3s;
         }
-        .btn-download:hover { background-color: #d4af37; color: #1a1f16; }
+        .back-nav:hover { background: var(--wattpad-orange); border-color: transparent; }
 
-        /* Comments Section */
-        .comment-area { margin-top: 30px; }
-        textarea { 
-            width: 100%; 
-            height: 100px; 
-            background: #0d140a; 
-            color: white; 
-            border: 1px solid #556b2f; 
-            border-radius: 5px; 
-            padding: 10px; 
-            box-sizing: border-box;
+        .container {
+            width: 850px;
+            margin-top: 60px;
+            padding-bottom: 80px;
+            z-index: 1;
+        }
+
+        /* Wattpad Style Header */
+        .header-section {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 40px;
+            align-items: flex-start;
+        }
+
+        .book-cover {
+            width: 280px;
+            border-radius: 5px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+            flex-shrink: 0;
+        }
+
+        .book-meta {
+            flex-grow: 1;
+            padding-top: 20px;
+        }
+
+        h1 { font-size: 3em; margin: 0; letter-spacing: -1px; }
+        .author { font-size: 1.2em; color: var(--wattpad-orange); margin-bottom: 20px; font-weight: bold; }
+
+        /* Interactive Star Rating */
+        .star-rating {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+            margin: 20px 0;
+        }
+        .star-rating input { display: none; }
+        .star-rating label {
+            font-size: 35px;
+            color: rgba(255,255,255,0.2);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .star-rating label:hover,
+        .star-rating label:hover ~ label,
+        .star-rating input:checked ~ label {
+            color: #f5b301;
+        }
+
+        /* Glass Content Cards */
+        section {
+            background: var(--glass-white);
+            backdrop-filter: blur(10px);
+            padding: 35px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        h2 { font-size: 1.2em; text-transform: uppercase; letter-spacing: 2px; margin-top: 0; color: #ccc; }
+
+        .description { line-height: 1.8; font-size: 1.1em; color: #f0f0f0; }
+
+        /* Download Button */
+        .download-btn {
+            display: inline-block;
+            background: var(--wattpad-orange);
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .download-btn:hover { filter: brightness(1.2); transform: translateY(-2px); }
+
+        /* Comment/Reaction area */
+        textarea {
+            width: 100%;
+            height: 100px;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 15px;
+            color: white;
+            font-family: inherit;
             resize: none;
+            margin-top: 10px;
         }
-        .btn-submit { 
-            margin-top: 10px; 
-            padding: 8px 20px; 
-            background: transparent; 
-            color: #d4af37; 
-            border: 1px solid #d4af37; 
-            cursor: pointer; 
+        .post-btn {
+            margin-top: 15px;
+            background: transparent;
+            color: white;
+            border: 1px solid white;
+            padding: 10px 25px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.3s;
         }
-        .btn-submit:hover { background: #d4af37; color: #0d140a; }
+        .post-btn:hover { background: white; color: black; }
 
-        footer { text-align: center; padding: 30px; background-color: rgba(13,20,10,0.9); color: #d4af37; margin-top: 50px; }
-
-        .back-home { 
-            position: absolute; top: 20px; left: 20px; color: white; 
-            text-decoration: none; background: rgba(0,0,0,0.5); 
-            padding: 10px 15px; border-radius: 5px; font-weight: bold; z-index: 1000;
-        }
+        footer { text-align: center; opacity: 0.6; padding: 40px; font-size: 0.9em; }
     </style>
 </head>
 <body>
 
-    <a href="javascript:history.back()" class="back-home">← Back to Library</a>
+    <a href="../../fantasy.html" class="back-nav">← back to fantasy</a>
 
-    <header>
-        <div class="header-overlay">
-            <h1>Fairydale</h1>
+    <div class="container">
+        
+        <div class="header-section">
+            <img src="img/fairydale.jpg" alt="Fairydale Cover" class="book-cover">
+            
+            <div class="book-meta">
+                <h1>Fairydale</h1>
+                <div class="author">By Veronica Lancet</div>
+                
+                <div class="star-rating">
+                    <input type="radio" name="rate" id="rate-5"><label for="rate-5">★</label>
+                    <input type="radio" name="rate" id="rate-4"><label for="rate-4">★</label>
+                    <input type="radio" name="rate" id="rate-3"><label for="rate-3">★</label>
+                    <input type="radio" name="rate" id="rate-2"><label for="rate-2">★</label>
+                    <input type="radio" name="rate" id="rate-1"><label for="rate-1">★</label>
+                </div>
+                <p>Click the stars to rate this story</p>
+            </div>
         </div>
-    </header>
 
-    <div class="book-container">
-        <img src="Bookish/Bookpages/Book1pages/fantasystories/img/fairydale.jpg" alt="Fairydale Book Cover" class="book-cover">
-        <div class="star-rating">
-            ★★★★★
-        </div>
+        <section>
+            <h2>Description</h2>
+            <div class="description">
+                <p>Fairydale by Veronica Lancet is a dark, atmospheric romance set in a secluded town filled with secrets. When the heroine arrives in Fairydale, she finds herself drawn into a web of mystery tied to her past and to a brooding, powerful man who seems connected to the town’s shadowed history.</p>
+                <p>As hidden truths surface, the story explores fate, obsession, trauma, and a love that blurs the line between salvation and destruction. Enter the haunting world of Fairydale, where ancient folklore breathes life into the shadows of a secluded village.</p>
+            </div>
+        </section>
+
+        <section style="text-align: center;">
+            <h2>Reading Material</h2>
+            <p>Access the digital manuscript below.</p>
+            <a href="files/fairydale.pdf" class="download-btn" download>Download PDF File</a>
+        </section>
+
+        <section>
+            <h2>Visitor Reactions</h2>
+            <textarea placeholder="Write a response..."></textarea>
+            <button class="post-btn">Post Reaction</button>
+        </section>
+
+        <footer>© 2026 Fading Spaces | A Gothic Fantasy Archive</footer>
+
     </div>
-
-    <section id="description">
-        <h2>About the Story</h2>
-        <div class="story-description">
-            <p>
-              Fairydale by Veronica Lancet is a dark, atmospheric romance set in a secluded town filled with secrets. When the heroine arrives in Fairydale, she finds herself drawn into a web of mystery tied to her past and to a brooding, powerful man who seems connected to the town’s shadowed history.
-              As hidden truths surface, the story explores fate, obsession, trauma, and a love that blurs the line between salvation and destruction. 
-              With emotional intensity and suspense woven throughout, Fairydale delivers a haunting tale of passion, revenge, 
-              and long-buried secrets waiting to be uncovered.  
-              Enter the haunting world of Fairydale, where ancient folklore breathes life into the shadows of a secluded village. 
-                As secrets unspool and the boundary between the human world and the old gods thins, one must wonder... 
-                some stories are better left untold.
-            </p>
-        </div>
-    </section>
-
-    <section id="downloads">
-        <h2>Read the Manuscript</h2>
-        <div class="download-box">
-            <p>Access the digital version of Fairydale below.</p>
-            <a href="Bookish/Bookpages/Book1pages/fantasystories/files/fairydale.pdf" class="btn-download" download>Download Story File</a>
-        </div>
-    </section>
-
-    <section id="comments">
-        <h2>Reader Responses</h2>
-        <div class="comment-area">
-            <textarea placeholder="Leave your thoughts on the journey through Fairydale..."></textarea>
-            <button class="btn-submit">Post Comment</button>
-        </div>
-    </section>
-
-    <footer><p>© 2026 Fading Spaces | A Gothic Fantasy Archive</p></footer>
 
 </body>
 </html>
