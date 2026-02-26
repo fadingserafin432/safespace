@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <title>Fantasy Stories - Fading Spaces</title>
     <meta name="viewport" content="width=1200">
+    <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Metamorphous&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --silk-white: rgba(255, 255, 255, 0.85);
-            --text-muted: #8a8481;
+            --dark-brown: #3e2f2f;
             --cream-white: #FFFDD0;
+            --silk-white: rgba(255, 255, 255, 0.9);
         }
 
         body {
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             font-family: 'Segoe UI', Arial, sans-serif;
-            /* Pointing to your main background */
             background: url('../../assets/cover2.jpg') no-repeat center center fixed;
             background-size: cover;
             display: flex;
@@ -24,139 +24,142 @@
             min-height: 100vh;
         }
 
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
-            opacity: 0.15;
-            pointer-events: none;
-            z-index: 1;
-        }
-
+        /* Nav Button */
         .back-nav {
             position: absolute; top: 30px; left: 30px;
-            color: var(--text-muted); text-decoration: none; 
-            background: rgba(255, 255, 255, 0.9);
-            padding: 12px 24px; font-weight: 500; z-index: 10;
-            text-transform: lowercase; font-style: italic; font-size: 13px;
-            border-radius: 50px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            backdrop-filter: blur(5px);
+            color: #555; text-decoration: none; 
+            background: var(--silk-white);
+            padding: 12px 24px; font-weight: 500; z-index: 100;
+            text-transform: lowercase; font-style: italic;
+            border-radius: 50px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        /* WATTPAD STYLE BIG & WIDE COVER */
+        /* THE COVER SECTION */
         .cover-container {
             position: relative;
             width: 100%;
             max-width: 1200px;
-            height: 500px;
-            margin-top: 0;
+            height: 550px;
             overflow: hidden;
-            border-bottom-left-radius: 60px;
-            border-bottom-right-radius: 60px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            border-bottom-left-radius: 80px;
+            border-bottom-right-radius: 80px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
             z-index: 2;
         }
 
         .cover-photo { 
-            width: 100%; 
-            height: 100%; 
+            width: 100%; height: 100%; 
             object-fit: cover; 
-            filter: brightness(0.75); 
+            /* Added a slight blur and sepia to make the center text "pop" */
+            filter: brightness(0.9) sepia(0.3); 
         }
 
+        /* HIGH VISIBILITY GOTHIC TITLE */
         .cover-title {
             position: absolute; 
-            bottom: 60px;
+            top: 50%;
             left: 50%;
-            transform: translateX(-50%);
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 70px;
-            color: var(--cream-white); 
-            letter-spacing: 15px; 
-            font-weight: 700; 
-            text-transform: uppercase; 
-            z-index: 3;
+            transform: translate(-50%, -50%);
+            
+            /* Font Choice: Uncial Antiqua gives a very visible, bold Gothic look */
+            font-family: 'Uncial Antiqua', serif;
+            font-size: 140px; /* Large and bold */
+            color: var(--dark-brown);
+            
+            margin: 0;
             text-align: center;
             width: 100%;
-            text-shadow: 4px 4px 15px rgba(0,0,0,0.5);
+            z-index: 3;
+            letter-spacing: 12px;
+            
+            /* Visibility Trick: Light glow/halo behind dark text */
+            text-shadow: 
+                3px 3px 0px rgba(255, 255, 255, 0.4),
+                -1px -1px 0px rgba(255, 255, 255, 0.4),
+                0 0 40px rgba(255, 255, 255, 0.6);
         }
 
-        /* BOOK LIST */
+        /* Decoration line under title */
+        .cover-title::after {
+            content: "";
+            display: block;
+            width: 200px;
+            height: 3px;
+            background: var(--dark-brown);
+            margin: -10px auto 0 auto;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        /* BOOK LIST CARDS */
         .book-list-container {
             width: 950px; 
             margin: 60px auto;
             display: flex;
             flex-direction: column;
-            gap: 20px; 
+            gap: 25px; 
             z-index: 2;
             padding-bottom: 100px;
         }
 
         .list-item {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 25px;
-            border-radius: 40px;
+            background: rgba(255, 255, 255, 0.94);
+            padding: 20px 40px;
+            border-radius: 50px;
             display: flex;
             align-items: center;
-            text-decoration: none; /* Make the whole bar clickable */
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, background 0.3s ease;
+            text-decoration: none;
+            transition: all 0.3s ease;
             border: 1px solid rgba(255,255,255,0.8);
         }
 
         .list-item:hover {
-            transform: scale(1.02);
-            background: #ffffff;
+            transform: translateY(-5px);
+            background: #fff;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
         }
 
         .list-item img { 
-            width: 100px; 
-            height: 145px; 
-            object-fit: cover; 
-            border-radius: 20px;
+            width: 90px; height: 130px; 
+            object-fit: cover; border-radius: 12px;
             margin-right: 35px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
-        .list-info { flex-grow: 1; }
-
         .list-info h2 {
-            margin: 0; 
-            color: #4a4a4a;
-            font-size: 24px; 
-            letter-spacing: 0.5px;
+            margin: 0; color: var(--dark-brown);
+            font-size: 28px; font-family: 'Metamorphous', serif;
         }
 
         .list-info h3 {
-            margin: 5px 0 0 0;
-            color: var(--text-muted);
-            font-size: 16px; 
-            font-weight: 400;
-            font-style: italic;
+            margin: 5px 0 0 0; color: #888;
+            font-size: 16px; font-weight: 400; font-style: italic;
         }
 
         .view-btn {
-            text-decoration: none;
-            padding: 12px 25px;
-            background: #fff;
-            color: var(--text-muted);
+            margin-left: auto;
+            padding: 12px 30px;
+            background: var(--dark-brown);
+            color: var(--cream-white);
             border-radius: 50px;
             font-size: 11px;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            border: 1px solid #ddd;
-            font-weight: 600; 
+            font-weight: bold;
+            transition: 0.3s;
         }
+
+        .view-btn:hover { background: #5a4646; }
+
     </style>
 </head>
 <body>
 
-    <a href="book1.html" class="back-nav">← back to genres</a>
+    <a href="../book1.html" class="back-nav">← back to genres</a>
 
     <div class="cover-container">
         <img src="Book1pages/fantasystories/img/fanta.jpg" class="cover-photo" alt="Fantasy Banner">
+        
         <h1 class="cover-title">Fantasy</h1>
     </div>
 
@@ -168,10 +171,10 @@
                 <h2>Fairydale</h2>
                 <h3>by Veronica Lancet</h3>
             </div>
-            <div class="view-btn">Read More</div>
+            <div class="view-btn">Discover</div>
         </a>
 
-        </section>
+    </section>
 
 </body>
 </html>
