@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nocticadia | Keri Lake</title>
+    <meta name="viewport" content="width=1100">
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Playfair+Display:ital,wght@0,400;1,700&family=Special+Elite&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --oxblood: #4a0404;
+            --ink-black: #0a0a0c;
+            --parchment: #d9d2c5;
+            --glass-black: rgba(0, 0, 0, 0.85);
+            --border-accent: rgba(74, 4, 4, 0.5);
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Playfair Display', serif;
+            color: var(--parchment);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            /* Background remains the cover, but with a darker, more fungal filter */
+            background: url('img/fairydale.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        /* The "Nocticadia Mist" Overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle, rgba(10,10,12,0.7) 0%, rgba(5,5,5,1) 100%);
+            backdrop-filter: blur(30px) grayscale(0.3);
+            z-index: -1;
+        }
+
+        .back-nav {
+            position: fixed; top: 30px; left: 30px;
+            color: var(--parchment); text-decoration: none;
+            background: var(--oxblood);
+            padding: 12px 25px; border-radius: 2px;
+            font-size: 12px; z-index: 100;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-family: 'IM Fell English SC', serif;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            transition: 0.4s;
+        }
+        .back-nav:hover { background: var(--parchment); color: var(--oxblood); }
+
+        .container {
+            width: 850px;
+            margin-top: 60px;
+            padding-bottom: 80px;
+            z-index: 1;
+        }
+
+        /* Header Section */
+        .header-section {
+            display: flex;
+            gap: 50px;
+            margin-bottom: 50px;
+            align-items: center;
+            border-bottom: 1px solid var(--border-accent);
+            padding-bottom: 40px;
+        }
+
+        .book-cover {
+            width: 260px;
+            border-radius: 0px; /* Sharp edges for Nocticadia */
+            box-shadow: 0 0 40px rgba(74, 4, 4, 0.4);
+            flex-shrink: 0;
+            border: 1px solid var(--border-accent);
+        }
+
+        .book-meta { flex-grow: 1; }
+
+        h1 { 
+            font-family: 'IM Fell English SC', serif;
+            font-size: 4em; margin: 0; letter-spacing: 4px; color: var(--oxblood);
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+        }
+        
+        .author { 
+            font-size: 1.5em; color: var(--parchment); 
+            margin-bottom: 15px; font-style: italic; opacity: 0.8;
+        }
+
+        /* Oxblood Star Rating */
+        .star-rating {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+            margin: 15px 0;
+        }
+        .star-rating input { display: none; }
+        .star-rating label {
+            font-size: 32px;
+            color: rgba(255,255,255,0.05);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .star-rating label:hover,
+        .star-rating label:hover ~ label,
+        .star-rating input:checked ~ label {
+            color: var(--oxblood);
+            text-shadow: 0 0 15px rgba(74, 4, 4, 0.8);
+        }
+
+        /* Sections Styled as Laboratory Journals */
+        section {
+            background: var(--glass-black);
+            padding: 45px;
+            border-radius: 0px;
+            margin-bottom: 30px;
+            border-left: 3px solid var(--oxblood);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        h2 { 
+            font-family: 'IM Fell English SC', serif;
+            font-size: 1.4em; text-transform: uppercase; 
+            letter-spacing: 4px; margin-top: 0; color: var(--oxblood); 
+        }
+
+        .description-text { 
+            line-height: 2; font-size: 1.1em; color: var(--parchment); 
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Download Section - Clinical/Draft Style */
+        .download-container { text-align: center; border: 1px solid var(--border-accent); }
+        
+        .download-btn {
+            display: inline-block;
+            background: transparent;
+            color: var(--oxblood);
+            padding: 15px 50px;
+            text-decoration: none;
+            border: 1px solid var(--oxblood);
+            font-weight: bold;
+            font-size: 13px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: 0.5s;
+            font-family: 'IM Fell English SC', serif;
+        }
+        .download-btn:hover { background: var(--oxblood); color: var(--parchment); box-shadow: 0 0 20px var(--oxblood); }
+
+        /* Comment Area - Typewriter Style */
+        textarea {
+            width: 100%;
+            height: 120px;
+            background: rgba(10,10,10,0.9);
+            border: 1px solid #333;
+            padding: 20px;
+            color: var(--parchment);
+            font-family: 'Special Elite', cursive; /* Typewriter font */
+            resize: none;
+            box-sizing: border-box;
+        }
+
+        .post-btn {
+            margin-top: 15px;
+            background: var(--oxblood);
+            color: white;
+            border: none;
+            padding: 12px 40px;
+            cursor: pointer;
+            font-family: 'IM Fell English SC', serif;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+        .post-btn:hover { opacity: 0.8; transform: translateY(-2px); }
+
+        footer { 
+            text-align: center; padding: 60px; font-size: 0.8em; 
+            font-family: 'Special Elite', cursive;
+            color: var(--oxblood); opacity: 0.7; letter-spacing: 4px; 
+        }
+    </style>
+</head>
+<body>
+
+    <a href="../../fantasy.html" class="back-nav">← Examination Room</a>
+
+    <div class="container">
+        
+        <div class="header-section">
+            <img src="img/nocticadia.jpg" alt="Nocticadia Cover" class="book-cover">
+            
+            <div class="book-meta">
+                <h1>Nocticadia</h1>
+                <div class="author">By Keri Lake</div>
+                
+                <div class="star-rating">
+                    <input type="radio" name="rate" id="rate-5"><label for="rate-5">★</label>
+                    <input type="radio" name="rate" id="rate-4"><label for="rate-4">★</label>
+                    <input type="radio" name="rate" id="rate-3"><label for="rate-3">★</label>
+                    <input type="radio" name="rate" id="rate-2"><label for="rate-2">★</label>
+                    <input type="radio" name="rate" id="rate-1"><label for="rate-1">★</label>
+                </div>
+                <p style="font-family: 'Special Elite'; font-size: 0.8em; opacity: 0.5;">Subject Evaluation</p>
+            </div>
+        </div>
+
+        <section>
+            <h2>Clinical Summary</h2>
+            <div class="description-text">
+                <p>Welcome to Nocticadia, a dark academia gothic romance where the air is thick with the scent of decay and the secrets of the Dracadia Guild. Devryce and Lilia's story is one of obsession, biological mysteries, and a sickness that runs deeper than the bone.</p>
+                <p>On this remote island, the lines between professor and student, cure and poison, and love and madness are irrevocably blurred. Some truths are meant to stay buried in the fungal soil of Nocticadia.</p>
+            </div>
+        </section>
+
+        <section class="download-container">
+            <h2>DOWNLOAD HERE</h2>
+            <p style="font-family: 'Special Elite'; margin-bottom: 25px;">Access the full digital version of Nocticadia below.</p>
+            <a href="files/nocticadia.epub" class="download-btn" download>Access Archive</a>
+        </section>
+
+        <section>
+            <h2>Observation Notes</h2>
+            <div class="comment-area">
+                <textarea placeholder="Type your observation here..."></textarea>
+                <button class="post-btn">Log Response</button>
+            </div>
+        </section>
+
+        <footer>© FADING SPACES | NOCTICADIA ARCHIVE</footer>
+
+    </div>
+
+</body>
+</html>
