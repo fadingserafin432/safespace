@@ -10,14 +10,15 @@
             --powder-base: #f7ede2; 
             --dusty-rose: #d5bdaf;  
             --silk-white: rgba(255, 255, 255, 0.7);
-            --text-gray: #C68965;   
+            --text-gray: #5e5a66;   
+            --warm-caramel: #C68958; /* New Soft Warm Caramel Color */
         }
 
         body {
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', serif;
-            background: url('../assets/cover2.jpg') no-repeat center center fixed;
+            background: url('../assets/cover3.jpg') no-repeat center center fixed;
             background-size: cover;
             color: var(--text-gray);
             display: flex;
@@ -26,6 +27,7 @@
             min-height: 100vh;
         }
 
+        /* Paper texture overlay */
         body::before {
             content: "";
             position: fixed;
@@ -36,7 +38,6 @@
             z-index: 1;
         }
 
-        /* Soft Back Button */
         .back-home {
             position: fixed; top: 30px; left: 30px;
             color: var(--text-gray); text-decoration: none; 
@@ -51,7 +52,6 @@
             border: 1px solid rgba(255,255,255,0.4);
         }
 
-        /* Header Area */
         .cover-container {
             position: relative;
             width: 90%;
@@ -67,27 +67,25 @@
         .cover-photo { 
             width: 100%; height: 100%; 
             object-fit: cover; 
-            filter: brightness(1.05) contrast(0.9);
+            filter: brightness(1.02) contrast(0.95);
         }
 
-        /* Updated Typewriter Title */
+        /* Updated Typewriter Title with Warm Caramel */
         .cover-title {
             position: absolute; top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            /* Typewriter font stack */
             font-family: 'Courier New', Courier, monospace; 
             font-size: clamp(28px, 5vw, 48px); 
-            color: #000000; /* Solid Black */
-            letter-spacing: 6px;
+            color: var(--warm-caramel); /* Soft Warm Caramel applied here */
+            letter-spacing: 8px;
             font-weight: 700; 
-            text-transform: uppercase; /* All Caps */
+            text-transform: uppercase;
             z-index: 3;
             width: 100%; text-align: center; margin: 0;
-            /* Subtle light glow to ensure black text pops against the image */
-            text-shadow: 0 0 15px rgba(255,255,255,0.6);
+            /* Subtlest shadow to maintain a soft look */
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
         }
 
-        /* Selection Area */
         .selection-area {
             width: 90%; max-width: 1100px; 
             margin: 40px auto;
