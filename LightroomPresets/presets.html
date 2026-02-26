@@ -2,91 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Lightroom Hub - Fading Spaces</title>
-    <meta name="viewport" content="width=1100">
-    <style>
-        html, body {
-            width: 1100px;
-            margin: 0 auto;
-            padding: 0;
-            color: #4a4a4a;
-        }
-
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: url('../assets/bg2.jpg') repeat center top fixed;
-            background-size: cover;
-            min-height: 100vh;
-        }
-
-        .back-home {
-            position: absolute; top: 20px; left: 20px;
-            color: #4a4a4a; text-decoration: none; background: #fff;
-            padding: 10px 20px; font-weight: bold; z-index: 10;
-            text-transform: uppercase; font-size: 12px; letter-spacing: 2px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-
-        .cover-container {
-            position: relative;
-            width: 1100px; height: 350px;
-            margin: 40px auto;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            z-index: 1;
-        }
-
-        .cover-photo { width: 100%; height: 100%; object-fit: cover; }
-
-        .cover-title {
-            position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 70px; color: #ffffff; letter-spacing: 15px;
-            font-weight: 200; text-transform: uppercase; z-index: 2;
-            width: 100%; text-align: center; margin: 0;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-
-        .selection-area {
-            width: 1100px; margin: 60px auto;
-            display: flex; justify-content: center; z-index: 1;
-        }
-
-        .preset-card {
-            position: relative;
-            width: 350px; height: 350px;
-            overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-            text-decoration: none;
-            background-color: #fff;
-        }
-
-        .preset-card img { width: 100%; height: 100%; object-fit: cover; }
-
-        .preset-card h2 {
-            position: absolute; bottom: 25px; width: 100%;
-            text-align: center; margin: 0; color: #ffffff;
-            font-size: 20px; letter-spacing: 3px; text-transform: uppercase; z-index: 2;
-        }
-
-        .preset-card::after {
-            content: ""; position: absolute; inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.5), transparent 60%);
-            z-index: 1;
-        }
-    </style>
+    <meta name="viewport" content="width=1200">
+    <title>Fading's Space</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <a href="../index.html" class="back-home">← Home</a>
-    <div class="cover-container">
-        <img src="../assets/lightroom.jpg" class="cover-photo" alt="Header">
-        <h1 class="cover-title">Lightroom</h1>
+<body class="profile-body">
+
+    <div class="main-wrapper">
+        
+        <div class="cover-container">
+            <img src="assets/cover.jpg" class="cover-photo" alt="Cover">
+            
+            <div class="profile-overlay">
+                <img src="assets/ro2.jpg" class="profile-pic" alt="Profile">
+                <h1 class="profile-name">Fading's Space</h1>
+            </div>
+        </div>
+
+        <section class="profile-options">
+            <a href="LightroomPresets/presets.html" class="option-card">
+                <img src="assets/kapi1.jpg" alt="Presets">
+                <h2>Lightroom Presets</h2>
+            </a>
+
+            <a href="Bookish/bookpage.html" class="option-card">
+                <img src="assets/books.jpg" alt="Books">
+                <h2>Fading Pages</h2>
+            </a>
+
+            <a href="#" class="option-card">
+                <img src="assets/beads.jpg" alt="Crafts">
+                <h2>Craftreasures</h2>
+            </a>
+        </section>
+
     </div>
-    <section class="selection-area">
-        <a href="whitevintage.html" class="preset-card">
-            <img src="../assets/lightroomsample2.jpg" alt="White Vintage">
-            <h2>White Vintage</h2>
-        </a>
-    </section>
+
 </body>
 </html>
