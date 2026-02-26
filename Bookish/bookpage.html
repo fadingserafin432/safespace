@@ -6,19 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         :root {
-            /* Powdery Palette */
             --powder-base: #f7ede2; 
-            --dusty-rose: #d5bdaf;  
             --silk-white: rgba(255, 255, 255, 0.7);
             --text-gray: #5e5a66;   
-            --warm-caramel: #C68958; /* New Soft Warm Caramel Color */
+            --cream-white: #FFFDD0; /* Classic Cream White */
         }
 
         body {
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', serif;
-            background: url('../assets/cover3.jpg') no-repeat center center fixed;
+            background: url('../assets/cover2.jpg') no-repeat center center fixed;
             background-size: cover;
             color: var(--text-gray);
             display: flex;
@@ -27,7 +25,7 @@
             min-height: 100vh;
         }
 
-        /* Paper texture overlay */
+        /* Subtle paper grain */
         body::before {
             content: "";
             position: fixed;
@@ -48,7 +46,6 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
             border: 1px solid rgba(255,255,255,0.4);
         }
 
@@ -67,23 +64,23 @@
         .cover-photo { 
             width: 100%; height: 100%; 
             object-fit: cover; 
-            filter: brightness(1.02) contrast(0.95);
+            filter: brightness(0.95) contrast(0.95); /* Slight dim to help cream text pop */
         }
 
-        /* Updated Typewriter Title with Warm Caramel */
+        /* Cream White Typewriter Title */
         .cover-title {
             position: absolute; top: 50%; left: 50%;
             transform: translate(-50%, -50%);
             font-family: 'Courier New', Courier, monospace; 
             font-size: clamp(28px, 5vw, 48px); 
-            color: var(--warm-caramel); /* Soft Warm Caramel applied here */
-            letter-spacing: 8px;
+            color: var(--cream-white); 
+            letter-spacing: 10px;
             font-weight: 700; 
             text-transform: uppercase;
             z-index: 3;
             width: 100%; text-align: center; margin: 0;
-            /* Subtlest shadow to maintain a soft look */
-            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
+            /* Soft shadow gives the letters depth against the photo */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
         }
 
         .selection-area {
@@ -101,15 +98,9 @@
             background: var(--silk-white);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
-            transition: all 0.5s ease;
             border: 1px solid rgba(255,255,255,0.5);
             padding: 15px;
             text-align: center;
-        }
-
-        .preset-card:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.9);
         }
 
         .preset-card img { 
@@ -141,6 +132,14 @@
         <a href="book1.html" class="preset-card">
             <img src="../assets/books.jpg" alt="E-Books Collection">
             <h2>E-Books</h2>
+        </a>
+          <a href="book2.html" class="preset-card">
+            <img src="../assets/cover3.jpg" alt="Physical Books Collection">
+            <h2>Physical Books</h2>
+        </a>
+          <a href="book3.html" class="preset-card">
+            <img src="../assets/book3.jpg" alt="Books Translations">
+            <h2>Book Translations</h2>
         </a>
     </section>
 
