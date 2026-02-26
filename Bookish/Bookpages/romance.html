@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Romance Stories - Fading Spaces</title>
     <meta name="viewport" content="width=1200">
-    <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Metamorphous&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Playfair+Display:ital,wght@0,700;1,700&family=Great+Vibes&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -18,7 +18,6 @@
         body {
             margin: 0; padding: 0;
             font-family: 'Jost', sans-serif;
-            /* Update this path to your romance background assets */
             background: linear-gradient(rgba(252, 228, 236, 0.4), rgba(252, 228, 236, 0.4)), 
                         url('../../assets/cover4.jpg') no-repeat center center fixed;
             background-size: cover;
@@ -42,10 +41,9 @@
             position: absolute;
             user-select: none;
             opacity: 0.7;
-            filter: drop-shadow(0 0 5px rgba(255,255,255,0.5));
+            animation: drift 12s linear forwards;
         }
 
-        /* Drifting upwards (Hearts/Petals) */
         @keyframes drift {
             0% { transform: translateY(0) rotate(0deg); opacity: 0; }
             10% { opacity: 0.8; }
@@ -53,15 +51,7 @@
             100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
         }
 
-        /* Swaying flight (Butterflies) */
-        @keyframes sway-fly {
-            0% { left: -10%; top: 80%; transform: scaleX(1); }
-            50% { left: 110%; top: 10%; transform: scaleX(1); }
-            51% { transform: scaleX(-1); }
-            100% { left: -10%; top: 80%; transform: scaleX(-1); }
-        }
-
-        /* --- STYLES --- */
+        /* --- NAVIGATION --- */
         .back-nav {
             position: absolute; top: 30px; left: 30px;
             color: var(--deep-rose); text-decoration: none; 
@@ -73,11 +63,7 @@
             transition: 0.3s;
         }
 
-        .back-nav:hover {
-            background: var(--petal-pink);
-            color: white;
-        }
-
+        /* --- COVER --- */
         .cover-container {
             position: relative;
             width: 100%;
@@ -90,11 +76,7 @@
             z-index: 2;
         }
 
-        .cover-photo { 
-            width: 100%; height: 100%; 
-            object-fit: cover; 
-            filter: brightness(0.9) saturate(1.1); 
-        }
+        .cover-photo { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.9); }
 
         .cover-title {
             position: absolute; 
@@ -103,46 +85,36 @@
             font-family: 'Parisienne', cursive;
             font-size: 150px;
             color: white;
-            margin: 0;
             text-align: center;
             width: 100%;
             z-index: 3;
             text-shadow: 3px 5px 15px rgba(0,0,0,0.2);
         }
 
-        .cover-title::after {
-            content: "♥"; 
-            display: block; 
-            font-size: 30px;
-            color: var(--petal-pink);
-            margin-top: -20px;
-        }
-
+        /* --- SELECTION LIST --- */
         .book-list-container {
             width: 950px; 
             margin: 60px auto;
             display: flex;
             flex-direction: column;
             gap: 25px; 
-            z-index: 2;
+            z-index: 10;
             padding-bottom: 100px;
         }
 
         .list-item {
             background: rgba(255, 255, 255, 0.94);
             padding: 20px 40px;
-            border-radius: 100px; /* Pill shape for romance */
+            border-radius: 100px;
             display: flex;
             align-items: center;
             text-decoration: none;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: 0.4s ease;
             border: 1px solid var(--soft-pink);
-            position: relative;
-            z-index: 5;
         }
 
         .list-item:hover {
-            transform: translateY(-5px) scale(1.01);
+            transform: translateY(-5px);
             background: #fff;
             box-shadow: 0 15px 35px rgba(142, 68, 68, 0.1);
             border-color: var(--petal-pink);
@@ -155,14 +127,22 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.15);
         }
 
+        /* NEW ROMANTIC TYPOGRAPHY */
         .list-info h2 {
-            margin: 0; color: var(--deep-rose);
-            font-size: 28px; font-family: 'Metamorphous', serif;
+            margin: 0; 
+            color: var(--deep-rose);
+            font-size: 32px; 
+            font-family: 'Playfair Display', serif; /* Elegant, high-contrast serif */
+            font-style: italic;
+            font-weight: 700;
         }
 
         .list-info h3 {
-            margin: 5px 0 0 0; color: #b08d8d;
-            font-size: 16px; font-weight: 300; letter-spacing: 1px;
+            margin: 2px 0 0 0; 
+            color: #b08d8d;
+            font-size: 22px; 
+            font-family: 'Great Vibes', cursive; /* Flowing handwritten script */
+            font-weight: 400;
         }
 
         .view-btn {
@@ -175,7 +155,6 @@
             letter-spacing: 2px;
             text-transform: uppercase;
             font-weight: bold;
-            box-shadow: 0 4px 10px rgba(142, 68, 68, 0.2);
         }
     </style>
 </head>
@@ -199,45 +178,24 @@
             </div>
             <div class="view-btn">Read More</div>
         </a>
-        
-        </section>
+    </section>
 
     <script>
         const overlay = document.getElementById('romanceOverlay');
-        const romanceElements = ['❤', '🌸', '✨', '🦋', '❣', '🌹'];
+        const elements = ['❤', '🌸', '✨', '❣'];
 
-        function createRomanceElement() {
+        function createHeart() {
             const el = document.createElement('div');
             el.className = 'element';
-            el.innerText = romanceElements[Math.floor(Math.random() * romanceElements.length)];
-            
-            // Random horizontal start
+            el.innerText = elements[Math.floor(Math.random() * elements.length)];
             el.style.left = Math.random() * 100 + 'vw';
-            // Start from bottom
             el.style.bottom = '-50px'; 
-            
-            // Random size
-            const size = Math.random() * 20 + 15;
-            el.style.fontSize = size + 'px';
-            el.style.color = (el.innerText === '✨') ? '#ffd700' : '#ffb1c1';
-
-            // Randomize animation type
-            if (el.innerText === '🦋') {
-                el.style.animation = `sway-fly ${Math.random() * 15 + 20}s linear infinite`;
-            } else {
-                el.style.animation = `drift ${Math.random() * 8 + 12}s linear forwards`;
-            }
-
+            el.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            el.style.color = '#ffb1c1';
             overlay.appendChild(el);
-
-            // Clean up
-            setTimeout(() => {
-                el.remove();
-            }, 20000);
+            setTimeout(() => el.remove(), 12000);
         }
-
-        // Spawn faster for a livelier feel
-        setInterval(createRomanceElement, 1200);
+        setInterval(createHeart, 1500);
     </script>
 
 </body>
