@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fantasy Stories - Fading Spaces</title>
+    <meta name="viewport" content="width=1200">
+    <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Metamorphous&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --cream-pink: #3e2f2f;
+            --cream-white: #FFFDD0;
+            --silk-white: rgba(255, 255, 255, 0.9);
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: url('../../assets/cover4.png') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Nav Button */
+        .back-nav {
+            position: absolute; top: 30px; left: 30px;
+            color: #555; text-decoration: none; 
+            background: var(--silk-white);
+            padding: 12px 24px; font-weight: 500; z-index: 100;
+            text-transform: lowercase; font-style: italic;
+            border-radius: 50px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        /* THE COVER SECTION */
+        .cover-container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            height: 550px;
+            overflow: hidden;
+            border-bottom-left-radius: 80px;
+            border-bottom-right-radius: 80px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            z-index: 2;
+        }
+
+        .cover-photo { 
+            width: 100%; height: 100%; 
+            object-fit: cover; 
+            /* Added a slight blur and sepia to make the center text "pop" */
+            filter: brightness(0.9) sepia(0.3); 
+        }
+
+        /* HIGH VISIBILITY GOTHIC TITLE */
+        .cover-title {
+            position: absolute; 
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            
+            /* Font Choice: Uncial Antiqua gives a very visible, bold Gothic look */
+            font-family: 'Parisienne', serif;
+            font-size: 140px; /* Large and bold */
+            color: var(--dark-pink);
+            
+            margin: 0;
+            text-align: center;
+            width: 100%;
+            z-index: 3;
+            letter-spacing: 12px;
+            
+            /* Visibility Trick: Light glow/halo behind dark text */
+            text-shadow: 
+                3px 3px 0px rgba(255, 255, 255, 0.4),
+                -1px -1px 0px rgba(255, 255, 255, 0.4),
+                0 0 40px rgba(255, 255, 255, 0.6);
+        }
+
+        /* Decoration line under title */
+        .cover-title::after {
+            content: "";
+            display: block;
+            width: 200px;
+            height: 3px;
+            background: var(--light-pink);
+            margin: -10px auto 0 auto;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        /* BOOK LIST CARDS */
+        .book-list-container {
+            width: 950px; 
+            margin: 60px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 25px; 
+            z-index: 2;
+            padding-bottom: 100px;
+        }
+
+        .list-item {
+            background: rgba(255, 255, 255, 0.94);
+            padding: 20px 40px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+
+        .list-item:hover {
+            transform: translateY(-5px);
+            background: #fff;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .list-item img { 
+            width: 90px; height: 130px; 
+            object-fit: cover; border-radius: 12px;
+            margin-right: 35px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .list-info h2 {
+            margin: 0; color: var(--dark-brown);
+            font-size: 28px; font-family: 'Metamorphous', serif;
+        }
+
+        .list-info h3 {
+            margin: 5px 0 0 0; color: #888;
+            font-size: 16px; font-weight: 400; font-style: italic;
+        }
+
+        .view-btn {
+            margin-left: auto;
+            padding: 12px 30px;
+            background: var(--dark-pink);
+            color: var(--cream-white);
+            border-radius: 50px;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .view-btn:hover { background: #5a4646; }
+
+    </style>
+</head>
+<body>
+
+    <a href="../book1.html" class="back-nav">← back to genres</a>
+
+    <div class="cover-container">
+        <img src="Book1pages/romancestories/img/roma.jpg" class="cover-photo" alt="Romance Banner">
+        
+        <h1 class="cover-title">Romance</h1>
+    </div>
+
+    <section class="book-list-container">
+        
+        <a href="Book1pages/romancestories/iimyh.html" class="list-item">
+            <img src="Book1pages/romancestories/img/iimyh.jpg" alt="If It Makes You Happy">
+            <div class="list-info">
+                <h2>If It Makes You Happy</h2>
+                <h3>by Julie Olivia</h3>
+            </div>
+            <div class="view-btn">Read More</div>
+        </a>
+
+    </section>
+
+</body>
+</html>
