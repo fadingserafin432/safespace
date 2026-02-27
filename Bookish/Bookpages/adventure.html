@@ -17,7 +17,8 @@
         body {
             margin: 0; padding: 0;
             font-family: 'Special Elite', Courier, monospace;
-            background: url('Book1pages/adventurestories/img/adventure.jpg') no-repeat center center fixed;
+            /* PATH FIX: Going up to root then into images folder */
+            background: url('../../Bookimages/adventure.jpg') no-repeat center center fixed;
             background-size: cover;
             display: flex;
             flex-direction: column;
@@ -41,14 +42,12 @@
             transition: color 0.3s;
         }
 
-        /* Drift animation for leaves and flowers */
         @keyframes driftDown {
             0% { transform: translateY(-10vh) rotate(0deg) translateX(0); opacity: 0; }
             10% { opacity: 0.8; }
             100% { transform: translateY(110vh) rotate(360deg) translateX(50px); opacity: 0; }
         }
 
-        /* Flight animation for birds */
         @keyframes flyAcross {
             0% { left: -10%; transform: scaleX(1); }
             100% { left: 110%; transform: scaleX(1); }
@@ -61,22 +60,31 @@
             background: var(--compass-gold);
             padding: 12px 24px; font-weight: bold; z-index: 100;
             text-transform: uppercase;
-            border-radius: 4px;
+            border-radius: 50px; /* Rounded pill shape to match Fantasy style */
             box-shadow: 4px 4px 0px var(--expedition-brown);
         }
 
         .cover-container {
-    position: relative;
-    width: 100%;
-    max-width: 1200px;
-    height: 500px;
-    overflow: hidden;
-    border-bottom-left-radius: 80px; 
-    border-bottom-right-radius: 80px;
-    border-bottom: 10px solid var(--compass-gold);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    z-index: 2;
-}
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            height: 500px; /* Your desired height */
+            overflow: hidden; /* Important: This crops the image into the rounded corners */
+            border-bottom-left-radius: 80px; 
+            border-bottom-right-radius: 80px;
+            border-bottom: 10px solid var(--compass-gold);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            z-index: 2;
+        }
+
+        /* THIS WAS THE MISSING PIECE */
+        .cover-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Forces image to fill the 500px rectangle */
+            object-position: center; /* Keeps the middle of the image focused */
+            display: block;
+        }
 
         .cover-title {
             position: absolute; top: 50%; left: 50%;
@@ -98,14 +106,18 @@
             background: var(--paper-white);
             padding: 25px; border: 2px solid #d4c4a8;
             display: flex; align-items: center; text-decoration: none;
+            border-radius: 50px; /* Matching the pill-style list items */
             background-image: url('https://www.transparenttextures.com/patterns/aged-paper.png');
+            transition: transform 0.3s;
         }
+
+        .list-item:hover { transform: translateY(-5px); }
 
         .view-btn {
             margin-left: auto; padding: 15px 35px;
             background: var(--expedition-brown); color: var(--map-khaki);
             font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
-            font-weight: bold; border: none;
+            font-weight: bold; border: none; border-radius: 50px;
         }
     </style>
 </head>
@@ -116,13 +128,13 @@
     <a href="../Bookpages/book1.html" class="back-nav">← Back to Archives</a>
 
     <div class="cover-container">
-         <img src="Book1pages/adventurestories/img/ad.jpg" class="cover-photo" alt="Fantasy Banner">
+        <img src="Book1pages/adventurestories/img/ad.jpg" class="cover-photo" alt="Adventure Banner">
         <h1 class="cover-title">Adventure</h1>
     </div>
 
     <section class="book-list-container">
         <a href="Book1pages/adventurestories/tcomc.html" class="list-item">
-            <img src="Book1pages/adventurestories/img/tcomc.jpg" alt="The Count of Monte Cristo" style="width:100px; height:150px; margin-right:35px; border:4px solid white;">
+            <img src="Book1pages/adventurestories/img/tcomc.jpg" alt="The Count of Monte Cristo" style="width:100px; height:150px; margin-right:35px; border:4px solid white; border-radius:10px;">
             <div class="list-info">
                 <h2 style="margin:0; color:var(--expedition-brown); font-family:'Cinzel';">The Count of Monte Cristo</h2>
                 <h3 style="margin:8px 0 0 0; color:#6d4c41; font-size:16px;"> by Dumas & Maquet</h3>
@@ -133,8 +145,6 @@
 
     <script>
         const overlay = document.getElementById('overlay');
-        
-        // Arrays for variety
         const leaves = ['🍃', '🍂', '🍁', '🌿'];
         const birds = ['🦅', '🦜', '🕊️'];
         const flowers = ['🌸', '🌺', '🌼'];
@@ -143,32 +153,26 @@
         function createNatureElement() {
             const el = document.createElement('div');
             el.className = 'nature-element';
-            
-            // Randomly pick a type
             const rand = Math.random();
-            let type = 'leaf';
-            if (rand > 0.8) type = 'bird';
-            else if (rand > 0.6) type = 'flower';
+            let type = rand > 0.8 ? 'bird' : (rand > 0.6 ? 'flower' : 'leaf');
 
-            // Set content and specific styles
             if (type === 'bird') {
                 el.innerText = birds[Math.floor(Math.random() * birds.length)];
-                el.style.top = (Math.random() * 40) + 'vh'; // Birds fly high
+                el.style.top = (Math.random() * 40) + 'vh';
                 el.style.animation = `flyAcross ${Math.random() * 5 + 10}s linear forwards`;
                 el.style.fontSize = (Math.random() * 20 + 20) + 'px';
             } else {
                 el.innerText = type === 'leaf' ? leaves[Math.floor(Math.random() * leaves.length)] : flowers[Math.floor(Math.random() * flowers.length)];
                 el.style.left = (Math.random() * 100) + 'vw';
                 el.style.fontSize = (Math.random() * 15 + 15) + 'px';
-                el.style.color = type === 'leaf' ? leafColors[Math.floor(Math.random() * leafColors.length)] : 'inherit';
+                if(type === 'leaf') el.style.color = leafColors[Math.floor(Math.random() * leafColors.length)];
                 el.style.animation = `driftDown ${Math.random() * 10 + 10}s linear forwards`;
             }
 
             overlay.appendChild(el);
             setTimeout(() => el.remove(), 15000);
         }
-
-        setInterval(createNatureElement, 1000); // Create one every second
+        setInterval(createNatureElement, 1000);
     </script>
 
 </body>
