@@ -7,25 +7,25 @@
    <style>
     :root {
        
-        --mystic-gold: #d4af37;
-        --ethereal-silver: #e0e0f0;
-        --forest-dark: #0a0f0d;
-        --glass-violet: rgba(138, 43, 226, 0.15);
-        --bg-overlay: rgba(10, 15, 12, 0.92); 
+        ---cream-white: #faf5ef;
+            --ink-black: #0a0a0c;
+            --parchment: #d9d2c5;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --input-bg: rgba(0, 0, 0, 0.4);
     }
 
     body {
         margin: 0; padding: 0;
         font-family: 'Segoe UI', Roboto, Arial, sans-serif;
         color: var(--ethereal-silver);
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        overflow-x: hidden;
-        background: url('img/fairydale.jpg') no-repeat center center fixed;
-        background-size: cover;
-    }
+         min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #0a0a0c url('img/fairydale.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
 
     
     body::before {
@@ -50,19 +50,21 @@
     }
     .back-nav:hover { background: var(--mystic-gold); color: var(--forest-dark); }
 
-    .container {
-        width: 850px;
-        margin-top: 60px;
-        padding-bottom: 80px;
-        z-index: 1;
+      .container {
+            width: 850px; /* Fixed width to ensure desktop look on all devices */
+            margin-top: 80px;
+            padding-bottom: 80px;
+            z-index: 1;
+        }
     }
 
     
     .header-section {
-        display: flex;
-        gap: 40px;
-        margin-bottom: 40px;
-        align-items: center;
+         display: flex; /* Keeps items side-by-side */
+            flex-direction: row !important; /* Forces side-by-side even on mobile */
+            gap: 40px;
+            margin-bottom: 40px;
+            align-items: flex-start;
     }
 
     .book-cover {
@@ -104,7 +106,7 @@
 
   
     section {
-        background: var(--glass-violet);
+        background: var(--glass-bg);
         backdrop-filter: blur(15px);
         padding: 40px;
         border-radius: 15px;
