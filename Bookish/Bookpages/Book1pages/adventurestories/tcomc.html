@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Count of Monte Cristo | Alexandre Dumas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            /* Neutral Color Palette */
+            --bg-neutral: #f4f4f2;
+            --text-main: #333333;
+            --text-muted: #666666;
+            --card-bg: #ffffff;
+            --accent-adventure: #8b5e3c; /* Leather/Wood tone */
+            --border-color: #dddddd;
+            --star-inactive: #cccccc;
+            --star-active: #d4af37;
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Segoe UI', Garamond, serif;
+            color: var(--text-main);
+            background-color: var(--bg-neutral);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1.6;
+        }
+
+        /* --- Adventure Type Back Button --- */
+        .back-nav {
+            position: fixed; 
+            top: 25px; 
+            left: 25px;
+            color: #fff; 
+            text-decoration: none;
+            background: var(--accent-adventure);
+            padding: 12px 24px; 
+            font-weight: bold;
+            font-size: 13px; 
+            z-index: 100;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            /* Adventure Aesthetics: Weathered Sign Look */
+            clip-path: polygon(10% 0%, 100% 0%, 95% 50%, 100% 100%, 10% 100%, 0% 50%);
+            box-shadow: 3px 3px 0px #5d3f29;
+            transition: all 0.2s ease;
+            border: none;
+        }
+        .back-nav:hover { 
+            transform: translateX(-5px);
+            background: #a6734d;
+            box-shadow: 5px 5px 0px #5d3f29;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 850px;
+            margin-top: 80px;
+            padding-bottom: 80px;
+        }
+
+        /* Header Section */
+        .header-section {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 40px;
+            align-items: flex-start;
+        }
+
+        .book-cover {
+            width: 220px;
+            border-radius: 4px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        h1 { font-size: 2.8em; margin: 0; color: #222; font-family: 'Georgia', serif; }
+        .author { font-size: 1.2em; color: var(--text-muted); margin-bottom: 10px; }
+
+        /* Star Rating */
+        .star-rating {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+            margin: 10px 0;
+        }
+        .star-rating input { display: none; }
+        .star-rating label {
+            font-size: 28px;
+            color: var(--star-inactive);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .star-rating label:hover,
+        .star-rating label:hover ~ label,
+        .star-rating input:checked ~ label {
+            color: var(--star-active);
+        }
+
+        /* Section Cards */
+        section {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        h2 { 
+            font-size: 0.9em; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            margin-top: 0; 
+            color: var(--accent-adventure); 
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .description-text { color: var(--text-main); font-size: 1.05em; }
+
+        /* Download Button */
+        .download-container { text-align: center; }
+        .download-btn {
+            display: inline-block;
+            background: #333;
+            color: #fff;
+            padding: 14px 40px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        .download-btn:hover { background: var(--accent-adventure); }
+
+        /* Comments Area */
+        textarea {
+            width: 100%;
+            height: 100px;
+            background: #fafafa;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 15px;
+            box-sizing: border-box;
+            font-family: inherit;
+            resize: none;
+        }
+        .post-btn {
+            margin-top: 15px;
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--text-main);
+            padding: 8px 25px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .post-btn:hover { background: var(--text-main); color: #fff; }
+
+        .comment-box { 
+            background: #fdfdfd; 
+            padding: 15px; 
+            border-radius: 4px; 
+            margin-bottom: 12px; 
+            border-left: 4px solid var(--accent-adventure);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .comment-time { font-size: 0.75em; color: var(--text-muted); display: block; margin-bottom: 5px; }
+
+        footer { text-align: center; padding: 40px; font-size: 0.8em; color: var(--text-muted); letter-spacing: 1px; }
+
+        @media (max-width: 600px) {
+            .header-section { flex-direction: column; align-items: center; text-align: center; }
+            .star-rating { justify-content: center; }
+            .back-nav { position: relative; top: 20px; left: 0; margin-bottom: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="../../adventure.html" class="back-nav">← To Adventure</a>
+
+    <div class="container">
+        
+        <div class="header-section">
+           <img src="img/tcomc.jpg" alt="The Count of Monte Cristo" class="book-cover">
+            
+            <div class="book-meta">
+                <h1>The Count of Monte Cristo</h1>
+                <div class="author">Alexandre Dumas & Auguste Maquet</div>
+                
+                <div class="star-rating">
+                    <input type="radio" name="rate" id="rate-5" value="5"><label for="rate-5">★</label>
+                    <input type="radio" name="rate" id="rate-4" value="4"><label for="rate-4">★</label>
+                    <input type="radio" name="rate" id="rate-3" value="3"><label for="rate-3">★</label>
+                    <input type="radio" name="rate" id="rate-2" value="2"><label for="rate-2">★</label>
+                    <input type="radio" name="rate" id="rate-1" value="1"><label for="rate-1">★</label>
+                </div>
+                <p id="rating-label" style="font-size: 0.85em; color: var(--text-muted);">Rate this classic</p>
+            </div>
+        </div>
+
+        <section>
+            <h2>Description</h2>
+            <div class="description-text">
+                <p>A masterpiece of adventure, <strong>The Count of Monte Cristo</strong> tells the story of Edmond Dantès. Wrongfully imprisoned on his wedding day, he spends years in the dismal Chateau d'If before making a daring escape. Armed with a massive fortune and a cold heart, he returns to Paris to systematically dismantle the lives of the men who betrayed him.</p>
+            </div>
+        </section>
+
+        <section class="download-container">
+            <h2>Download Here</h2>
+            <p style="margin-bottom: 20px; color: var(--text-muted);">Acquire the digital manuscript of the Count of Monte Cristo.</p>
+            <a href="files/tcomc.epub" class="download-btn" download>The Count of Monte Cristo</a>
+        </section>
+
+        <section>
+            <h2>Reader Log</h2>
+            <div class="comment-area">
+                <textarea id="comment-input" placeholder="Record your thoughts on this journey..."></textarea>
+                <button class="post-btn" onclick="saveComment()">Post Entry</button>
+            </div>
+            <div id="comment-list" style="margin-top: 25px;"></div>
+        </section>
+
+        <footer>© 2026 THE ARCHIVE | CLASSIC LITERATURE SERIES</footer>
+
+    </div>
+
+    <script>
+        const BOOK_ID = 'monte_cristo';
+
+        window.onload = function() {
+            displayComments();
+            loadRating();
+        };
+
+        const stars = document.querySelectorAll('input[name="rate"]');
+        stars.forEach(star => {
+            star.onclick = function() {
+                localStorage.setItem(BOOK_ID + '_rating', this.value);
+                document.getElementById('rating-label').innerText = "Logged at " + this.value + " stars";
+            }
+        });
+
+        function loadRating() {
+            const savedRating = localStorage.getItem(BOOK_ID + '_rating');
+            if (savedRating) {
+                document.getElementById('rate-' + savedRating).checked = true;
+                document.getElementById('rating-label').innerText = "Logged at " + savedRating + " stars";
+            }
+        }
+
+        function saveComment() {
+            const input = document.getElementById('comment-input');
+            const text = input.value.trim();
+            if (text === "") return;
+
+            const comments = JSON.parse(localStorage.getItem(BOOK_ID + '_comments') || "[]");
+            comments.unshift({
+                text: text,
+                time: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+            });
+
+            localStorage.setItem(BOOK_ID + '_comments', JSON.stringify(comments));
+            input.value = "";
+            displayComments();
+        }
+
+        function displayComments() {
+            const list = document.getElementById('comment-list');
+            const comments = JSON.parse(localStorage.getItem(BOOK_ID + '_comments') || "[]");
+            
+            list.innerHTML = comments.map(c => `
+                <div class="comment-box">
+                    <span class="comment-time">${c.time}</span>
+                    <div style="font-size: 0.95em;">${c.text}</div>
+                </div>
+            `).join('');
+        }
+    </script>
+</body>
+</html>
