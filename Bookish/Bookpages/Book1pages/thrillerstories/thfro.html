@@ -2,244 +2,233 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>The Hunt for Red October | Tom Clancy</title>
-    <meta name="viewport" content="width=1100">
-    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Special+Elite&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Thriller Stories - Fading Spaces</title>
+    <meta name="viewport" content="width=1200">
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Special+Elite&display=swap" rel="stylesheet">
     
     <style>
         :root {
-    /* Refined Thriller Palette */
-    --blood-red: #b30000;
-    --deep-black: #0a0a0a;
-    --stark-white: #f5f5f5;
-    --muted-grey: #a0a0a0;
-    --glass-bg: rgba(255, 255, 255, 0.05); /* Transparent Wattpad-style panels */
-    --bg-overlay: rgba(0, 0, 0, 0.85);
-}
+            --accent-gold: #d4af37; /* The gold color from your image */
+            --deep-black: #0d0d0d;
+            --box-bg: rgba(26, 26, 26, 0.95); /* Dark grey boxes */
+            --stark-white: #e0e0e0;
+        }
 
-body {
-    margin: 0; padding: 0;
-    font-family: 'Jost', sans-serif; /* Cleaner font for readability, keeping Special Elite for accents */
-    color: var(--stark-white);
-    min-height: 100vh;
-    background: url('img/t1.jpg') no-repeat center center fixed;
-    background-size: cover;
-}
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Special Elite', serif;
+            /* Darkened background to make the boxes pop like the image */
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('../../assets/t.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            color: var(--stark-white);
+        }
 
-body::before {
-    content: "";
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(10,10,10,1) 100%);
-    z-index: -1;
-}
+        /* --- THRILLER ANIMATIONS (Subtle) --- */
+        .thriller-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 1; 
+        }
 
-/* Wattpad-style Back Button */
-.back-nav {
-    position: fixed; top: 30px; left: 30px;
-    color: var(--stark-white); text-decoration: none;
-    font-family: 'Jost', sans-serif;
-    font-size: 13px; z-index: 100;
-    letter-spacing: 1px;
-    opacity: 0.7;
-    transition: 0.3s;
-}
-.back-nav:hover { opacity: 1; color: var(--blood-red); }
+        .thriller-obj {
+            position: absolute;
+            opacity: 0.2;
+            filter: drop-shadow(0 0 5px #000);
+        }
 
-.container {
-    width: 800px;
-    margin: 60px auto;
-    z-index: 1;
-}
+        /* --- LAYOUT COMPONENTS --- */
 
-/* Header Adjustments */
-h1 { 
-    font-family: 'Special Elite', serif; /* Kept for title punch */
-    font-size: 3.5em; 
-    margin: 0; 
-    color: var(--stark-white); 
-}
+        .back-nav {
+            position: absolute; top: 30px; left: 30px;
+            color: var(--stark-white); text-decoration: none; 
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 8px 15px; font-size: 12px;
+            text-transform: uppercase; z-index: 100;
+            transition: 0.3s;
+        }
 
-.author { 
-    font-family: 'Jost', sans-serif;
-    font-size: 1.2em; 
-    color: var(--muted-grey); 
-    margin-bottom: 15px; 
-}
+        .back-nav:hover {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
 
-/* Section Styling - Transparent Panels */
-section {
-    background: transparent; /* Removed borders and heavy backgrounds */
-    padding: 20px 0;
-    margin-bottom: 40px;
-    border: none;
-}
+        /* Top Header Section */
+        .book-header {
+            width: 800px;
+            margin-top: 60px;
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            z-index: 2;
+        }
 
-h2 { 
-    font-size: 0.9em; 
-    text-transform: uppercase; 
-    letter-spacing: 3px; 
-    color: var(--stark-white); 
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    display: block;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-}
+        .header-cover {
+            width: 200px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
 
-.description-text { 
-    line-height: 1.8; 
-    font-size: 1.1em; 
-    color: var(--muted-grey); 
-    font-family: 'Jost', sans-serif;
-}
+        .header-info h1 {
+            font-size: 60px;
+            margin: 0;
+            font-family: 'Creepster', cursive;
+            letter-spacing: 3px;
+        }
 
-/* Download Button - Minimalist */
-.download-btn {
-    display: inline-block;
-    border: 1px solid var(--stark-white);
-    color: white;
-    padding: 12px 30px;
-    text-decoration: none;
-    font-size: 13px;
-    text-transform: uppercase;
-    transition: 0.4s;
-}
-.download-btn:hover { 
-    background: var(--stark-white);
-    color: black;
-}
+        .header-info h3 {
+            color: var(--accent-gold);
+            font-style: italic;
+            margin: 10px 0;
+            font-size: 20px;
+        }
 
-/* Transparent Textbox & Comments */
-textarea {
-    width: 100%;
-    height: 100px;
-    background: rgba(255, 255, 255, 0.03); /* Transparent ghost effect */
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 15px;
-    color: var(--stark-white);
-    font-family: 'Jost', sans-serif;
-    resize: none;
-    box-sizing: border-box;
-    transition: 0.3s;
-}
-textarea:focus {
-    outline: none;
-    border-color: var(--blood-red);
-    background: rgba(255, 255, 255, 0.07);
-}
+        /* Content Boxes (Like the Description and Download boxes in your image) */
+        .content-box {
+            width: 800px;
+            background: var(--box-bg);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            z-index: 2;
+        }
 
-.comment-box { 
-    padding: 20px 0; 
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-    font-family: 'Jost', sans-serif;
-}
-.comment-time { 
-    display: block; 
-    font-size: 0.7em; 
-    color: var(--muted-grey); 
-    margin-bottom: 5px; 
-}
+        .box-title {
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 18px;
+            margin-bottom: 20px;
+            display: block;
+        }
 
-        footer { text-align: center; padding: 60px; font-size: 0.8em; color: var(--blood-red); letter-spacing: 5px; font-weight: bold; }
+        .description-text {
+            line-height: 1.8;
+            font-size: 15px;
+            color: #ccc;
+        }
+
+        /* Download Button Styling from image */
+        .download-btn {
+            display: block;
+            width: fit-content;
+            margin: 20px auto 0;
+            background: var(--accent-gold);
+            color: #000;
+            text-decoration: none;
+            padding: 15px 40px;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: transform 0.2s;
+            text-align: center;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        /* Reaction/Comment Box */
+        .reaction-input {
+            width: 100%;
+            background: #0d0d0d;
+            border: 1px solid #333;
+            border-radius: 4px;
+            padding: 15px;
+            color: white;
+            font-family: 'Special Elite', serif;
+            margin-top: 15px;
+            box-sizing: border-box;
+        }
+
+        .post-btn {
+            background: transparent;
+            color: white;
+            border: 1px solid white;
+            padding: 10px 20px;
+            margin-top: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .post-btn:hover {
+            background: white;
+            color: black;
+        }
+
     </style>
 </head>
 <body>
 
-    <a href="../../thriller.html" class="back-nav">← back to thriller</a>
+    <div class="thriller-overlay" id="overlay"></div>
 
-    <div class="container">
-        
-        <div class="header-section">
-            <img src="img/t1.jpg" alt="The Hunt for Red October" class="book-cover">
-            
-            <div class="book-meta">
-                <h1>The Hunt for Red October</h1>
-                <div class="author">by Tom Clancy</div>
-                
-                <div class="star-rating">
-                    <input type="radio" name="rate" id="rate-5" value="5"><label for="rate-5">★</label>
-                    <input type="radio" name="rate" id="rate-4" value="4"><label for="rate-4">★</label>
-                    <input type="radio" name="rate" id="rate-3" value="3"><label for="rate-3">★</label>
-                    <input type="radio" name="rate" id="rate-2" value="2"><label for="rate-2">★</label>
-                    <input type="radio" name="rate" id="rate-1" value="1"><label for="rate-1">★</label>
-                </div>
-                <p id="rating-label" style="font-size: 0.9em; opacity: 0.8; font-style: italic; color: var(--danger-red);">Rate this Book</p>
-            </div>
+    <a href="../Bookpages/book1.html" class="back-nav">← Back to Library</a>
+
+    <div class="book-header">
+        <img src="Book1pages/thrillerstories/img/t1.jpg" class="header-cover" alt="Book Cover">
+        <div class="header-info">
+            <h1>The Hunt for Red October</h1>
+            <h3>By Tom Clancy</h3>
+            <div style="color: #444; font-size: 24px;">★★★★★</div>
         </div>
-
-        <section>
-            <h2>About this Story</h2>
-            <div class="description-text">
-               This is a Cold War military thriller about a high-stakes submarine chase between the United States and the Soviet Union.
-               <br><br>
-               The story centers on a brand-new Soviet nuclear submarine called the <strong>Red October</strong>. Its captain, Marko Ramius, suddenly turns the vessel toward the United States. The Soviet government believes he has gone rogue and orders their navy to destroy the submarine before it reaches American waters.
-            </div>
-        </section>
-
-        <section class="download-container">
-            <h2>Download Here</h2>
-            <p style="margin-bottom: 25px; font-style: italic; opacity: 0.9; color: var(--danger-red);">"Until the hunt begins..."</p>
-            <a href="files/thfro.epub" class="download-btn" download>The Hunt for Red October by Tom Clancy</a>
-        </section>
-
-        <section>
-            <h2>Debriefing Notes</h2>
-            <div class="comment-area">
-                <textarea id="comment-input" placeholder="Enter classified reflection..."></textarea>
-                <button class="post-btn" onclick="saveComment()">Submit Report</button>
-            </div>
-            <div id="comment-list" class="saved-comments"></div>
-        </section>
-
-        <footer> © FADING SPACES | THRILLER ARCHIVE </footer>
-
     </div>
 
+    <section class="content-box">
+        <span class="box-title">Description</span>
+        <div class="description-text">
+            A deadly game of cat and mouse begins beneath the waves. When a Soviet submarine captain 
+            attempts to defect to the United States with a revolutionary silent-drive vessel, 
+            the world teeters on the edge of nuclear war. Enter a haunting world of espionage 
+            where secrets breathe life into the shadows of the deep ocean.
+        </div>
+    </section>
+
+    <section class="content-box" style="text-align: center;">
+        <span class="box-title">Download Here</span>
+        <p style="font-size: 14px; color: #888;">Access the full digital version below.</p>
+        <a href="#" class="download-btn">The Hunt for Red October</a>
+    </section>
+
+    <section class="content-box">
+        <span class="box-title">Visitor Reactions</span>
+        <textarea class="reaction-input" rows="4" placeholder="Write your thoughts on this journey..."></textarea>
+        <button class="post-btn">Post Response</button>
+    </section>
+
     <script>
-        window.onload = function() {
-            displayComments();
-            loadRating();
-        };
+        const overlay = document.getElementById('overlay');
+        const objects = ['🐦‍⬛', '🔪', '🩸', '🌫️', '💀', '👣'];
 
-        const stars = document.querySelectorAll('input[name="rate"]');
-        stars.forEach(star => {
-            star.onclick = function() {
-                localStorage.setItem('iimyh_rating', this.value);
-                document.getElementById('rating-label').innerText = "THREAT LEVEL: " + this.value + " STARS";
-                document.getElementById('rating-label').style.color = "var(--danger-red)";
-            }
-        });
+        function createObject() {
+            const el = document.createElement('div');
+            el.className = 'thriller-obj';
+            el.innerText = objects[Math.floor(Math.random() * objects.length)];
+            el.style.left = Math.random() * 100 + 'vw';
+            el.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            el.style.top = '-50px';
+            el.style.animation = `driftDown ${Math.random() * 10 + 10}s linear forwards`;
 
-        function loadRating() {
-            const savedRating = localStorage.getItem('thfro_rating');
-            if (savedRating) {
-                document.getElementById('rate-' + savedRating).checked = true;
-                document.getElementById('rating-label').innerText = "THREAT LEVEL: " + savedRating + " STARS";
-            }
+            overlay.appendChild(el);
+            setTimeout(() => { el.remove(); }, 20000);
         }
 
-        function saveComment() {
-            const input = document.getElementById('comment-input');
-            const text = input.value.trim();
-            if (text === "") return;
-
-            const comments = JSON.parse(localStorage.getItem('thfro_comments') || "[]");
-            comments.unshift({ text: text, time: new Date().toLocaleString() });
-            localStorage.setItem('thfro_comments', JSON.stringify(comments));
-            input.value = "";
-            displayComments();
+        @keyframes driftDown {
+            0% { transform: translateY(-10vh); opacity: 0; }
+            20% { opacity: 0.2; }
+            100% { transform: translateY(110vh); opacity: 0; }
         }
 
-        function displayComments() {
-            const list = document.getElementById('comment-list');
-            const comments = JSON.parse(localStorage.getItem('thfro_comments') || "[]");
-            list.innerHTML = comments.map(c => `
-                <div class="comment-box">
-                    <span class="comment-time">TIMESTAMP: ${c.time}</span>
-                    <div style="color: #00ff00;">> ${c.text}</div>
-                </div>
-            `).join('');
-        }
+        setInterval(createObject, 2000);
     </script>
 
 </body>
