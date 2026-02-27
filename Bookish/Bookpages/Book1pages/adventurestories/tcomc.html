@@ -7,8 +7,7 @@
     <style>
         :root {
             /* Adventure / Antique Palette */
-            --parchment: #e8d5b5;
-            --parchment-light: #f2e6d0;
+            --parchment-alpha: rgba(232, 213, 181, 0.85); /* Transparent Parchment */
             --leather-dark: #3e2723;
             --leather-rich: #5d4037;
             --ink-black: #2c2c2c;
@@ -25,41 +24,47 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            overflow-x: hidden;
-            background: url('img/fairydale.jpg') no-repeat center center fixed;
+            /* Same background as cover */
+            background: url('img/tcomc.jpg') no-repeat center center fixed;
             background-size: cover;
-        }
-            background-image: background: url('img/tcomc.jpg') no-repeat center center fixed;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             line-height: 1.7;
         }
 
-        /* --- Adventure Type Back Button --- */
+        /* Overlay for overall page depth */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            z-index: -1;
+        }
+
+        /* --- Adventure Theme Back Button (Wooden Signpost) --- */
         .back-nav {
             position: fixed; 
             top: 25px; 
             left: 25px;
-            color: #fff; 
+            color: #f2e6d0; 
             text-decoration: none;
-            background: var(--leather-dark);
-            padding: 12px 28px; 
+            background: linear-gradient(90deg, #4e342e, #3e2723);
+            padding: 12px 35px; 
             font-weight: bold;
-            font-size: 12px; 
+            font-size: 11px; 
             z-index: 100;
             text-transform: uppercase;
             letter-spacing: 2px;
-            /* Weathered Wood Sign Aesthetic */
-            clip-path: polygon(10% 0%, 100% 1%, 95% 50%, 100% 99%, 10% 100%, 0% 50%);
-            border: 1px solid var(--gold-accent);
-            box-shadow: 4px 4px 0px rgba(0,0,0,0.3);
-            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            /* Signpost shape with notch */
+            clip-path: polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%, 8% 50%);
+            border-left: 4px solid var(--gold-accent);
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.6);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .back-nav:hover { 
-            transform: scale(1.05) rotate(-1deg);
-            background: var(--leather-rich);
-            box-shadow: 6px 6px 0px rgba(0,0,0,0.2);
+            transform: scale(1.1) rotate(-1deg);
+            background: #5d4037;
+            color: var(--gold-accent);
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.8);
         }
 
         .container {
@@ -67,6 +72,7 @@
             max-width: 800px;
             margin-top: 60px;
             padding-bottom: 80px;
+            z-index: 1;
         }
 
         /* Header Section */
@@ -75,16 +81,20 @@
             gap: 40px;
             margin-bottom: 40px;
             align-items: center;
-            background: rgba(255, 255, 255, 0.3);
-            padding: 20px;
-            border: 1px solid var(--border-antique);
-            border-radius: 2px;
+            background: var(--parchment-alpha);
+            backdrop-filter: blur(5px);
+            padding: 30px;
+            border: 2px solid var(--border-antique);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .book-cover {
             width: 200px;
-            border: 4px solid var(--leather-dark);
-            box-shadow: 8px 8px 20px rgba(0,0,0,0.4);
+            border: 5px solid var(--leather-dark);
+            box-shadow: 5px 5px 20px rgba(0,0,0,0.6);
+            /* Matching background */
+            background: url('img/tcomc.jpg') no-repeat center center;
+            background-size: cover;
         }
 
         h1 { 
@@ -100,7 +110,6 @@
             color: var(--leather-rich); 
             margin-bottom: 10px; 
             font-style: italic;
-            font-family: 'Garamond', serif;
         }
 
         /* Star Rating */
@@ -113,7 +122,7 @@
         .star-rating input { display: none; }
         .star-rating label {
             font-size: 32px;
-            color: rgba(0,0,0,0.1);
+            color: rgba(0,0,0,0.2);
             cursor: pointer;
             transition: 0.2s;
         }
@@ -121,26 +130,17 @@
         .star-rating label:hover ~ label,
         .star-rating input:checked ~ label {
             color: var(--star-active);
-            text-shadow: 0 0 5px rgba(212, 175, 55, 0.4);
         }
 
-        /* Section Cards */
+        /* Transparent Section Cards */
         section {
-            background: var(--parchment-light);
+            background: var(--parchment-alpha);
+            backdrop-filter: blur(5px);
             padding: 40px;
             margin-bottom: 30px;
             border: 1px solid var(--border-antique);
-            box-shadow: inset 0 0 50px rgba(188, 155, 106, 0.2), 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
             position: relative;
-        }
-
-        /* Decorative Corners */
-        section::before {
-            content: "◆";
-            position: absolute;
-            top: 5px; left: 5px;
-            color: var(--border-antique);
-            font-size: 10px;
         }
 
         h2 { 
@@ -155,39 +155,37 @@
             text-align: center;
         }
 
-        .description-text { font-size: 1.1em; text-align: justify; }
-
         /* Download Button */
         .download-container { text-align: center; }
         .download-btn {
             display: inline-block;
             background: var(--leather-dark);
-            color: var(--parchment-light);
+            color: #fff;
             padding: 15px 45px;
             text-decoration: none;
             border: 1px solid var(--gold-accent);
             font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 1px;
             transition: 0.3s;
         }
-        .download-btn:hover { 
-            background: var(--ink-black); 
-            box-shadow: 0 0 15px rgba(184, 134, 11, 0.4);
-        }
+        .download-btn:hover { background: var(--ink-black); transform: translateY(-3px); }
 
-        /* Comments Area */
+        /* Transparent Textbox */
         textarea {
             width: 100%;
             height: 110px;
-            background: rgba(255,255,255,0.5);
-            border: 1px solid var(--border-antique);
+            background: rgba(255, 255, 255, 0.3); /* Transparent white */
+            backdrop-filter: blur(2px);
+            border: 1px solid var(--leather-rich);
             padding: 15px;
             box-sizing: border-box;
             font-family: inherit;
             resize: none;
-            outline: none;
+            color: var(--leather-dark);
+            font-weight: 500;
         }
+        textarea::placeholder { color: rgba(62, 39, 35, 0.7); }
+
         .post-btn {
             margin-top: 15px;
             background: var(--leather-rich);
@@ -195,25 +193,24 @@
             border: none;
             padding: 10px 30px;
             cursor: pointer;
-            font-family: inherit;
             text-transform: uppercase;
         }
 
         .comment-box { 
-            background: rgba(255,255,255,0.4); 
+            background: rgba(255, 255, 255, 0.25); 
             padding: 20px; 
             margin-bottom: 15px; 
-            border: 1px dashed var(--border-antique);
+            border-left: 4px solid var(--gold-accent);
+            backdrop-filter: blur(3px);
         }
-        .comment-time { font-family: 'Courier New', Courier, monospace; font-size: 0.8em; color: var(--leather-rich); }
-
+        
         footer { 
             text-align: center; 
             padding: 50px; 
             font-size: 0.8em; 
-            color: var(--leather-rich); 
+            color: #fff;
             letter-spacing: 3px;
-            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
         }
 
         @media (max-width: 600px) {
@@ -224,7 +221,7 @@
 </head>
 <body>
 
-    <a href="../../adventure.html" class="back-nav">← Return to Library</a>
+    <a href="../../adventure.html" class="back-nav">Return to Library</a>
 
     <div class="container">
         
@@ -242,7 +239,7 @@
                     <input type="radio" name="rate" id="rate-2" value="2"><label for="rate-2">★</label>
                     <input type="radio" name="rate" id="rate-1" value="1"><label for="rate-1">★</label>
                 </div>
-                <p id="rating-label" style="font-size: 0.85em; color: var(--leather-rich); font-style: italic;">Seal your verdict</p>
+                <p id="rating-label" style="font-size: 0.85em; color: var(--leather-rich); font-style: italic;">Rate the Book</p>
             </div>
         </div>
 
@@ -255,15 +252,15 @@
 
         <section class="download-container">
             <h2>Download Here</h2>
-            <p style="margin-bottom: 20px; font-style: italic;">Acquire the full digital record of Dantès' journey.</p>
-            <a href="files/tcomc.epub" class="download-btn" download>The Count of Monte Cristo (EPUB)</a>
+            <p style="margin-bottom: 20px; font-style: italic;">Claim the full digital record of Dantès' journey.</p>
+            <a href="files/tcomc.epub" class="download-btn" download>The Count of Monte Cristo</a>
         </section>
 
         <section>
             <h2>Comments</h2>
             <div class="comment-area">
                 <textarea id="comment-input" placeholder="Inscribe your thoughts on this journey..."></textarea>
-                <button class="post-btn" onclick="saveComment()">Seal Response</button>
+                <button class="post-btn" onclick="saveComment()">Submit Response</button>
             </div>
             <div id="comment-list" style="margin-top: 25px;"></div>
         </section>
@@ -315,10 +312,9 @@
         function displayComments() {
             const list = document.getElementById('comment-list');
             const comments = JSON.parse(localStorage.getItem(BOOK_ID + '_comments') || "[]");
-            
             list.innerHTML = comments.map(c => `
                 <div class="comment-box">
-                    <span class="comment-time">${c.time}</span>
+                    <span style="font-family: monospace; font-size: 0.8em; color: #5d4037;">${c.time}</span>
                     <div style="font-size: 1.05em; margin-top: 5px;">"${c.text}"</div>
                 </div>
             `).join('');
