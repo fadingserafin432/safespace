@@ -4,176 +4,178 @@
     <meta charset="UTF-8">
     <title>Fairydale | Veronica Lancet</title>
     <meta name="viewport" content="width=1100">
-    <style>
-        :root {
-            --cream-white: #faf5ef;
-            --cream-muted: #e0d8c3;
-            --glass-white: rgba(255, 255, 255, 0.12);
-            --bg-overlay: rgba(10, 12, 10, 0.88);
-        }
+   <style>
+    :root {
+       
+        --mystic-gold: #d4af37;
+        --ethereal-silver: #e0e0f0;
+        --forest-dark: #0a0f0d;
+        --glass-violet: rgba(138, 43, 226, 0.15);
+        --bg-overlay: rgba(10, 15, 12, 0.92); 
+    }
 
-        body {
-            margin: 0; padding: 0;
-            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
-            color: var(--cream-white);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow-x: hidden;
-            /* Page cover matches the book cover */
-            background: url('img/fairydale.jpg') no-repeat center center fixed;
-            background-size: cover;
-        }
+    body {
+        margin: 0; padding: 0;
+        font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+        color: var(--ethereal-silver);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow-x: hidden;
+        background: url('img/fairydale.jpg') no-repeat center center fixed;
+        background-size: cover;
+    }
 
-        /* Ambient background blur */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: var(--bg-overlay);
-            backdrop-filter: blur(25px);
-            z-index: -1;
-        }
+    
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: var(--bg-overlay);
+        backdrop-filter: blur(25px);
+        z-index: -1;
+    }
 
-        .back-nav {
-            position: fixed; top: 30px; left: 30px;
-            color: var(--cream-white); text-decoration: none;
-            background: rgba(0, 0, 0, 0.4);
-            padding: 10px 20px; border-radius: 50px;
-            font-size: 14px; z-index: 100;
-            border: 1px solid var(--glass-white);
-            transition: 0.3s;
-            text-transform: lowercase;
-            font-style: italic;
-        }
-        .back-nav:hover { background: var(--cream-white); color: #121212; }
+    .back-nav {
+        position: fixed; top: 30px; left: 30px;
+        color: var(--mystic-gold); text-decoration: none;
+        background: rgba(0, 0, 0, 0.6);
+        padding: 10px 20px; border-radius: 50px;
+        font-size: 14px; z-index: 100;
+        border: 1px solid var(--mystic-gold);
+        transition: 0.3s;
+        text-transform: lowercase;
+        font-style: italic;
+    }
+    .back-nav:hover { background: var(--mystic-gold); color: var(--forest-dark); }
 
-        .container {
-            width: 850px;
-            margin-top: 60px;
-            padding-bottom: 80px;
-            z-index: 1;
-        }
+    .container {
+        width: 850px;
+        margin-top: 60px;
+        padding-bottom: 80px;
+        z-index: 1;
+    }
 
-        /* Header Section */
-        .header-section {
-            display: flex;
-            gap: 40px;
-            margin-bottom: 40px;
-            align-items: center;
-        }
+    
+    .header-section {
+        display: flex;
+        gap: 40px;
+        margin-bottom: 40px;
+        align-items: center;
+    }
 
-        .book-cover {
-            width: 260px;
-            border-radius: 6px;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.7);
-            flex-shrink: 0;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
+    .book-cover {
+        width: 260px;
+        border-radius: 6px;
+        box-shadow: 0 15px 50px rgba(0,0,0,0.8), 0 0 15px rgba(212, 175, 55, 0.2);
+        flex-shrink: 0;
+        border: 1px solid var(--mystic-gold);
+    }
 
-        .book-meta {
-            flex-grow: 1;
-        }
+    .book-meta {
+        flex-grow: 1;
+    }
 
-        h1 { font-size: 3.2em; margin: 0; letter-spacing: -1px; color: var(--cream-white); }
-        .author { font-size: 1.3em; color: var(--cream-muted); margin-bottom: 15px; font-style: italic; }
+    h1 { font-size: 3.2em; margin: 0; letter-spacing: -1px; color: var(--mystic-gold); text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+    .author { font-size: 1.3em; color: var(--ethereal-silver); margin-bottom: 15px; font-style: italic; opacity: 0.8; }
 
-        /* Interactive Star Rating with Cream Highlight */
-        .star-rating {
-            display: flex;
-            flex-direction: row-reverse;
-            justify-content: flex-end;
-            margin: 15px 0;
-        }
-        .star-rating input { display: none; }
-        .star-rating label {
-            font-size: 32px;
-            color: rgba(255,255,255,0.15);
-            cursor: pointer;
-            transition: 0.2s;
-            padding: 0 2px;
-        }
-        .star-rating label:hover,
-        .star-rating label:hover ~ label,
-        .star-rating input:checked ~ label {
-            color: var(--cream-white);
-            text-shadow: 0 0 10px rgba(250, 245, 239, 0.5);
-        }
+   
+    .star-rating {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+        margin: 15px 0;
+    }
+    .star-rating input { display: none; }
+    .star-rating label {
+        font-size: 32px;
+        color: rgba(255, 255, 255, 0.1);
+        cursor: pointer;
+        transition: 0.2s;
+        padding: 0 2px;
+    }
+    .star-rating label:hover,
+    .star-rating label:hover ~ label,
+    .star-rating input:checked ~ label {
+        color: var(--mystic-gold);
+        text-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+    }
 
-        /* Description & Content Cards */
-        section {
-            background: var(--glass-white);
-            backdrop-filter: blur(15px);
-            padding: 40px;
-            border-radius: 15px;
-            margin-bottom: 25px;
-            border: 1px solid rgba(255,255,255,0.08);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
+  
+    section {
+        background: var(--glass-violet);
+        backdrop-filter: blur(15px);
+        padding: 40px;
+        border-radius: 15px;
+        margin-bottom: 25px;
+        border: 1px solid rgba(212, 175, 55, 0.15);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
 
-        h2 { font-size: 1.1em; text-transform: uppercase; letter-spacing: 3px; margin-top: 0; color: var(--cream-muted); opacity: 0.8; }
+    h2 { font-size: 1.1em; text-transform: uppercase; letter-spacing: 3px; margin-top: 0; color: var(--mystic-gold); opacity: 0.9; }
 
-        .description-text { line-height: 1.9; font-size: 1.1em; color: #f0f0f0; }
+    .description-text { line-height: 1.9; font-size: 1.1em; color: var(--ethereal-silver); }
 
-        /* Download Button */
-        .download-container { text-align: center; }
-        .download-btn {
-            display: inline-block;
-            background: var(--cream-white);
-            color: #1a1f16;
-            padding: 16px 45px;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: bold;
-            font-size: 14px;
-            letter-spacing: 1px;
-            transition: 0.3s;
-            margin-top: 10px;
-        }
-        .download-btn:hover { transform: scale(1.03); box-shadow: 0 0 20px rgba(250, 245, 239, 0.3); }
+   
+    .download-container { text-align: center; }
+    .download-btn {
+        display: inline-block;
+        background: linear-gradient(135deg, #d4af37, #b8860b);
+        color: #000;
+        padding: 16px 45px;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: bold;
+        font-size: 14px;
+        letter-spacing: 1px;
+        transition: 0.3s;
+        margin-top: 10px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+    .download-btn:hover { transform: scale(1.03); box-shadow: 0 0 25px rgba(212, 175, 55, 0.4); }
 
-        /* Comments Area */
-        textarea {
-            width: 100%;
-            height: 110px;
-            background: rgba(0,0,0,0.4);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 8px;
-            padding: 15px;
-            color: white;
-            font-family: inherit;
-            resize: none;
-            margin-top: 10px;
-            box-sizing: border-box;
-        }
-        .post-btn {
-            margin-top: 15px;
-            background: transparent;
-            color: var(--cream-white);
-            border: 1px solid var(--cream-white);
-            padding: 10px 30px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: 0.3s;
-            font-weight: 600;
-        }
-        .post-btn:hover { background: var(--cream-white); color: #1a1f16; }
+    
+    textarea {
+        width: 100%;
+        height: 110px;
+        background: rgba(0,0,0,0.5);
+        border: 1px solid rgba(212, 175, 55, 0.2);
+        border-radius: 8px;
+        padding: 15px;
+        color: var(--ethereal-silver);
+        font-family: inherit;
+        resize: none;
+        margin-top: 10px;
+        box-sizing: border-box;
+    }
+    .post-btn {
+        margin-top: 15px;
+        background: transparent;
+        color: var(--mystic-gold);
+        border: 1px solid var(--mystic-gold);
+        padding: 10px 30px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: 0.3s;
+        font-weight: 600;
+    }
+    .post-btn:hover { background: var(--mystic-gold); color: var(--forest-dark); }
 
-        /* Style for loaded comments */
-        .saved-comments { margin-top: 30px; }
-        .comment-box { 
-            background: rgba(255,255,255,0.05); 
-            padding: 15px; 
-            border-radius: 8px; 
-            margin-bottom: 10px; 
-            font-size: 0.95em;
-            border-left: 2px solid var(--cream-muted);
-        }
-        .comment-time { display: block; font-size: 0.7em; color: var(--cream-muted); margin-bottom: 5px; opacity: 0.6; }
+   
+    .saved-comments { margin-top: 30px; }
+    .comment-box { 
+        background: rgba(255, 255, 255, 0.03); 
+        padding: 15px; 
+        border-radius: 8px; 
+        margin-bottom: 10px; 
+        font-size: 0.95em;
+        border-left: 3px solid var(--mystic-gold);
+    }
+    .comment-time { display: block; font-size: 0.7em; color: var(--mystic-gold); margin-bottom: 5px; opacity: 0.7; }
 
-        footer { text-align: center; padding: 50px; font-size: 0.85em; color: var(--cream-muted); opacity: 0.5; letter-spacing: 2px; }
-    </style>
+    footer { text-align: center; padding: 50px; font-size: 0.85em; color: var(--mystic-gold); opacity: 0.4; letter-spacing: 2px; }
+</style>
 </head>
 <body>
 
@@ -227,13 +229,13 @@
     </div>
 
     <script>
-        // Load data when page opens
+        
         window.onload = function() {
             displayComments();
             loadRating();
         };
 
-        // --- Rating Logic ---
+       
         const stars = document.querySelectorAll('input[name="rate"]');
         stars.forEach(star => {
             star.onclick = function() {
@@ -250,7 +252,7 @@
             }
         }
 
-        // --- Comment Logic ---
+        
         function saveComment() {
             const input = document.getElementById('comment-input');
             const text = input.value.trim();
