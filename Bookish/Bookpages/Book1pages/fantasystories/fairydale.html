@@ -4,180 +4,199 @@
     <meta charset="UTF-8">
     <title>Fairydale | Veronica Lancet</title>
     <meta name="viewport" content="width=1100">
-   <style>
-    :root {
-       
-        ---cream-white: #faf5ef;
+    <style>
+        :root {
+            /* FANTASY COLOR PALETTE */
+            --cream-white: #faf5ef;
+            --mystic-gold: #d4af37;
+            --ethereal-silver: #e0e0f0;
             --ink-black: #0a0a0c;
-            --parchment: #d9d2c5;
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --input-bg: rgba(0, 0, 0, 0.4);
-    }
+            --glass-bg: rgba(255, 255, 255, 0.07);
+            --bg-overlay: rgba(10, 10, 12, 0.9);
+        }
 
-    body {
-        margin: 0; padding: 0;
-        font-family: 'Segoe UI', Roboto, Arial, sans-serif;
-        color: var(--ethereal-silver);
-         min-height: 100vh;
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+            /* Changed all text to Cream White */
+            color: var(--cream-white);
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            background: #0a0a0c url('img/fairydale.jpg') no-repeat center center fixed;
+            background: var(--ink-black) url('img/fairydale.jpg') no-repeat center center fixed;
             background-size: cover;
         }
 
-    
-    body::before {
-        content: "";
-        position: fixed;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background: var(--bg-overlay);
-        backdrop-filter: blur(25px);
-        z-index: -1;
-    }
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: var(--bg-overlay);
+            backdrop-filter: blur(25px);
+            z-index: -1;
+        }
 
-    .back-nav {
-        position: fixed; top: 30px; left: 30px;
-        color: var(--mystic-gold); text-decoration: none;
-        background: rgba(0, 0, 0, 0.6);
-        padding: 10px 20px; border-radius: 50px;
-        font-size: 14px; z-index: 100;
-        border: 1px solid var(--mystic-gold);
-        transition: 0.3s;
-        text-transform: lowercase;
-        font-style: italic;
-    }
-    .back-nav:hover { background: var(--mystic-gold); color: var(--forest-dark); }
+        /* Nav Button */
+        .back-nav {
+            position: fixed; top: 30px; left: 30px;
+            color: var(--mystic-gold); text-decoration: none;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 10px 20px; border-radius: 50px;
+            font-size: 14px; z-index: 100;
+            border: 1px solid var(--mystic-gold);
+            transition: 0.3s;
+            text-transform: lowercase;
+            font-style: italic;
+        }
+        .back-nav:hover { background: var(--mystic-gold); color: var(--ink-black); }
 
-      .container {
-            width: 850px; /* Fixed width to ensure desktop look on all devices */
+        .container {
+            width: 850px;
             margin-top: 80px;
             padding-bottom: 80px;
             z-index: 1;
         }
-    }
 
-    
-    .header-section {
-         display: flex; /* Keeps items side-by-side */
-            flex-direction: row !important; /* Forces side-by-side even on mobile */
+        /* WATTPAD STYLE HEADER: Cover left, Info right */
+        .header-section {
+            display: flex;
+            align-items: center; /* Aligns title/rating vertically center with cover */
             gap: 40px;
-            margin-bottom: 40px;
-            align-items: flex-start;
-    }
+            margin-bottom: 50px;
+        }
 
-    .book-cover {
-        width: 260px;
-        border-radius: 6px;
-        box-shadow: 0 15px 50px rgba(0,0,0,0.8), 0 0 15px rgba(212, 175, 55, 0.2);
-        flex-shrink: 0;
-        border: 1px solid var(--mystic-gold);
-    }
+        .book-cover {
+            width: 240px;
+            border-radius: 8px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.8), 0 0 20px rgba(212, 175, 55, 0.1);
+            flex-shrink: 0;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
 
-    .book-meta {
-        flex-grow: 1;
-    }
+        .book-meta {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
 
-    h1 { font-size: 3.2em; margin: 0; letter-spacing: -1px; color: var(--mystic-gold); text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
-    .author { font-size: 1.3em; color: var(--ethereal-silver); margin-bottom: 15px; font-style: italic; opacity: 0.8; }
+        h1 { 
+            font-size: 3.5em; 
+            margin: 0; 
+            color: var(--cream-white); 
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            letter-spacing: -1px;
+        }
 
-   
-    .star-rating {
-        display: flex;
-        flex-direction: row-reverse;
-        justify-content: flex-end;
-        margin: 15px 0;
-    }
-    .star-rating input { display: none; }
-    .star-rating label {
-        font-size: 32px;
-        color: rgba(255, 255, 255, 0.1);
-        cursor: pointer;
-        transition: 0.2s;
-        padding: 0 2px;
-    }
-    .star-rating label:hover,
-    .star-rating label:hover ~ label,
-    .star-rating input:checked ~ label {
-        color: var(--mystic-gold);
-        text-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
-    }
+        .author { 
+            font-size: 1.4em; 
+            color: var(--mystic-gold); 
+            margin: 5px 0 20px 0; 
+            font-style: italic; 
+        }
 
-  
-    section {
-        background: var(--glass-bg);
-        backdrop-filter: blur(15px);
-        padding: 40px;
-        border-radius: 15px;
-        margin-bottom: 25px;
-        border: 1px solid rgba(212, 175, 55, 0.15);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-    }
+        /* Star Rating Styles */
+        .star-rating {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+            margin-bottom: 5px;
+        }
+        .star-rating input { display: none; }
+        .star-rating label {
+            font-size: 28px;
+            color: rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: 0.2s;
+            padding: 0 2px;
+        }
+        .star-rating label:hover,
+        .star-rating label:hover ~ label,
+        .star-rating input:checked ~ label {
+            color: var(--mystic-gold);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
 
-    h2 { font-size: 1.1em; text-transform: uppercase; letter-spacing: 3px; margin-top: 0; color: var(--mystic-gold); opacity: 0.9; }
+        #rating-label {
+            font-size: 0.9em;
+            color: var(--cream-white);
+            opacity: 0.7;
+            margin: 0;
+        }
 
-    .description-text { line-height: 1.9; font-size: 1.1em; color: var(--ethereal-silver); }
+        /* Content Sections */
+        section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
 
-   
-    .download-container { text-align: center; }
-    .download-btn {
-        display: inline-block;
-        background: linear-gradient(135deg, #d4af37, #b8860b);
-        color: #000;
-        padding: 16px 45px;
-        text-decoration: none;
-        border-radius: 4px;
-        font-weight: bold;
-        font-size: 14px;
-        letter-spacing: 1px;
-        transition: 0.3s;
-        margin-top: 10px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    }
-    .download-btn:hover { transform: scale(1.03); box-shadow: 0 0 25px rgba(212, 175, 55, 0.4); }
+        h2 { 
+            font-size: 1.1em; 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            margin-top: 0; 
+            color: var(--mystic-gold); 
+        }
 
-    
-    textarea {
-        width: 100%;
-        height: 110px;
-        background: rgba(0,0,0,0.5);
-        border: 1px solid rgba(212, 175, 55, 0.2);
-        border-radius: 8px;
-        padding: 15px;
-        color: var(--ethereal-silver);
-        font-family: inherit;
-        resize: none;
-        margin-top: 10px;
-        box-sizing: border-box;
-    }
-    .post-btn {
-        margin-top: 15px;
-        background: transparent;
-        color: var(--mystic-gold);
-        border: 1px solid var(--mystic-gold);
-        padding: 10px 30px;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: 0.3s;
-        font-weight: 600;
-    }
-    .post-btn:hover { background: var(--mystic-gold); color: var(--forest-dark); }
+        .description-text { line-height: 1.9; font-size: 1.1em; color: var(--cream-white); }
 
-   
-    .saved-comments { margin-top: 30px; }
-    .comment-box { 
-        background: rgba(255, 255, 255, 0.03); 
-        padding: 15px; 
-        border-radius: 8px; 
-        margin-bottom: 10px; 
-        font-size: 0.95em;
-        border-left: 3px solid var(--mystic-gold);
-    }
-    .comment-time { display: block; font-size: 0.7em; color: var(--mystic-gold); margin-bottom: 5px; opacity: 0.7; }
+        /* Download Button */
+        .download-container { text-align: center; }
+        .download-btn {
+            display: inline-block;
+            background: var(--mystic-gold);
+            color: var(--ink-black);
+            padding: 16px 45px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+        .download-btn:hover { transform: scale(1.03); box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
 
-    footer { text-align: center; padding: 50px; font-size: 0.85em; color: var(--mystic-gold); opacity: 0.4; letter-spacing: 2px; }
-</style>
+        /* Comments */
+        textarea {
+            width: 100%;
+            height: 110px;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 15px;
+            color: white;
+            font-family: inherit;
+            resize: none;
+            box-sizing: border-box;
+        }
+        .post-btn {
+            margin-top: 15px;
+            background: transparent;
+            color: var(--cream-white);
+            border: 1px solid var(--cream-white);
+            padding: 10px 30px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .post-btn:hover { background: var(--cream-white); color: var(--ink-black); }
+
+        .comment-box { 
+            background: rgba(255,255,255,0.03); 
+            padding: 15px; 
+            border-radius: 8px; 
+            margin-bottom: 10px; 
+            border-left: 3px solid var(--mystic-gold);
+        }
+        .comment-time { color: var(--mystic-gold); font-size: 0.8em; opacity: 0.8; }
+
+        footer { text-align: center; padding: 50px; font-size: 0.85em; color: var(--mystic-gold); opacity: 0.5; }
+    </style>
 </head>
 <body>
 
@@ -199,7 +218,7 @@
                     <input type="radio" name="rate" id="rate-2" value="2"><label for="rate-2">★</label>
                     <input type="radio" name="rate" id="rate-1" value="1"><label for="rate-1">★</label>
                 </div>
-                <p id="rating-label" style="font-size: 0.9em; opacity: 0.7;">Rate this book</p>
+                <p id="rating-label">Rate this book</p>
             </div>
         </div>
 
@@ -231,13 +250,11 @@
     </div>
 
     <script>
-        
         window.onload = function() {
             displayComments();
             loadRating();
         };
 
-       
         const stars = document.querySelectorAll('input[name="rate"]');
         stars.forEach(star => {
             star.onclick = function() {
@@ -254,7 +271,6 @@
             }
         }
 
-        
         function saveComment() {
             const input = document.getElementById('comment-input');
             const text = input.value.trim();
@@ -278,11 +294,10 @@
             list.innerHTML = comments.map(c => `
                 <div class="comment-box">
                     <span class="comment-time">${c.time}</span>
-                    <div>${c.text}</div>
+                    <div style="margin-top:5px;">${c.text}</div>
                 </div>
             `).join('');
         }
     </script>
-
 </body>
 </html>
