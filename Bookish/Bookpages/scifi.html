@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Science Fiction</title>
+    <meta name="viewport" content="width=1200">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --neon-blue: #00f2ff;
+            --deep-space: #0a0b1e;
+            --hologram-purple: #bc13fe;
+            --void-black: #020205;
+            --text-glow: 0 0 10px rgba(0, 242, 255, 0.7);
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--void-black);
+           background: url('Book1pages/scifi/img/scifi.jpg') no-repeat center center fixed;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Scanline effect for that CRT/Computer screen feel */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 10;
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
+        }
+
+        .space-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 1; 
+        }
+
+        .space-element {
+            position: absolute;
+            user-select: none;
+            filter: drop-shadow(0 0 5px var(--neon-blue));
+            opacity: 0.8;
+        }
+
+        @keyframes driftAcross {
+            0% { transform: translate(-10vw, 0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translate(110vw, 20vh) rotate(20deg); opacity: 0; }
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* --- UI STYLES --- */
+        .back-nav {
+            position: absolute; top: 30px; left: 30px;
+            color: var(--neon-blue); text-decoration: none; 
+            background: rgba(0, 242, 255, 0.1);
+            border: 1px solid var(--neon-blue);
+            padding: 12px 24px; font-weight: bold; z-index: 100;
+            text-transform: uppercase;
+            font-family: 'Orbitron';
+            letter-spacing: 2px;
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+            transition: all 0.3s;
+        }
+
+        .back-nav:hover {
+            background: var(--neon-blue);
+            color: var(--void-black);
+            box-shadow: 0 0 20px var(--neon-blue);
+        }
+
+        .cover-container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            height: 400px;
+            overflow: hidden;
+            border-bottom: 4px solid var(--neon-blue);
+            box-shadow: 0 0 50px rgba(0, 242, 255, 0.2);
+            z-index: 2;
+        }
+
+        .cover-photo {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            filter: brightness(0.6) blue(2px);
+        }
+
+        .cover-title {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Orbitron', sans-serif; font-size: 80px;
+            color: #fff; text-align: center; width: 100%;
+            z-index: 3; letter-spacing: 20px;
+            text-shadow: 0 0 20px var(--neon-blue), 0 0 40px var(--hologram-purple);
+            text-transform: uppercase;
+        }
+
+        .book-list-container {
+            width: 900px; margin: 50px auto;
+            display: flex; flex-direction: column; gap: 30px; 
+            z-index: 2; padding-bottom: 100px;
+        }
+
+        .list-item {
+            background: rgba(10, 11, 30, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 25px; 
+            border: 1px solid rgba(0, 242, 255, 0.3);
+            display: flex; align-items: center; text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .list-item::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; width: 4px; height: 100%;
+            background: var(--neon-blue);
+        }
+
+        .list-item:hover { 
+            transform: scale(1.02);
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.2);
+        }
+
+        .list-info h2 {
+            margin: 0; 
+            color: var(--neon-blue); 
+            font-family: 'Orbitron';
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .list-info h3 {
+            margin: 8px 0 0 0; 
+            color: #a0a0ff; 
+            font-size: 16px;
+            letter-spacing: 1px;
+        }
+
+        .view-btn {
+            margin-left: auto; padding: 12px 30px;
+            background: transparent;
+            color: var(--neon-blue);
+            border: 1px solid var(--neon-blue);
+            font-family: 'Orbitron';
+            font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .list-item:hover .view-btn {
+            background: var(--neon-blue);
+            color: var(--void-black);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="space-overlay" id="overlay"></div>
+
+    <a href="#" class="back-nav">← back to Library</a>
+
+    <div class="cover-container">
+       <img src="Book1pages/scifi/img/scifi2.jpg" class="cover-photo" alt="Science Fiction Banner">
+        <h1 class="cover-title">Science Fiction</h1>
+    </div>
+
+     <section class="book-list-container">
+        <a href="Book1pages/scifi/eg.html" class="list-item">
+            <img src="Book1pages/scifi/img/eg.jpg" alt="Ember's Game" style="width:100px; height:150px; margin-right:35px; border:4px solid white; border-radius:10px;">
+            <div class="list-info">
+                <h2> Ember's Game</h2>
+                <h3> BY: ORSON SCOTT CARD </h3>
+            </div>
+            <div class="view-btn">Read More</div>
+        </a>
+    </section>
+
+    <script>
+        const overlay = document.getElementById('overlay');
+        const ships = ['🚀', '🛸', '🛰️'];
+        const celestials = ['🪐', '☄️', '✨', '🌟'];
+
+        function createSpaceElement() {
+            const el = document.createElement('div');
+            el.className = 'space-element';
+            const rand = Math.random();
+            
+            // 20% chance for a ship, 80% for stars/planets
+            let isShip = rand > 0.8;
+
+            if (isShip) {
+                el.innerText = ships[Math.floor(Math.random() * ships.length)];
+                el.style.top = (Math.random() * 80 + 10) + 'vh';
+                el.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                el.style.animation = `driftAcross ${Math.random() * 15 + 15}s linear forwards`;
+                overlay.appendChild(el);
+                setTimeout(() => el.remove(), 30000);
+            } else {
+                el.innerText = celestials[Math.floor(Math.random() * celestials.length)];
+                el.style.left = (Math.random() * 100) + 'vw';
+                el.style.top = (Math.random() * 100) + 'vh';
+                el.style.fontSize = (Math.random() * 10 + 5) + 'px';
+                el.style.opacity = Math.random();
+                el.style.animation = `twinkle ${Math.random() * 3 + 2}s infinite ease-in-out`;
+                overlay.appendChild(el);
+                // Keep stars longer
+                setTimeout(() => el.remove(), 10000);
+            }
+        }
+
+        // Spawn elements periodically
+        setInterval(createSpaceElement, 800);
+    </script>
+
+</body>
+</html>
