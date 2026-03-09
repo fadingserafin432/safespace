@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Horror Stories - Fading Spaces</title>
+    <meta name="viewport" content="width=1200">
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Special+Elite&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --blood-red: #660000; /* Darker, dried blood color */
+            --bright-blood: #af0000;
+            --deep-black: #050505;
+            --smoke-grey: #1a1a1a;
+            --stark-white: #d1d1d1;
+            --shadow-glass: rgba(0, 0, 0, 0.9);
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Special Elite', serif;
+            background: 
+                radial-gradient(circle, transparent 20%, var(--deep-black) 100%),
+                linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
+                url('Book1pages/horrorstories/img/horror.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: var(--stark-white);
+        }
+
+        /* --- HORROR ANIMATIONS --- */
+        @keyframes flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+            20%, 22%, 24%, 55% { opacity: 0.5; text-shadow: none; }
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        .horror-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 10;
+            background: radial-gradient(circle, transparent 30%, rgba(0,0,0,0.7) 100%);
+        }
+
+        .thriller-obj {
+            position: absolute;
+            user-select: none;
+            opacity: 0.4;
+            filter: grayscale(1) contrast(1.5) drop-shadow(0 0 5px #000);
+            z-index: 1;
+        }
+
+        /* --- UI ELEMENTS --- */
+        .back-nav {
+            position: absolute; top: 30px; left: 30px;
+            color: var(--stark-white); text-decoration: none; 
+            background: var(--blood-red);
+            padding: 10px 20px; font-weight: bold; z-index: 100;
+            text-transform: uppercase;
+            border-radius: 0px; /* Sharper edges feel more "hostile" */
+            box-shadow: 0 0 15px rgba(0,0,0,0.8);
+            transition: 0.3s;
+            border: 1px solid var(--bright-blood);
+        }
+
+        .back-nav:hover {
+            background: var(--bright-blood);
+            box-shadow: 0 0 20px var(--bright-blood);
+            letter-spacing: 2px;
+        }
+
+        .cover-container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            height: 550px;
+            overflow: hidden;
+            border-bottom: 3px solid var(--blood-red);
+            box-shadow: 0 0 100px #000;
+            z-index: 2;
+        }
+
+        .cover-photo { 
+            width: 100%; height: 100%; 
+            object-fit: cover; 
+            filter: grayscale(1) brightness(0.4) sepia(0.2); 
+        }
+
+        .cover-title {
+            position: absolute; 
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Creepster', cursive;
+            font-size: 180px;
+            color: #eee; 
+            margin: 0;
+            text-align: center;
+            width: 100%;
+            z-index: 3;
+            letter-spacing: 20px;
+            text-shadow: 10px 10px 0px #000, 0 0 30px var(--blood-red);
+            animation: flicker 5s infinite;
+        }
+
+        .book-list-container {
+            width: 950px; 
+            margin: 60px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 30px; 
+            z-index: 5;
+            padding-bottom: 100px;
+        }
+
+        .list-item {
+            background: var(--shadow-glass);
+            padding: 20px 40px;
+            border-left: 8px solid var(--blood-red);
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255,0,0,0.1);
+        }
+
+        .list-item:hover {
+            transform: scale(1.02);
+            background: #0e0e0e;
+            border-left: 8px solid var(--bright-blood);
+            animation: glitch 0.2s infinite alternate;
+        }
+
+        .list-item img { 
+            width: 90px; height: 130px; 
+            object-fit: cover; 
+            filter: grayscale(1) brightness(0.7);
+            margin-right: 35px;
+            box-shadow: 5px 5px 15px #000;
+            border: 1px solid #333;
+        }
+
+        .list-info h2 {
+            margin: 0; color: #bbb;
+            font-size: 32px; font-family: 'Creepster', cursive;
+            letter-spacing: 2px;
+        }
+
+        .list-info h3 {
+            margin: 5px 0 0 0; color: #555;
+            font-size: 16px; font-weight: 400; font-style: italic;
+        }
+
+        .view-btn {
+            margin-left: auto;
+            padding: 12px 30px;
+            background: transparent;
+            color: var(--blood-red);
+            border: 1px solid var(--blood-red);
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .list-item:hover .view-btn {
+            background: var(--blood-red);
+            color: white;
+            box-shadow: 0 0 15px var(--blood-red);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="horror-overlay" id="overlay"></div>
+
+    <a href="../Bookpages/book1.html" class="back-nav">← Exit Room</a>
+
+    <div class="cover-container">
+        <img src="Book1pages/horrorstories/img/h1.jpg" class="cover-photo" alt="Horror Banner">
+        <h1 class="cover-title">HORROR</h1>
+    </div>
+
+    <section class="book-list-container">
+        <a href="Book1pages/horrorstories/nocticadia.html" class="list-item">
+            <img src="Book1pages/horrorstories/img/nocticadia.jpg" alt="Nocticadia">
+            <div class="list-info">
+                <h2>Nocticadia</h2>
+                <h3>by Keri Lake</h3>
+            </div>
+            <div class="view-btn">Read More</div>
+        </a>
+    </section>
+
+    <script>
+        const overlay = document.getElementById('overlay');
+        // Added some more unsettling emojis
+        const objects = ['🐦‍⬛', '🔪', '🩸', '👁️', '💀', '🕷️', '🕸️', '🕯️'];
+
+        function createObject() {
+            const el = document.createElement('div');
+            el.className = 'thriller-obj';
+            el.innerText = objects[Math.floor(Math.random() * objects.length)];
+            el.style.left = Math.random() * 100 + 'vw';
+            const size = Math.random() * 30 + 20;
+            el.style.fontSize = size + 'px';
+
+            // Random rotation for variety
+            el.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+            const duration = Math.random() * 10 + 10;
+            
+            // Reusing your drift animations
+            el.style.top = '-50px';
+            el.style.animation = `driftDown ${duration}s linear forwards`;
+
+            overlay.appendChild(el);
+            setTimeout(() => { el.remove(); }, duration * 1000);
+        }
+
+        // Slightly faster spawn rate for a more "cluttered" scary feel
+        setInterval(createObject, 1000);
+    </script>
+
+</body>
+</html>
