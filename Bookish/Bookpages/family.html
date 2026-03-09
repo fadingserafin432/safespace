@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Family Stories - Cozy Spaces</title>
+    <meta name="viewport" content="width=1200">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Playfair+Display:ital,wght@0,700;1,700&family=Comfortaa:wght@400;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Cozy Earthy Palette */
+            --warm-amber: #b5651d;
+            --soft-sage: #8a9a5b;
+            --honey-glow: #f9e1a1;
+            --cream-warm: #fff9f0;
+            --wood-brown: #5d4037;
+            --silk-white: rgba(255, 255, 255, 0.92);
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Jost', sans-serif;
+            /* Using a warmer overlay for the background */
+            background: linear-gradient(rgba(255, 249, 240, 0.6), rgba(255, 249, 240, 0.6)), 
+                        url('Book1pages/familystories/img/fam.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* --- COZY ANIMATIONS LAYER --- */
+        .cozy-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none; 
+            z-index: 1; 
+        }
+
+        .element {
+            position: absolute;
+            user-select: none;
+            opacity: 0.6;
+            animation: driftUp 10s linear forwards;
+        }
+
+        @keyframes driftUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            15% { opacity: 0.7; }
+            85% { opacity: 0.7; }
+            100% { transform: translateY(-110vh) rotate(20deg); opacity: 0; }
+        }
+
+        /* --- NAVIGATION --- */
+        .back-nav {
+            position: absolute; top: 30px; left: 30px;
+            color: var(--wood-brown); text-decoration: none; 
+            background: var(--silk-white);
+            padding: 12px 24px; font-weight: 500; z-index: 100;
+            text-transform: lowercase;
+            border-radius: 15px; /* Rounded but less 'oval' for a cozy feel */
+            box-shadow: 0 4px 15px rgba(93, 64, 55, 0.1);
+            border: 1px solid var(--honey-glow);
+            transition: 0.3s;
+        }
+
+        /* --- COVER --- */
+        .cover-container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            height: 500px;
+            overflow: hidden;
+            border-bottom-left-radius: 40px; /* Softer, homey corners */
+            border-bottom-right-radius: 40px;
+            box-shadow: 0 15px 40px rgba(93, 64, 55, 0.15);
+            z-index: 2;
+        }
+
+        .cover-photo { width: 100%; height: 100%; object-fit: cover; filter: sepia(20%) brightness(0.9); }
+
+        .cover-title {
+            position: absolute; 
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Playfair Display', serif;
+            font-size: 120px;
+            color: white;
+            text-align: center;
+            width: 100%;
+            z-index: 3;
+            text-shadow: 2px 4px 10px rgba(0,0,0,0.3);
+        }
+
+        /* --- SELECTION LIST --- */
+        .book-list-container {
+            width: 900px; 
+            margin: 50px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px; 
+            z-index: 10;
+            padding-bottom: 100px;
+        }
+
+        .list-item {
+            background: rgba(255, 255, 255, 0.96);
+            padding: 25px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: 0.3s ease;
+            border: 1px solid #eee;
+        }
+
+        .list-item:hover {
+            transform: scale(1.02);
+            background: #fff;
+            box-shadow: 0 10px 25px rgba(181, 101, 29, 0.1);
+            border-color: var(--honey-glow);
+        }
+
+        .list-item img { 
+            width: 80px; height: 120px; 
+            object-fit: cover; border-radius: 8px;
+            margin-right: 30px;
+        }
+
+        /* COZY TYPOGRAPHY */
+        .list-info h2 {
+            margin: 0; 
+            color: var(--wood-brown);
+            font-size: 28px; 
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        .list-info h3 {
+            margin: 5px 0 0 0; 
+            color: var(--soft-sage);
+            font-size: 20px; 
+            font-family: 'Caveat', cursive; /* Casual, friendly handwriting */
+        }
+
+        .view-btn {
+            margin-left: auto;
+            padding: 10px 25px;
+            background: var(--warm-amber);
+            color: white;
+            border-radius: 8px;
+            font-size: 12px;
+            font-family: 'Comfortaa', sans-serif;
+            text-transform: lowercase;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cozy-overlay" id="cozyOverlay"></div>
+
+    <a href="../Bookpages/book1.html" class="back-nav">← browse genres</a>
+
+    <div class="cover-container">
+        <img src="Book1pages/familystories/img/fam1.jpg" class="cover-photo" alt="Family Home">
+        <h1 class="cover-title">Home & Heart</h1>
+    </div>
+
+    <section class="book-list-container">
+        <a href="Book1pages/familystories/iimyh.html" class="list-item">
+            <img src="Book1pages/familystories/img/apwf.jpg" alt="A Patchwork Family">
+            <div class="list-info">
+                <h2>A Patchwork Family</h2>
+                <h3>by Cathy Bramley</h3>
+            </div>
+            <div class="view-btn">gather around</div>
+        </a>
+    </section>
+
+    <script>
+        const overlay = document.getElementById('cozyOverlay');
+        // Cozy icons: Coffee/Tea, House, Leaf, Heart
+        const elements = ['☕', '🏠', '🍃', '🧡', '🧶'];
+
+        function createCozyElement() {
+            const el = document.createElement('div');
+            el.className = 'element';
+            el.innerText = elements[Math.floor(Math.random() * elements.length)];
+            el.style.left = Math.random() * 100 + 'vw';
+            el.style.bottom = '-50px'; 
+            el.style.fontSize = (Math.random() * 15 + 20) + 'px';
+            // Alternating between warm colors
+            const colors = ['#b5651d', '#8a9a5b', '#d4a373'];
+            el.style.color = colors[Math.floor(Math.random() * colors.length)];
+            
+            overlay.appendChild(el);
+            setTimeout(() => el.remove(), 10000);
+        }
+        
+        // Slightly slower interval for a calmer feel
+        setInterval(createCozyElement, 2000);
+    </script>
+
+</body>
+</html>
