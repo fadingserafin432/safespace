@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Self-Help Nook</title>
+    <meta name="viewport" content="width=1200">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;500;700&family=Solway:wght@400;700&family=Indie+Flower&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --warm-terracotta: #b07d62;
+            --sage-green: #82937f;
+            --oat-milk: #f7f3e9;
+            --soft-brown: #5d4a44;
+            --dusty-rose: #d4a373;
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Solway', serif;
+            background: url('Book1pages/self/img/s1.png') no-repeat center center fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: var(--soft-brown);
+        }
+
+        /* --- COZY OVERLAY --- */
+        #overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 1; 
+        }
+
+        .creature {
+            position: absolute;
+            user-select: none;
+            opacity: 0.6;
+            filter: sepia(0.5);
+        }
+
+        @keyframes drift {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.5; }
+            100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
+        }
+
+        /* --- NAVIGATION --- */
+        .back-nav {
+            position: absolute; top: 30px; left: 30px;
+            color: var(--soft-brown); 
+            text-decoration: none; 
+            background: rgba(255, 255, 255, 0.7);
+            padding: 10px 25px; 
+            font-family: 'Indie Flower', cursive;
+            font-size: 1.2rem;
+            z-index: 100;
+            border-radius: 20px; 
+            border: 1px dashed var(--warm-terracotta);
+            transition: 0.3s;
+        }
+        
+        .back-nav:hover {
+            background: var(--oat-milk);
+            transform: translateX(-5px);
+        }
+
+        /* --- COVER SECTION --- */
+        .cover-container {
+            position: relative;
+            width: 90%;
+            max-width: 1100px;
+            height: 450px;
+            margin-top: 40px;
+            overflow: hidden;
+            border-radius: 40px;
+            box-shadow: 0 15px 35px rgba(93, 74, 68, 0.15);
+            z-index: 2;
+        }
+
+        .cover-photo { 
+            width: 100%; height: 100%; 
+            object-fit: cover; 
+            filter: brightness(0.95) contrast(0.9); 
+        }
+
+        .cover-title {
+            position: absolute; 
+            bottom: 40px; left: 50px;
+            font-family: 'Comfortaa', cursive;
+            font-weight: 700;
+            font-size: 80px;
+            color: white;
+            margin: 0;
+            z-index: 3;
+            text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* --- UPDATED BOOK LIST CONTAINER --- */
+        .book-list-container {
+            width: 850px; 
+            margin: 50px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 40px; /* Increased gap for decorations */
+            z-index: 2;
+            padding-bottom: 100px;
+        }
+
+        .list-item {
+            background: white;
+            padding: 25px 35px;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+            /* Allows decorations to sit on the border */
+            overflow: visible; 
+        }
+
+        .list-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(176, 125, 98, 0.15);
+            border-color: var(--warm-terracotta);
+        }
+
+        /* RIBBON DECORATION (Top Left) */
+        .list-item::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            width: 60px;
+            height: 60px;
+            background: url('https://cdn-icons-png.flaticon.com/512/3144/3144473.png') no-repeat center;
+            background-size: contain;
+            z-index: 10;
+            filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.1));
+        }
+
+        /* TEACUP DECORATION (Bottom Right) */
+        .list-item::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            right: 150px;
+            width: 50px;
+            height: 50px;
+            background: url('https://cdn-icons-png.flaticon.com/512/9333/9333922.png') no-repeat center;
+            background-size: contain;
+            z-index: 10;
+            opacity: 0.9;
+            filter: sepia(0.2) drop-shadow(2px 2px 2px rgba(0,0,0,0.05));
+            transition: transform 0.3s ease;
+        }
+
+        .list-item:hover::after {
+            transform: rotate(-10deg) scale(1.1);
+        }
+
+        .list-item img { 
+            width: 100px; height: 145px; 
+            object-fit: cover; 
+            border-radius: 15px;
+            margin-right: 30px;
+            box-shadow: 4px 4px 10px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .list-info h2 {
+            margin: 0; 
+            color: var(--soft-brown);
+            font-size: 26px; 
+            font-family: 'Solway', serif;
+        }
+
+        .list-info h3 {
+            margin: 8px 0 0 0; 
+            color: var(--sage-green);
+            font-size: 18px; 
+            font-family: 'Indie Flower', cursive;
+            font-weight: bold;
+        }
+
+        .view-btn {
+            margin-left: auto;
+            padding: 12px 30px;
+            background: var(--oat-milk);
+            color: var(--warm-terracotta);
+            border-radius: 50px;
+            font-size: 14px;
+            font-family: 'Comfortaa', cursive;
+            font-weight: bold;
+            transition: 0.3s;
+            border: 2px solid var(--warm-terracotta);
+            position: relative;
+            z-index: 2;
+        }
+
+        .view-btn:hover {
+            background: var(--warm-terracotta);
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="overlay"></div>
+
+    <a href="../Bookpages/book1.html" class="back-nav">← back to library</a>
+
+    <div class="cover-container">
+        <img src="Book1pages/self/img/s2.png" class="cover-photo" alt="Cozy Nook">
+        <h1 class="cover-title">Self-Help</h1>
+    </div>
+
+    <section class="book-list-container">
+        <a href="Book1pages/self/iwtdbiwtet.html" class="list-item">
+            <img src="Book1pages/self/img/iwtdbiwtet.jpg" alt="Book Cover">
+            <div class="list-info">
+                <h2>I Want to Die but I want to Eat Tteokbokki</h2>
+                <h3>Baek Sehee</h3>
+            </div>
+            <div class="view-btn">Read More</div>
+        </a>
+        
+        </section>
+
+    <script>
+        const overlay = document.getElementById('overlay');
+        const creatures = ['☕', '☁️', '🧸', '🕯️', '🌿', '🍪'];
+
+        function createCreature() {
+            const el = document.createElement('div');
+            el.className = 'creature';
+            el.innerText = creatures[Math.floor(Math.random() * creatures.length)];
+            el.style.left = Math.random() * 100 + 'vw';
+            el.style.top = '100vh'; 
+            const size = Math.random() * 15 + 15;
+            el.style.fontSize = size + 'px';
+            el.style.animation = `drift ${Math.random() * 12 + 8}s linear forwards`;
+
+            overlay.appendChild(el);
+            setTimeout(() => { el.remove(); }, 15000);
+        }
+
+        setInterval(createCreature, 2500);
+    </script>
+
+</body>
+</html>
