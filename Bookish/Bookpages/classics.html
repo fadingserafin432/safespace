@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CLASSICS</title>
+    <meta name="viewport" content="width=1200">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Classic Literary Palette */
+            --ink-black: #1a1a1a;
+            --burgundy: #630d0d;
+            --parchment: #f2e8cf;
+            --gold-leaf: #b89130;
+            --paper-texture: rgba(245, 245, 220, 0.92);
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Playfair Display', serif;
+            /* Update this path to your classic library image */
+            background: #1a1a1a url('Book1pages/classics/img/c1.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: var(--ink-black);
+        }
+
+        /* Overlay for that "Dark Academia" mood */
+        .classics-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.4) 100%);
+            pointer-events: none;
+            z-index: 1; 
+        }
+
+        .literary-element {
+            position: absolute;
+            user-select: none;
+            opacity: 0.5;
+            filter: sepia(1);
+            pointer-events: none;
+        }
+
+        @keyframes drift {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.6; }
+            100% { transform: translateY(110vh) rotate(180deg); opacity: 0; }
+        }
+
+        /* --- UI STYLES --- */
+        .back-nav {
+            position: absolute; top: 30px; left: 30px;
+            color: var(--parchment); 
+            text-decoration: none; 
+            background: var(--burgundy);
+            padding: 12px 28px; 
+            font-weight: bold; 
+            z-index: 100;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 1px solid var(--gold-leaf);
+            transition: all 0.3s ease;
+        }
+
+        .back-nav:hover {
+            background: var(--gold-leaf);
+            color: var(--burgundy);
+        }
+
+        .cover-container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            height: 450px;
+            overflow: hidden;
+            border-bottom: 8px double var(--gold-leaf);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.8);
+            z-index: 2;
+        }
+
+        .cover-photo {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            filter: grayscale(30%) sepia(20%);
+        }
+
+        .cover-title {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Cinzel', serif; font-size: 100px;
+            color: var(--parchment); 
+            text-align: center; width: 100%;
+            z-index: 3; letter-spacing: 25px;
+            text-shadow: 8px 8px 20px rgba(0,0,0,0.9);
+        }
+
+        .book-list-container {
+            width: 850px; margin: 60px auto;
+            display: flex; flex-direction: column; gap: 40px; 
+            z-index: 2; padding-bottom: 100px;
+        }
+
+        .list-item {
+            background: var(--paper-texture);
+            padding: 30px; 
+            border-left: 15px solid var(--burgundy);
+            border-right: 2px solid var(--gold-leaf);
+            display: flex; align-items: center; text-decoration: none;
+            box-shadow: 10px 10px 25px rgba(0,0,0,0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .list-item:hover { 
+            transform: scale(1.02);
+            border-left-width: 25px;
+        }
+
+        .book-thumb {
+            width: 110px; height: 160px; 
+            margin-right: 35px; 
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
+            border: 1px solid #ccc;
+        }
+
+        .view-btn {
+            margin-left: auto; padding: 12px 25px;
+            background: transparent; 
+            color: var(--burgundy);
+            border: 2px solid var(--burgundy);
+            font-size: 13px; letter-spacing: 2px; 
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .list-item:hover .view-btn {
+            background: var(--burgundy);
+            color: var(--parchment);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="classics-overlay" id="overlay"></div>
+
+    <a href="../Bookpages/book1.html" class="back-nav">← Return to Library</a>
+
+    <div class="cover-container">
+        <img src="Book1pages/classics/img/c2.jpg" class="cover-photo" alt="Classics Archive">
+        <h1 class="cover-title">CLASSICS</h1>
+    </div>
+
+    <section class="book-list-container">
+        <a href="Book1pages/classics/vf.html" class="list-item">
+            <img src="Book1pages/classics/img/vf.jpg" class="book-thumb" alt="Vanity Fair">
+            <div class="list-info">
+                <h2 style="margin:0; color:var(--burgundy); font-family:'Cinzel'; font-size: 28px;">Vanity Fair</h2>
+                <h3 style="margin:10px 0 0 0; color:#444; font-style: italic;">William Makepeace Thackeray</h3>
+            </div>
+            <div class="view-btn">Examine Work</div>
+        </a>
+    </section>
+
+    <script>
+        const overlay = document.getElementById('overlay');
+        // New Literary Stickers
+        const items = ['✒️', '📜', '📖', '🕯️', '🖋️', '✉️', '🎻'];
+
+        function createLiteraryElement() {
+            const el = document.createElement('div');
+            el.className = 'literary-element';
+            
+            el.innerText = items[Math.floor(Math.random() * items.length)];
+            
+            // Random horizontal position
+            el.style.left = (Math.random() * 95) + 'vw';
+            el.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            
+            // Duration of the fall
+            const duration = Math.random() * 15 + 15;
+            el.style.animation = `drift ${duration}s linear forwards`;
+
+            overlay.appendChild(el);
+
+            // Clean up to keep the DOM light
+            setTimeout(() => el.remove(), duration * 1000);
+        }
+
+        // Spawn a new sticker every 1.5 seconds
+        setInterval(createLiteraryElement, 1500);
+    </script>
+
+</body>
+</html>
