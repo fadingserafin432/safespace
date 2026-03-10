@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>THE CLASSICS ARCHIVE</title>
-    <meta name="viewport" content="width=1200">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     
     <style>
@@ -15,15 +15,27 @@
             --ink-glaze: rgba(43, 35, 25, 0.8);
         }
 
+        /* Essential for full-page background */
+        html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            margin: 0; padding: 0;
+            margin: 0; 
+            padding: 0;
             font-family: 'Playfair Display', serif;
+            /* Background Image Fixes */
             background: url('Book1pages/classics/img/c1.jpg') no-repeat center center fixed;
+            background-size: cover; /* This makes the image fill the whole page */
             background-color: #2b2319; /* Fallback */
+            
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
+            width: 100%;
             overflow-x: hidden;
             color: var(--russet-leather);
         }
@@ -45,20 +57,18 @@
             width: 100%; height: 100%;
             background: radial-gradient(circle, transparent 30%, rgba(0,0,0,0.5) 100%);
             pointer-events: none;
-            z-index: 10; /* Higher z-index to stay visible */
+            z-index: 10;
         }
 
-        /* --- Updated Floating Elements Styles --- */
+        /* --- Floating Elements --- */
         .literary-element {
-            position: fixed; /* Changed to fixed for better viewport control */
+            position: fixed;
             user-select: none;
             opacity: 0;
             filter: sepia(0.5) drop-shadow(0 0 5px rgba(0,0,0,0.3));
             z-index: 11;
-            transition: opacity 0.5s;
         }
 
-        /* Directions */
         @keyframes drift-down {
             0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
             20% { opacity: 0.7; }
@@ -130,7 +140,9 @@
         }
 
         .book-list-container {
-            width: 900px; margin: 60px auto;
+            width: 90%;
+            max-width: 900px; 
+            margin: 60px auto;
             display: flex; flex-direction: column; gap: 35px; 
             z-index: 2; padding-bottom: 100px;
         }
@@ -164,6 +176,7 @@
             border: 3px solid white;
             box-shadow: 8px 8px 20px rgba(0,0,0,0.3);
             filter: grayscale(0.2);
+            object-fit: cover;
         }
 
         .list-info h2 {
@@ -197,6 +210,14 @@
         .list-item:hover .view-btn {
             background: var(--russet-leather);
             box-shadow: 0 0 15px var(--antique-gold);
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .cover-title { font-size: 60px; letter-spacing: 10px; }
+            .list-item { flex-direction: column; text-align: center; }
+            .book-thumb { margin-right: 0; margin-bottom: 20px; }
+            .view-btn { margin: 20px auto 0; }
         }
     </style>
 </head>
@@ -232,14 +253,11 @@
             el.className = 'literary-element';
             el.innerText = items[Math.floor(Math.random() * items.length)];
             
-            // Randomize Size
-            el.style.fontSize = (Math.random() * 30 + 30) + 'px'; // Made larger for visibility
+            el.style.fontSize = (Math.random() * 30 + 30) + 'px'; 
             
-            // Pick a random direction
             const dir = directions[Math.floor(Math.random() * directions.length)];
-            const duration = Math.random() * 8 + 12; // 12-20 seconds
+            const duration = Math.random() * 8 + 12; 
 
-            // Set starting positions based on direction
             if (dir === 'down' || dir === 'up') {
                 el.style.left = Math.random() * 90 + 'vw';
             } else {
@@ -250,16 +268,15 @@
 
             overlay.appendChild(el);
             
-            // Remove from DOM after animation finishes
             setTimeout(() => el.remove(), duration * 1000);
         }
 
-        // Create initial batch
+        // Initial elements
         for(let i=0; i<5; i++) {
             setTimeout(createLiteraryElement, i * 1000);
         }
 
-        // Continue creating elements
+        // Loop
         setInterval(createLiteraryElement, 2500);
     </script>
 
