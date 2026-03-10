@@ -2,147 +2,181 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>CLASSICS</title>
+    <title>THE CLASSICS ARCHIVE</title>
     <meta name="viewport" content="width=1200">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            /* Classic Literary Palette */
-            --ink-black: #1a1a1a;
-            --burgundy: #630d0d;
-            --parchment: #f2e8cf;
-            --gold-leaf: #b89130;
-            --paper-texture: rgba(245, 245, 220, 0.92);
+            /* Palette extracted from the provided image */
+            --caramel-white: #f7f1e3;    /* The vellum/paper color of the Goldsmith spine */
+            --antique-gold: #c5a059;     /* The gilded embossing on the spines */
+            --russet-leather: #5d4037;   /* The dark brown of the Tennyson spine */
+            --moss-green: #4b5d44;       /* The deep green seen in the Shelly/Goldsmith accents */
+            --ink-glaze: rgba(43, 35, 25, 0.8);
         }
 
         body {
             margin: 0; padding: 0;
             font-family: 'Playfair Display', serif;
-            /* Update this path to your classic library image */
-            background: #1a1a1a url('Book1pages/classics/img/c1.jpg') no-repeat center center fixed;
-            background-size: cover;
+            /* Using a dark, warm background to make the "Caramel White" cards pop */
+            background: #1e1a17; 
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
             overflow-x: hidden;
-            color: var(--ink-black);
+            color: var(--russet-leather);
         }
 
-        /* Overlay for that "Dark Academia" mood */
+        /* Subtle grain texture overlay for a historical feel */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png');
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 5;
+        }
+
         .classics-overlay {
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.4) 100%);
+            background: radial-gradient(circle, transparent 30%, rgba(0,0,0,0.5) 100%);
             pointer-events: none;
             z-index: 1; 
         }
 
+        /* Stickers: Updated to match the historical aesthetic */
         .literary-element {
             position: absolute;
             user-select: none;
-            opacity: 0.5;
-            filter: sepia(1);
+            opacity: 0.3;
+            filter: sepia(0.8) brightness(0.9);
             pointer-events: none;
         }
 
         @keyframes drift {
-            0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
-            20% { opacity: 0.6; }
-            100% { transform: translateY(110vh) rotate(180deg); opacity: 0; }
+            0% { transform: translateY(-10vh) rotate(0deg) scale(0.8); opacity: 0; }
+            20% { opacity: 0.4; }
+            100% { transform: translateY(110vh) rotate(360deg) scale(1.1); opacity: 0; }
         }
 
         /* --- UI STYLES --- */
         .back-nav {
             position: absolute; top: 30px; left: 30px;
-            color: var(--parchment); 
+            color: var(--caramel-white); 
             text-decoration: none; 
-            background: var(--burgundy);
-            padding: 12px 28px; 
-            font-weight: bold; 
+            background: var(--russet-leather);
+            padding: 10px 25px; 
+            font-size: 14px;
             z-index: 100;
             text-transform: uppercase;
             letter-spacing: 2px;
-            border: 1px solid var(--gold-leaf);
-            transition: all 0.3s ease;
-        }
-
-        .back-nav:hover {
-            background: var(--gold-leaf);
-            color: var(--burgundy);
+            border: 2px solid var(--antique-gold);
+            box-shadow: 4px 4px 15px rgba(0,0,0,0.5);
         }
 
         .cover-container {
             position: relative;
             width: 100%;
             max-width: 1200px;
-            height: 450px;
+            height: 480px;
             overflow: hidden;
-            border-bottom: 8px double var(--gold-leaf);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.8);
+            border-bottom: 12px double var(--antique-gold);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
             z-index: 2;
         }
 
         .cover-photo {
             width: 100%; height: 100%;
             object-fit: cover;
-            filter: grayscale(30%) sepia(20%);
+            /* Makes your image blend into the historical theme */
+            filter: contrast(1.1) sepia(0.2);
         }
 
         .cover-title {
             position: absolute; top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            font-family: 'Cinzel', serif; font-size: 100px;
-            color: var(--parchment); 
+            font-family: 'Cinzel', serif; font-size: 120px;
+            color: var(--caramel-white); 
             text-align: center; width: 100%;
-            z-index: 3; letter-spacing: 25px;
-            text-shadow: 8px 8px 20px rgba(0,0,0,0.9);
+            z-index: 3; letter-spacing: 20px;
+            text-shadow: 5px 5px 0px var(--antique-gold), 10px 10px 25px rgba(0,0,0,0.8);
         }
 
         .book-list-container {
-            width: 850px; margin: 60px auto;
-            display: flex; flex-direction: column; gap: 40px; 
+            width: 900px; margin: 60px auto;
+            display: flex; flex-direction: column; gap: 35px; 
             z-index: 2; padding-bottom: 100px;
         }
 
         .list-item {
-            background: var(--paper-texture);
-            padding: 30px; 
-            border-left: 15px solid var(--burgundy);
-            border-right: 2px solid var(--gold-leaf);
+            background: var(--caramel-white);
+            padding: 25px; 
+            border: 1px solid var(--antique-gold);
             display: flex; align-items: center; text-decoration: none;
-            box-shadow: 10px 10px 25px rgba(0,0,0,0.3);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            /* Inset shadow gives a "pressed paper" feel */
+            box-shadow: inset 0 0 100px rgba(197, 160, 89, 0.1), 10px 15px 30px rgba(0,0,0,0.4);
+            transition: all 0.4s ease;
         }
 
         .list-item:hover { 
-            transform: scale(1.02);
-            border-left-width: 25px;
+            transform: translateY(-8px);
+            box-shadow: inset 0 0 100px rgba(197, 160, 89, 0.2), 15px 25px 40px rgba(0,0,0,0.5);
+        }
+
+        /* Gold spine accent on the left of each card */
+        .list-item::before {
+            content: "";
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 8px;
+            background: linear-gradient(to right, var(--antique-gold), var(--russet-leather));
         }
 
         .book-thumb {
-            width: 110px; height: 160px; 
-            margin-right: 35px; 
-            box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
-            border: 1px solid #ccc;
+            width: 120px; height: 180px; 
+            margin-right: 40px; 
+            border: 3px solid white;
+            box-shadow: 8px 8px 20px rgba(0,0,0,0.3);
+            filter: grayscale(0.2);
+        }
+
+        .list-info h2 {
+            margin: 0; 
+            color: var(--russet-leather); 
+            font-family: 'Cinzel'; 
+            font-size: 32px;
+            border-bottom: 1px solid var(--antique-gold);
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .list-info h3 {
+            margin: 0; 
+            color: var(--moss-green); 
+            font-style: italic;
+            font-weight: 400;
         }
 
         .view-btn {
-            margin-left: auto; padding: 12px 25px;
-            background: transparent; 
-            color: var(--burgundy);
-            border: 2px solid var(--burgundy);
-            font-size: 13px; letter-spacing: 2px; 
+            margin-left: auto; padding: 15px 30px;
+            background: var(--moss-green); 
+            color: var(--caramel-white);
+            border: 1px solid var(--antique-gold);
+            font-size: 12px; letter-spacing: 3px; 
             text-transform: uppercase;
             font-weight: bold;
             transition: 0.3s;
         }
 
         .list-item:hover .view-btn {
-            background: var(--burgundy);
-            color: var(--parchment);
+            background: var(--russet-leather);
+            box-shadow: 0 0 15px var(--antique-gold);
         }
     </style>
 </head>
@@ -150,10 +184,10 @@
 
     <div class="classics-overlay" id="overlay"></div>
 
-    <a href="../Bookpages/book1.html" class="back-nav">← Return to Library</a>
+    <a href="../Bookpages/book1.html" class="back-nav">← To Collection</a>
 
     <div class="cover-container">
-        <img src="Book1pages/classics/img/c2.jpg" class="cover-photo" alt="Classics Archive">
+        <img src="Book1pages/classics/img/c2.jpg" class="cover-photo" alt="Historical Spines">
         <h1 class="cover-title">CLASSICS</h1>
     </div>
 
@@ -161,40 +195,36 @@
         <a href="Book1pages/classics/vf.html" class="list-item">
             <img src="Book1pages/classics/img/vf.jpg" class="book-thumb" alt="Vanity Fair">
             <div class="list-info">
-                <h2 style="margin:0; color:var(--burgundy); font-family:'Cinzel'; font-size: 28px;">Vanity Fair</h2>
-                <h3 style="margin:10px 0 0 0; color:#444; font-style: italic;">William Makepeace Thackeray</h3>
+                <h2>Vanity Fair</h2>
+                <h3>William Makepeace Thackeray</h3>
             </div>
-            <div class="view-btn">Examine Work</div>
+            <div class="view-btn">View Volume</div>
         </a>
     </section>
 
     <script>
         const overlay = document.getElementById('overlay');
-        // New Literary Stickers
-        const items = ['✒️', '📜', '📖', '🕯️', '🖋️', '✉️', '🎻'];
+        
+        /* Historical Floating Stickers: 
+           Wax Seals, Quills, Crowns, and Old Keys */
+        const items = ['📜', '🗝️', '🕯️', '🖋️', '🏺', '👑', '✉️'];
 
         function createLiteraryElement() {
             const el = document.createElement('div');
             el.className = 'literary-element';
-            
             el.innerText = items[Math.floor(Math.random() * items.length)];
             
-            // Random horizontal position
             el.style.left = (Math.random() * 95) + 'vw';
-            el.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            el.style.fontSize = (Math.random() * 25 + 20) + 'px';
             
-            // Duration of the fall
-            const duration = Math.random() * 15 + 15;
+            const duration = Math.random() * 10 + 20;
             el.style.animation = `drift ${duration}s linear forwards`;
 
             overlay.appendChild(el);
-
-            // Clean up to keep the DOM light
             setTimeout(() => el.remove(), duration * 1000);
         }
 
-        // Spawn a new sticker every 1.5 seconds
-        setInterval(createLiteraryElement, 1500);
+        setInterval(createLiteraryElement, 2000);
     </script>
 
 </body>
