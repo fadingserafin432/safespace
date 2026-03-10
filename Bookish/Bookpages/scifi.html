@@ -19,7 +19,6 @@
             margin: 0; 
             padding: 0;
             font-family: 'Rajdhani', sans-serif;
-            /* Fix: Background image now covers full page and stays fixed */
             background: url('Book1pages/scifi/img/scifi.jpg') no-repeat center center fixed;
             background-size: cover; 
             color: white;
@@ -37,13 +36,12 @@
             position: fixed;
             top: 0; left: 0; bottom: 0; right: 0;
             background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
-                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 255, 0, 0.06));
             z-index: 10;
             background-size: 100% 4px, 3px 100%;
             pointer-events: none;
         }
 
-        /* Fix: Overlay is now fixed to the screen viewport */
         .space-overlay {
             position: fixed;
             top: 0; left: 0;
@@ -58,13 +56,36 @@
             user-select: none;
             filter: drop-shadow(0 0 5px var(--neon-blue));
             opacity: 0.8;
+            will-change: transform;
         }
 
-        @keyframes driftAcross {
-            0% { transform: translate(-10vw, 0) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.8; }
-            90% { opacity: 0.8; }
-            100% { transform: translate(110vw, 15vh) rotate(20deg); opacity: 0; }
+        /* --- DIRECTIONAL ANIMATIONS --- */
+        @keyframes driftLR {
+            0% { transform: translate(-15vw, 0) rotate(0deg); opacity: 0; }
+            15% { opacity: 0.8; }
+            85% { opacity: 0.8; }
+            100% { transform: translate(115vw, 15vh) rotate(30deg); opacity: 0; }
+        }
+
+        @keyframes driftRL {
+            0% { transform: translate(115vw, 0) rotate(0deg); opacity: 0; }
+            15% { opacity: 0.8; }
+            85% { opacity: 0.8; }
+            100% { transform: translate(-15vw, 10vh) rotate(-30deg); opacity: 0; }
+        }
+
+        @keyframes driftTB {
+            0% { transform: translate(0, -15vh) rotate(0deg); opacity: 0; }
+            15% { opacity: 0.8; }
+            85% { opacity: 0.8; }
+            100% { transform: translate(15vw, 115vh) rotate(45deg); opacity: 0; }
+        }
+
+        @keyframes driftBT {
+            0% { transform: translate(0, 115vh) rotate(0deg); opacity: 0; }
+            15% { opacity: 0.8; }
+            85% { opacity: 0.8; }
+            100% { transform: translate(-15vw, -15vh) rotate(-45deg); opacity: 0; }
         }
 
         @keyframes twinkle {
@@ -207,36 +228,54 @@
         const overlay = document.getElementById('overlay');
         const ships = ['🚀', '🛸', '🛰️'];
         const celestials = ['🪐', '☄️', '✨', '🌟'];
+        const moveAnims = ['driftLR', 'driftRL', 'driftTB', 'driftBT'];
 
         function createSpaceElement() {
             const el = document.createElement('div');
             el.className = 'space-element';
             const rand = Math.random();
             
-            let isShip = rand > 0.8;
+            // 30% chance for a moving ship, 70% for a twinkling star
+            let isShip = rand > 0.7;
 
             if (isShip) {
                 el.innerText = ships[Math.floor(Math.random() * ships.length)];
-                // Spawn ships randomly across the visible height
-                el.style.top = (Math.random() * 100) + 'vh';
+                
+                // Randomly choose one of the 4 directional animations
+                const anim = moveAnims[Math.floor(Math.random() * moveAnims.length)];
+                
+                // Randomize starting position based on direction logic
+                if (anim === 'driftLR' || anim === 'driftRL') {
+                    el.style.top = (Math.random() * 100) + 'vh';
+                } else {
+                    el.style.left = (Math.random() * 100) + 'vw';
+                }
+
                 el.style.fontSize = (Math.random() * 20 + 20) + 'px';
-                el.style.animation = `driftAcross ${Math.random() * 15 + 15}s linear forwards`;
+                el.style.animation = `${anim} ${Math.random() * 10 + 20}s linear forwards`;
+                
                 overlay.appendChild(el);
-                setTimeout(() => el.remove(), 30000);
+                
+                // Remove ship after animation completes
+                setTimeout(() => el.remove(), 31000);
             } else {
+                // Static twinkling stars/planets
                 el.innerText = celestials[Math.floor(Math.random() * celestials.length)];
-                // Distribute stars across the full width and height of the fixed window
                 el.style.left = (Math.random() * 100) + 'vw';
                 el.style.top = (Math.random() * 100) + 'vh';
-                el.style.fontSize = (Math.random() * 10 + 5) + 'px';
+                el.style.fontSize = (Math.random() * 12 + 8) + 'px';
                 el.style.opacity = Math.random();
                 el.style.animation = `twinkle ${Math.random() * 3 + 2}s infinite ease-in-out`;
+                
                 overlay.appendChild(el);
-                setTimeout(() => el.remove(), 10000);
+                
+                // Recycle stars to keep performance stable
+                setTimeout(() => el.remove(), 12000);
             }
         }
 
-        setInterval(createSpaceElement, 800);
+        // Run the creator every 700ms
+        setInterval(createSpaceElement, 700);
     </script>
 
 </body>
