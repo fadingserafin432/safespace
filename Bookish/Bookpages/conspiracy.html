@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Conspiracy Books</title>
+    <meta name="viewport" content="width=1200">
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Oswald:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --ufo-green: #00ff41;
+            --alert-red: #ff0000;
+            --deep-black: #0a0a0a;
+            --terminal-glow: rgba(0, 255, 65, 0.2);
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Special Elite', Courier, monospace;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('Book1pages/conspiracy/img/cons.jpg') no-repeat center center fixed;
+            background-size: cover; 
+            color: var(--ufo-green);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+     
+        .conspiracy-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 10; 
+        }
+
+        .evidence-sticker {
+            position: absolute;
+            user-select: none;
+            opacity: 0.5;
+            filter: drop-shadow(0 0 5px var(--ufo-green));
+            white-space: nowrap;
+        }
+
+        @keyframes drift {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(110vh) rotate(20deg); opacity: 0; }
+        }
+
+        @keyframes glitch {
+            0% { clip-path: inset(40% 0 61% 0); transform: translate(-5px); }
+            20% { clip-path: inset(92% 0 1% 0); transform: translate(5px); }
+            100% { clip-path: inset(40% 0 61% 0); transform: translate(-5px); }
+        }
+
+   
+        .back-nav {
+            position: absolute; top: 30px; left: 30px;
+            color: #000; text-decoration: none; 
+            background: var(--ufo-green);
+            padding: 12px 24px; font-weight: bold; z-index: 100;
+            text-transform: uppercase;
+            border-radius: 2px;
+            box-shadow: 0 0 15px var(--ufo-green);
+        }
+
+        .back-nav:hover {
+            filter: brightness(1.2);
+            transform: scale(1.05);
+        }
+
+
+        .cover-container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            height: 400px;
+            overflow: hidden;
+            border-bottom: 4px solid var(--ufo-green);
+            box-shadow: 0 0 30px var(--terminal-glow);
+            z-index: 2;
+        }
+
+        .cover-photo {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            filter: grayscale(1) contrast(1.8) brightness(0.4);
+        }
+
+        .cover-title {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Oswald', sans-serif; font-size: 80px;
+            color: var(--ufo-green); text-align: center; width: 100%;
+            z-index: 3; letter-spacing: 15px;
+            text-transform: uppercase;
+            text-shadow: 3px 3px 0px #000;
+        }
+
+ 
+        .book-list-container {
+            width: 800px; margin: 50px auto;
+            display: flex; flex-direction: column; gap: 25px; 
+            z-index: 2;
+        }
+
+        .list-item {
+            background: rgba(10, 10, 10, 0.9);
+            padding: 20px; 
+            border: 1px solid #333;
+            display: flex; align-items: center; 
+            text-decoration: none;
+            transition: 0.3s;
+            position: relative;
+            border-left: 5px solid var(--ufo-green);
+        }
+
+        .list-item:hover { 
+            border-color: var(--ufo-green);
+            background: #151515;
+            box-shadow: 0 0 20px var(--terminal-glow);
+        }
+
+        .list-item::after {
+            content: "EYES ONLY";
+            position: absolute; bottom: 10px; right: 20px;
+            color: #333; font-size: 12px; letter-spacing: 2px;
+        }
+
+        .redacted-bar {
+            background: #000;
+            color: #000;
+            display: inline-block;
+            padding: 0 5px;
+        }
+
+        .list-item:hover .redacted-bar {
+            color: var(--ufo-green); /* Reveal on hover? */
+            background: transparent;
+        }
+
+        .view-btn {
+            margin-left: auto; padding: 12px 25px;
+            background: transparent; color: var(--ufo-green);
+            border: 1px solid var(--ufo-green);
+            font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+        }
+
+        .view-btn:hover {
+            background: var(--ufo-green);
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="conspiracy-overlay" id="overlay"></div>
+
+    <a href="#" class="back-nav">← Back to Library</a>
+
+    <div class="cover-container">
+        <img src="Book1pages/conspiracy/img/cons1.jpg" class="cover-photo" alt="Classified Image">
+        <h1 class="cover-title">Conspiracy</h1>
+    </div>
+
+    <section class="book-list-container">
+        <a href="Book1pages/conspiracy/tls.html" class="list-item">
+            <img src="Book1pages/conspiracy/img/tls.jpg" alt="The Lost Symbol" 
+                 style="width:110px; height:160px; margin-right:30px; filter: sepia(0.5) contrast(1.2); border: 1px solid #444;">
+            
+            <div class="list-info">
+                <h2 style="margin:0; color:var(--ufo-green); font-size: 24px;">The Lost Symbol</h2>
+                <h3> by Dan Brown  </h3>
+            </div>
+            
+            <div class="view-btn">Read Now</div>
+        </a>
+        
+        </section>
+
+    <script>
+        const overlay = document.getElementById('overlay');
+        const stickers = ['🛸', '👁️', '🕵️', '👽', '📡', '📁', '📼', '🔇', '🔒', '🔺'];
+        const labels = ['CONFIDENTIAL', 'REDACTED', 'TOP SECRET', 'SIGHTING', 'NO COMMENT'];
+
+        function createConspiracyElement() {
+            const el = document.createElement('div');
+            el.className = 'evidence-sticker';
+            
+            if (Math.random() > 0.6) {
+                el.innerText = labels[Math.floor(Math.random() * labels.length)];
+                el.style.color = Math.random() > 0.5 ? '#ff0000' : '#00ff41';
+                el.style.border = `1px solid ${el.style.color}`;
+                el.style.padding = '2px 8px';
+                el.style.fontSize = '10px';
+                el.style.fontWeight = 'bold';
+                el.style.background = 'rgba(0,0,0,0.8)';
+            } else {
+                el.innerText = stickers[Math.floor(Math.random() * stickers.length)];
+                el.style.fontSize = (Math.random() * 20 + 20) + 'px';
+            }
+
+            el.style.left = (Math.random() * 95) + 'vw';
+            el.style.animation = `drift ${Math.random() * 10 + 10}s linear forwards`;
+            
+            overlay.appendChild(el);
+            setTimeout(() => el.remove(), 15000);
+        }
+
+        setInterval(createConspiracyElement, 1000);
+    </script>
+
+</body>
+</html>
