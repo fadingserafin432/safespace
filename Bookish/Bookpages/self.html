@@ -2,236 +2,214 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Self-Help Nook</title>
+    <title>Self - Help</title>
     <meta name="viewport" content="width=1200">
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;500;700&family=Solway:wght@400;700&family=Indie+Flower&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Playfair+Display:ital,wght@0,700;1,700&family=Quicksand:wght@300;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --warm-terracotta: #b07d62;
-            --sage-green: #82937f;
-            --oat-milk: #f7f3e9;
-            --soft-brown: #5d4a44;
-            --dusty-rose: #eac9bc; /* Added a complementary rose color */
+            /* Cozy/Homie Palette */
+            --warm-brown: #6d5443;
+            --sage-green: #a3b18a;
+            --oatmeal: #f5f1ed;
+            --terracotta: #b5838d;
+            --soft-cream: #faf9f6;
+            --glass-white: rgba(255, 255, 255, 0.7);
         }
 
         body {
             margin: 0; padding: 0;
-            font-family: 'Solway', serif;
-            background-color: var(--oat-milk);
-            /* --- MODIFIED BACKGROUND --- */
-            /* Ensure the background image covers the whole page correctly */
-            background-image: url('Book1pages/self/img/s1.png');
+            font-family: 'Quicksand', sans-serif;
+            /* Updated background to a warm oatmeal tint */
+            background: linear-gradient(rgba(245, 241, 237, 0.8), rgba(245, 241, 237, 0.8)), 
+                        url('Book1pages/self/img/s1.png') no-repeat center center fixed;
             background-size: cover;
-            background-position: center;
-            background-attachment: fixed; 
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            /* Allow absolute positioning of floating icons relative to body */
-            position: relative; 
-            overflow-x: hidden; /* Prevent horizontal scroll from floating symbols */
+            overflow-x: hidden;
+            color: var(--warm-brown);
         }
 
-        /* --- HEADER SECTION --- */
-        .header-container {
-            width: 100%;
-            max-width: 900px;
-            margin-top: 40px;
-            display: flex;
-            justify-content: center;
-            position: relative;
-            z-index: 2; /* Keep above floating symbols but below overlapping list */
+        .aesthetic-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none; 
+            z-index: 1; 
         }
 
-        /* --- MODIFIED: SHRINKING THE BANNER --- */
-        .banner-card {
-            width: 90%
-            height: 200px; 
-            position: relative;
-            border-radius: 40px;
-            overflow: hidden; 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            transition: height 0.3s ease; /* Smooth transition */
-        }
-
-        .banner-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .banner-overlay {
+        .element {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            user-select: none;
+            opacity: 0.5;
+            animation: drift 12s linear forwards;
         }
 
+        @keyframes drift {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+        }
+
+        .back-nav {
+            position: absolute; top: 30px; left: 30px;
+            color: var(--warm-brown); text-decoration: none; 
+            background: var(--glass-white);
+            padding: 10px 20px; font-weight: 500; z-index: 100;
+            text-transform: lowercase;
+            border-radius: 15px; 
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(109, 84, 67, 0.2);
+            transition: 0.3s;
+        }
+
+        .back-nav:hover {
+            background: var(--warm-brown);
+            color: white;
         }
 
         .cover-container {
             position: relative;
-            width: 100%;
-            max-width: 1200px;
-            height: 400px;
+            width: 90%;
+            max-width: 1100px;
+            height: 450px;
+            margin-top: 40px;
             overflow: hidden;
-            border-bottom: 2px solid #ccc;
+            border-radius: 40px; /* Softened the corners for a 'homie' look */
+            box-shadow: 0 15px 40px rgba(109, 84, 67, 0.15);
             z-index: 2;
         }
 
-        .cover-photo {
-            width: 100%; height: 100%;
-            object-fit: cover;
+        .cover-photo { 
+            width: 100%; height: 100%; 
+            object-fit: cover; 
+            filter: sepia(0.2) brightness(0.9); /* Adds a vintage, cozy warmth */
         }
+
         .cover-title {
-            font-family: 'Dancing Script', cursive;
-            font-size: 60px;
+            position: absolute; 
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Playfair Display', serif;
+            font-size: 100px;
             color: white;
-            margin: 0;
-            text-shadow: 3px 3px 15px rgba(0,0,0,0.4);
-            z-index: 5;
+            text-align: center;
+            width: 100%;
+            z-index: 3;
+            letter-spacing: -2px;
+            text-shadow: 2px 4px 10px rgba(0,0,0,0.1);
         }
 
-            width: 800px; margin: 50px auto;
-            display: flex; flex-direction: column; gap: 25px; 
-            z-index: 2;
+        .book-list-container {
+            width: 850px; 
+            margin: 50px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px; 
+            z-index: 10;
+            padding-bottom: 100px;
         }
 
         .list-item {
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--glass-white);
             backdrop-filter: blur(10px);
-            padding: 12px 25px;
-            border-radius: 60px;
+            padding: 20px 30px;
+            border-radius: 30px; /* More organic shape */
             display: flex;
             align-items: center;
             text-decoration: none;
-            transition: 0.3s;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            border: 1px solid rgba(255,255,255,0.5);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.5);
         }
 
         .list-item:hover {
-            transform: translateY(-5px);
+            transform: scale(1.02);
             background: #fff;
+            box-shadow: 0 10px 30px rgba(109, 84, 67, 0.1);
         }
 
         .list-item img { 
-            width: 65px; height: 90px; 
+            width: 80px; height: 115px; 
             object-fit: cover; 
-            border-radius: 12px;
-            margin-right: 20px;
-            box-shadow: 2px 4px 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            margin-right: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .list-info h2 {
             margin: 0; 
-            color: var(--soft-brown);
-            font-size: 1.1rem; 
+            color: var(--warm-brown);
+            font-size: 26px; 
+            font-family: 'Playfair Display', serif;
         }
 
         .list-info h3 {
-            margin: 3px 0 0 0; 
-            color: var(--sage-green);
-            font-size: 0.9rem;
-            font-family: 'Indie Flower', cursive;
+            margin: 5px 0 0 0; 
+            color: var(--terracotta);
+            font-size: 18px; 
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 300;
         }
 
         .view-btn {
             margin-left: auto;
-            padding: 10px 22px;
-            /* Use linear gradient with dusty-rose and terracotta */
-            background: linear-gradient(135deg, var(--dusty-rose), var(--warm-terracotta));
+            padding: 10px 25px;
+            background: var(--sage-green);
             color: white;
-            border-radius: 30px;
+            border-radius: 12px;
             font-size: 12px;
-            font-family: 'Comfortaa', cursive;
-            font-weight: bold;
-            box-shadow: 0 4px 12px rgba(176, 125, 98, 0.3);
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: 0.3s;
         }
-
-        .back-nav {
-            position: absolute; top: 20px; left: 20px;
-            color: var(--soft-brown); text-decoration: none;
-            background: white; padding: 8px 18px; border-radius: 20px;
-            font-size: 14px; font-family: 'Comfortaa'; 
-            z-index: 100; /* Ensure nav is above everything */
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        
+        .list-item:hover .view-btn {
+            background: var(--warm-brown);
         }
-
-        .floating-symbol {
-            position: absolute;
-            font-size: 24px;
-            color: rgba(176, 125, 98, 0.4); /* Faded terracotta */
-            opacity: 0;
-            z-index: 1; /* Below header and list, above background */
-            pointer-events: none; /* Make symbols non-interactive */
-            animation: float-around 15s linear infinite; /* Adjust duration and speed as needed */
-        }
-
-        /* Define keyframes for floating animation from multiple directions */
-        @keyframes float-around {
-            0% {
-                transform: translateY(0px) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.6; /* Fade in */
-            }
-            50% {
-                /* Travel from different directions */
-                transform: translate(50vw, 50vh) rotate(180deg);
-                opacity: 0.8;
-            }
-            90% {
-                opacity: 0.6; /* Fade out */
-            }
-            100% {
-                /* Float off screen randomly */
-                transform: translate(100vw, 100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        /* Adjust positions and sizes of specific floating symbols to appear naturally */
-        .symbol-1 { top: 10%; left: 5%; font-size: 30px; animation-delay: 0s; }
-        .symbol-2 { top: 50%; right: 10%; animation-delay: 2s; }
-        .symbol-3 { bottom: 15%; left: 20%; animation-delay: 4s; }
-        .symbol-4 { top: 30%; left: 50%; font-size: 28px; animation-delay: 6s; }
-        .symbol-5 { bottom: 25%; right: 25%; animation-delay: 8s; }
-        .symbol-6 { top: 70%; right: 5%; font-size: 20px; animation-delay: 10s; }
-        .symbol-7 { bottom: 5%; left: 60%; animation-delay: 12s; }
-        .symbol-8 { top: 15%; right: 40%; font-size: 32px; animation-delay: 14s; }
-
     </style>
 </head>
 <body>
 
-    <a href="../Bookpages/book1.html" class="back-nav">← Library</a>
+    <div class="aesthetic-overlay" id="aestheticOverlay"></div>
 
-    <header class="header-container">
-        <div class="banner-card">
-            <img src="Book1pages/self/img/s2.png" class="banner-img" alt="Self-Help Books">
-            <div class="banner-overlay">
-                <h1 class="cover-title">Self-Help Books</h1>
-            </div>
-        </div>
-    </header>
+    <a href="../Bookpages/book1.html" class="back-nav">← back to library</a>
+
+    <div class="cover-container">
+        <img src="Book1pages/self/img/s2.png" class="cover-photo" alt="Self-Help Banner">
+        <h1 class="cover-title">Self-Help</h1>
+    </div>
 
     <section class="book-list-container">
         <a href="Book1pages/self/iwtdbiwtet.html" class="list-item">
             <img src="Book1pages/self/img/iwtdbiwtet.jpg" alt="Book Cover">
             <div class="list-info">
-                <h2>I Want to Die but I want to Eat Tteokbokki</h2>
+                <h2>I Want to Die but I Want to Eat Tteokbokki</h2>
                 <h3>Baek Sehee</h3>
             </div>
-            <div class="view-btn">Read Now</div>
+            <div class="view-btn">Read More</div>
         </a>
-        </section>
+    </section>
 
-    <div class="floating-symbol symbol-1">&#x1F4DA;</div> <div class="floating-symbol symbol-2">&#x1F4D6;</div> <div class="floating-symbol symbol-3">&#x1F4DD;</div> <div class="floating-symbol symbol-4">&#x1F4D2;</div> <div class="floating-symbol symbol-5">&#x1F4D8;</div> <div class="floating-symbol symbol-6">&#x1F4D9;</div> <div class="floating-symbol symbol-7">&#x1F4DA;</div> <div class="floating-symbol symbol-8">&#x1F4D7;</div> </body>
+    <script>
+        const overlay = document.getElementById('aestheticOverlay');
+        // Changed to "Homie" elements: Coffee, Tea, House, Stars, Leaves
+        const elements = ['☕', '☁️', '🏡', '🧸', '🍃', '🍵'];
+
+        function createFloatingElement() {
+            const el = document.createElement('div');
+            el.className = 'element';
+            el.innerText = elements[Math.floor(Math.random() * elements.length)];
+            el.style.left = Math.random() * 100 + 'vw';
+            el.style.bottom = '-50px'; 
+            el.style.fontSize = (Math.random() * 15 + 15) + 'px';
+            overlay.appendChild(el);
+            setTimeout(() => el.remove(), 12000);
+        }
+        setInterval(createFloatingElement, 2000);
+    </script>
+
+</body>
 </html>
