@@ -8,44 +8,40 @@
     
     <style>
         :root {
-            --blood-red: #660000; /* Darker, dried blood color */
+            --blood-red: #660000;
             --bright-blood: #af0000;
             --deep-black: #050505;
             --smoke-grey: #1a1a1a;
-            --stark-white: #d1d1d1;
-            --shadow-glass: rgba(0, 0, 0, 0.9);
+            --stark-white: #ffffff; /* Changed to pure white */
+            --shadow-glass: rgba(0, 0, 0, 0.8);
         }
 
         body {
             margin: 0; padding: 0;
             font-family: 'Special Elite', serif;
-            background: 
-                radial-gradient(circle, transparent 20%, var(--deep-black) 100%),
-                linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
-                url('Book1pages/horrorstories/img/horror.png') no-repeat center center fixed;
+            /* REMOVED FILTERS: Background is now original color */
+            background: url('Book1pages/horrorstories/img/horror.png') no-repeat center center fixed;
             background-size: cover;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
             overflow-x: hidden;
-            color: var(--stark-white);
+            color: #d1d1d1;
         }
 
         /* --- HORROR ANIMATIONS --- */
         @keyframes flicker {
-            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
-            20%, 22%, 24%, 55% { opacity: 0.5; text-shadow: none; }
+            0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+            20%, 24%, 55% { opacity: 0.2; }
+            80% { opacity: 0.8; }
         }
 
-        @keyframes glitch {
-            0% { transform: translate(0); }
-            20% { transform: translate(-2px, 2px); }
-            40% { transform: translate(-2px, -2px); }
-            60% { transform: translate(2px, 2px); }
-            80% { transform: translate(2px, -2px); }
-            100% { transform: translate(0); }
-        }
+        /* Float animations for different directions */
+        @keyframes floatRight { from { left: -100px; } to { left: 110vw; } }
+        @keyframes floatLeft { from { left: 110vw; } to { left: -100px; } }
+        @keyframes floatUp { from { top: 110vh; } to { top: -100px; } }
+        @keyframes floatDown { from { top: -100px; } to { top: 110vh; } }
 
         .horror-overlay {
             position: fixed;
@@ -53,34 +49,27 @@
             width: 100%; height: 100%;
             pointer-events: none;
             z-index: 10;
-            background: radial-gradient(circle, transparent 30%, rgba(0,0,0,0.7) 100%);
+            overflow: hidden;
         }
 
-        .thriller-obj {
+        .creepy-figure {
             position: absolute;
             user-select: none;
-            opacity: 0.4;
-            filter: grayscale(1) contrast(1.5) drop-shadow(0 0 5px #000);
+            opacity: 0.6;
+            filter: drop-shadow(0 0 10px #000);
             z-index: 1;
+            font-size: 50px;
+            transition: transform 0.2s;
         }
 
         /* --- UI ELEMENTS --- */
         .back-nav {
             position: absolute; top: 30px; left: 30px;
-            color: var(--stark-white); text-decoration: none; 
+            color: white; text-decoration: none; 
             background: var(--blood-red);
             padding: 10px 20px; font-weight: bold; z-index: 100;
             text-transform: uppercase;
-            border-radius: 0px; /* Sharper edges feel more "hostile" */
-            box-shadow: 0 0 15px rgba(0,0,0,0.8);
-            transition: 0.3s;
             border: 1px solid var(--bright-blood);
-        }
-
-        .back-nav:hover {
-            background: var(--bright-blood);
-            box-shadow: 0 0 20px var(--bright-blood);
-            letter-spacing: 2px;
         }
 
         .cover-container {
@@ -90,14 +79,13 @@
             height: 550px;
             overflow: hidden;
             border-bottom: 3px solid var(--blood-red);
-            box-shadow: 0 0 100px #000;
             z-index: 2;
         }
 
         .cover-photo { 
             width: 100%; height: 100%; 
             object-fit: cover; 
-            filter: grayscale(1) brightness(0.4) sepia(0.2); 
+            /* REMOVED FILTERS: Original color preserved */
         }
 
         .cover-title {
@@ -106,14 +94,14 @@
             transform: translate(-50%, -50%);
             font-family: 'Creepster', cursive;
             font-size: 180px;
-            color: #eee; 
+            color: #ffffff; /* PURE WHITE */
             margin: 0;
             text-align: center;
             width: 100%;
             z-index: 3;
             letter-spacing: 20px;
-            text-shadow: 10px 10px 0px #000, 0 0 30px var(--blood-red);
-            animation: flicker 5s infinite;
+            text-shadow: 0 0 20px rgba(255,255,255,0.5), 5px 5px 10px #000;
+            animation: flicker 4s infinite linear;
         }
 
         .book-list-container {
@@ -133,53 +121,18 @@
             display: flex;
             align-items: center;
             text-decoration: none;
-            transition: all 0.3s ease;
-            border-bottom: 1px solid rgba(255,0,0,0.1);
-        }
-
-        .list-item:hover {
-            transform: scale(1.02);
-            background: #0e0e0e;
-            border-left: 8px solid var(--bright-blood);
-            animation: glitch 0.2s infinite alternate;
+            transition: 0.3s;
         }
 
         .list-item img { 
             width: 90px; height: 130px; 
             object-fit: cover; 
-            filter: grayscale(1) brightness(0.7);
             margin-right: 35px;
-            box-shadow: 5px 5px 15px #000;
-            border: 1px solid #333;
         }
 
         .list-info h2 {
-            margin: 0; color: #bbb;
+            margin: 0; color: #fff;
             font-size: 32px; font-family: 'Creepster', cursive;
-            letter-spacing: 2px;
-        }
-
-        .list-info h3 {
-            margin: 5px 0 0 0; color: #555;
-            font-size: 16px; font-weight: 400; font-style: italic;
-        }
-
-        .view-btn {
-            margin-left: auto;
-            padding: 12px 30px;
-            background: transparent;
-            color: var(--blood-red);
-            border: 1px solid var(--blood-red);
-            font-size: 12px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            transition: 0.3s;
-        }
-
-        .list-item:hover .view-btn {
-            background: var(--blood-red);
-            color: white;
-            box-shadow: 0 0 15px var(--blood-red);
         }
     </style>
 </head>
@@ -207,32 +160,40 @@
 
     <script>
         const overlay = document.getElementById('overlay');
-        // Added some more unsettling emojis
-        const objects = ['🐦‍⬛', '🔪', '🩸', '👁️', '💀', '🕷️', '🕸️', '🕯️'];
+        // Creepy figures to float around
+        const creepyIcons = ['👻', '🧟', '🧛', '💀', '🤡', '👺', '👤'];
 
-        function createObject() {
+        function spawnFigure() {
             const el = document.createElement('div');
-            el.className = 'thriller-obj';
-            el.innerText = objects[Math.floor(Math.random() * objects.length)];
-            el.style.left = Math.random() * 100 + 'vw';
-            const size = Math.random() * 30 + 20;
-            el.style.fontSize = size + 'px';
-
-            // Random rotation for variety
-            el.style.transform = `rotate(${Math.random() * 360}deg)`;
-
-            const duration = Math.random() * 10 + 10;
+            el.className = 'creepy-figure';
+            el.innerText = creepyIcons[Math.floor(Math.random() * creepyIcons.length)];
             
-            // Reusing your drift animations
-            el.style.top = '-50px';
-            el.style.animation = `driftDown ${duration}s linear forwards`;
+            // Randomize starting side: 0=Left, 1=Right, 2=Top, 3=Bottom
+            const side = Math.floor(Math.random() * 4);
+            const duration = Math.random() * 15 + 10; // 10-25 seconds
+            
+            if (side === 0) { // Coming from Left
+                el.style.top = Math.random() * 100 + 'vh';
+                el.style.animation = `floatRight ${duration}s linear forwards`;
+            } else if (side === 1) { // Coming from Right
+                el.style.top = Math.random() * 100 + 'vh';
+                el.style.animation = `floatLeft ${duration}s linear forwards`;
+            } else if (side === 2) { // Coming from Top
+                el.style.left = Math.random() * 100 + 'vw';
+                el.style.animation = `floatDown ${duration}s linear forwards`;
+            } else { // Coming from Bottom
+                el.style.left = Math.random() * 100 + 'vw';
+                el.style.animation = `floatUp ${duration}s linear forwards`;
+            }
 
             overlay.appendChild(el);
+            
+            // Clean up element after animation
             setTimeout(() => { el.remove(); }, duration * 1000);
         }
 
-        // Slightly faster spawn rate for a more "cluttered" scary feel
-        setInterval(createObject, 1000);
+        // Create a new figure every 2 seconds
+        setInterval(spawnFigure, 2000);
     </script>
 
 </body>
