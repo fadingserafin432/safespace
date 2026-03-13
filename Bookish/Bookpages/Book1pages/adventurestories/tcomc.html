@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>The Count of Monte Cristo | Alexandre Dumas</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=1024"> 
     <style>
         :root {
-            /* Adventure / Antique Palette */
-            --parchment-alpha: rgba(232, 213, 181, 0.85); /* Transparent Parchment */
+            --parchment-alpha: rgba(232, 213, 181, 0.85);
             --leather-dark: #3e2723;
             --leather-rich: #5d4037;
             --ink-black: #2c2c2c;
@@ -24,13 +23,13 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            /* Same background as cover */
             background: url('img/tcomc.jpg') no-repeat center center fixed;
             background-size: cover;
             line-height: 1.7;
+            /* Prevent the body from being narrower than our design */
+            min-width: 850px; 
         }
 
-        /* Overlay for overall page depth */
         body::before {
             content: "";
             position: fixed;
@@ -40,7 +39,6 @@
             z-index: -1;
         }
 
-        /* --- Adventure Theme Back Button (Wooden Signpost) --- */
         .back-nav {
             position: fixed; 
             top: 25px; 
@@ -54,30 +52,28 @@
             z-index: 100;
             text-transform: uppercase;
             letter-spacing: 2px;
-            /* Signpost shape with notch */
             clip-path: polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%, 8% 50%);
             border-left: 4px solid var(--gold-accent);
             box-shadow: 3px 3px 10px rgba(0,0,0,0.6);
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
+
         .back-nav:hover { 
             transform: scale(1.1) rotate(-1deg);
             background: #5d4037;
             color: var(--gold-accent);
-            box-shadow: 5px 5px 15px rgba(0,0,0,0.8);
         }
 
         .container {
-            width: 90%;
-            max-width: 800px;
+            /* FIXED WIDTH: This ensures it never changes layout */
+            width: 800px;
             margin-top: 60px;
             padding-bottom: 80px;
             z-index: 1;
         }
 
-        /* Header Section */
         .header-section {
-            display: flex;
+            display: flex; /* Always stays in a row */
             gap: 40px;
             margin-bottom: 40px;
             align-items: center;
@@ -90,9 +86,9 @@
 
         .book-cover {
             width: 200px;
+            flex-shrink: 0; /* Prevents image from squishing */
             border: 5px solid var(--leather-dark);
             box-shadow: 5px 5px 20px rgba(0,0,0,0.6);
-            /* Matching background */
             background: url('img/tcomc.jpg') no-repeat center center;
             background-size: cover;
         }
@@ -105,6 +101,7 @@
             letter-spacing: 1px;
             line-height: 1.1;
         }
+
         .author { 
             font-size: 1.2em; 
             color: var(--leather-rich); 
@@ -112,7 +109,6 @@
             font-style: italic;
         }
 
-        /* Star Rating */
         .star-rating {
             display: flex;
             flex-direction: row-reverse;
@@ -132,7 +128,6 @@
             color: var(--star-active);
         }
 
-        /* Transparent Section Cards */
         section {
             background: var(--parchment-alpha);
             backdrop-filter: blur(5px);
@@ -155,7 +150,6 @@
             text-align: center;
         }
 
-        /* Download Button */
         .download-container { text-align: center; }
         .download-btn {
             display: inline-block;
@@ -170,11 +164,10 @@
         }
         .download-btn:hover { background: var(--ink-black); transform: translateY(-3px); }
 
-        /* Transparent Textbox */
         textarea {
             width: 100%;
             height: 110px;
-            background: rgba(255, 255, 255, 0.3); /* Transparent white */
+            background: rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(2px);
             border: 1px solid var(--leather-rich);
             padding: 15px;
@@ -184,7 +177,6 @@
             color: var(--leather-dark);
             font-weight: 500;
         }
-        textarea::placeholder { color: rgba(62, 39, 35, 0.7); }
 
         .post-btn {
             margin-top: 15px;
@@ -213,10 +205,7 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
         }
 
-        @media (max-width: 600px) {
-            .header-section { flex-direction: column; text-align: center; }
-            .back-nav { position: relative; top: 10px; left: 0; display: inline-block; margin-bottom: 30px; }
-        }
+        /* MEDIA QUERIES REMOVED TO KEEP LAYOUT IDENTICAL ON ALL DEVICES */
     </style>
 </head>
 <body>
