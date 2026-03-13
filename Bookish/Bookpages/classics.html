@@ -18,7 +18,7 @@
         html, body { 
             margin: 0; padding: 0; 
             min-height: 100vh;
-            width: 100%;
+            background-color: #2b2319;
             overflow-x: hidden;
         }
 
@@ -26,14 +26,12 @@
             font-family: 'Playfair Display', serif;
             background: url('Book1pages/classics/img/c1.jpg') no-repeat center center fixed;
             background-size: cover;
-            background-color: #2b2319;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            color: var(--russet-leather);
+            align-items: center; /* Centers the mobile-view column on desktop */
         }
 
-        /* Overlay effects */
+        /* Texture Overlays */
         body::before {
             content: "";
             position: fixed;
@@ -44,125 +42,105 @@
             z-index: 5;
         }
 
-        .classics-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle, transparent 30%, rgba(0,0,0,0.5) 100%);
-            pointer-events: none;
-            z-index: 10;
+        /* --- THE MASTER WRAPPER --- */
+        /* This keeps the website looking like a phone even on desktop */
+        .main-wrapper {
+            width: 100%;
+            max-width: 500px; /* Force mobile width on all screens */
+            min-height: 100vh;
+            position: relative;
+            z-index: 2;
         }
 
         /* --- NAVIGATION --- */
         .back-nav {
-            position: absolute; top: 20px; left: 20px;
+            position: absolute; top: 15px; left: 15px;
             color: var(--caramel-white); 
             text-decoration: none; 
-            background: var(--russet-leather);
-            padding: 8px 18px; 
-            font-size: 0.8rem;
+            background: rgba(93, 64, 55, 0.6);
+            padding: 5px 10px; 
+            font-size: 9px;
             z-index: 100;
             text-transform: uppercase;
             letter-spacing: 1px;
             border: 1px solid var(--antique-gold);
         }
 
-        /* --- UNIFIED HEADER --- */
+        /* --- REDUCED COVER PHOTO --- */
         .cover-container {
             position: relative;
             width: 100%;
-            height: 40vh; /* Scaled to viewport height */
-            min-height: 250px;
+            height: 250px; /* Reduced height so it doesn't take half the page */
             overflow: hidden;
-            border-bottom: 8px double var(--antique-gold);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
-            z-index: 2;
+            border-bottom: 4px solid var(--antique-gold);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
         }
 
-        .cover-photo { width: 100%; height: 100%; object-fit: cover; filter: sepia(0.2); }
+        .cover-photo { width: 100%; height: 100%; object-fit: cover; }
 
         .cover-title {
             position: absolute; top: 50%; left: 50%;
             transform: translate(-50%, -50%);
             font-family: 'Cinzel', serif; 
-            font-size: clamp(2.5rem, 8vw, 6rem); /* Dynamically scales based on screen size */
+            font-size: 38px; 
             color: var(--caramel-white); 
             text-align: center; width: 100%;
-            z-index: 3; 
-            letter-spacing: 0.2em;
-            text-shadow: 3px 3px 0px var(--antique-gold), 5px 5px 15px rgba(0,0,0,0.8);
+            letter-spacing: 10px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
             margin: 0;
         }
 
-        /* --- UNIFIED LIST --- */
+        /* --- BOOK LIST (MATCHING SCREENSHOT) --- */
         .book-list-container {
-            width: 90%;
-            max-width: 800px; /* Comfortable reading width for all devices */
-            margin: 40px auto;
+            width: 92%;
+            margin: 20px auto;
             display: flex; 
             flex-direction: column; 
-            gap: 20px;
-            z-index: 2; 
-            padding-bottom: 60px;
+            gap: 15px;
         }
 
         .list-item {
             background: var(--caramel-white);
-            padding: 1.5rem;
+            padding: 12px;
             border: 1px solid var(--antique-gold);
             display: flex; 
             align-items: center; 
             text-decoration: none;
-            position: relative;
-            box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease;
-        }
-
-        .list-item:hover { transform: translateX(10px); }
-
-        .list-item::before {
-            content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 6px;
-            background: var(--antique-gold);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: transform 0.2s;
         }
 
         .book-thumb {
-            width: 80px; 
-            height: 120px; 
-            margin-right: 25px; 
-            border: 1px solid #ddd;
+            width: 45px; 
+            height: 70px; 
+            margin-right: 15px; 
+            border: 1px solid #ccc;
             object-fit: cover;
-            flex-shrink: 0;
         }
 
         .list-info { flex-grow: 1; }
 
         .list-info h2 {
-            margin: 0; color: var(--russet-leather); 
+            margin: 0; color: #333; 
             font-family: 'Cinzel'; 
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
-            margin-bottom: 5px;
+            font-size: 16px; 
+            font-weight: 700;
         }
 
         .list-info h3 {
-            margin: 0; color: var(--moss-green); 
+            margin: 0; color: #777; 
             font-style: italic; font-weight: 400; 
-            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            font-size: 11px;
         }
 
         .view-btn {
-            padding: 10px 20px;
+            padding: 5px 8px;
             background: transparent;
             color: var(--russet-leather);
-            border: 1px solid var(--antique-gold);
-            font-size: 0.7rem; 
-            letter-spacing: 1px; 
+            border: 1px solid #ddd;
+            font-size: 8px; 
             text-transform: uppercase;
-            transition: 0.3s;
             white-space: nowrap;
-        }
-
-        .list-item:hover .view-btn {
-            background: var(--russet-leather);
-            color: white;
         }
 
         /* Floating elements */
@@ -172,24 +150,28 @@
 </head>
 <body>
 
-    <div class="classics-overlay" id="overlay"></div>
-    <a href="../Bookpages/book1.html" class="back-nav">← Library</a>
+    <div class="main-wrapper">
+        <a href="../Bookpages/book1.html" class="back-nav">← Library</a>
 
-    <div class="cover-container">
-        <img src="Book1pages/classics/img/c2.jpg" class="cover-photo" alt="Historical Spines">
-        <h1 class="cover-title">CLASSICS</h1>
+        <div class="cover-container">
+            <img src="Book1pages/classics/img/c2.jpg" class="cover-photo" alt="Historical Spines">
+            <h1 class="cover-title">CLASSICS</h1>
+        </div>
+
+        <section class="book-list-container">
+            <a href="Book1pages/classics/vf.html" class="list-item">
+                <img src="Book1pages/classics/img/vf.jpg" class="book-thumb" alt="Vanity Fair">
+                <div class="list-info">
+                    <h2>Vanity Fair</h2>
+                    <h3>William Makepeace Thackeray</h3>
+                </div>
+                <div class="view-btn">Read Now</div>
+            </a>
+            
+            </section>
     </div>
 
-    <section class="book-list-container">
-        <a href="Book1pages/classics/vf.html" class="list-item">
-            <img src="Book1pages/classics/img/vf.jpg" class="book-thumb" alt="Vanity Fair">
-            <div class="list-info">
-                <h2>Vanity Fair</h2>
-                <h3>William Makepeace Thackeray</h3>
-            </div>
-            <div class="view-btn">Read Now</div>
-        </a>
-    </section>
+    <div class="classics-overlay" id="overlay"></div>
 
     <script>
         const overlay = document.getElementById('overlay');
@@ -199,14 +181,14 @@
             const el = document.createElement('div');
             el.className = 'literary-element';
             el.innerText = items[Math.floor(Math.random() * items.length)];
-            el.style.fontSize = '24px';
-            el.style.left = Math.random() * 95 + 'vw';
+            el.style.fontSize = '20px';
+            el.style.left = Math.random() * 100 + 'vw';
             const duration = Math.random() * 5 + 10;
             el.style.animation = `drift-down ${duration}s linear forwards`;
             overlay.appendChild(el);
             setTimeout(() => el.remove(), duration * 1000);
         }
-        setInterval(createLiteraryElement, 3000);
+        setInterval(createLiteraryElement, 4000);
     </script>
 </body>
 </html>
