@@ -8,7 +8,6 @@
     
     <style>
         :root {
-            /* Cozy/Homie Palette */
             --warm-brown: #6d5443;
             --sage-green: #a3b18a;
             --oatmeal: #f5f1ed;
@@ -20,9 +19,7 @@
         body {
             margin: 0; padding: 0;
             font-family: 'Quicksand', sans-serif;
-            /* Updated background to a warm oatmeal tint */
-            background: linear-gradient(rgba(245, 241, 237, 0.8), rgba(245, 241, 237, 0.8)), 
-                        url('Book1pages/self/img/s1.png') no-repeat center center fixed;
+            background: url('Book1pages/self/img/s1.jpg') no-repeat center center fixed;
             background-size: cover;
             display: flex;
             flex-direction: column;
@@ -30,6 +27,32 @@
             min-height: 100vh;
             overflow-x: hidden;
             color: var(--warm-brown);
+        }
+
+        /* Floating Elements Styling */
+        #aestheticOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Allows clicking on books through the emojis */
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .element {
+            position: absolute;
+            opacity: 0;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.05));
+            animation: floatAround 12s linear forwards;
+        }
+
+        @keyframes floatAround {
+            0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translate(var(--dx), var(--dy)) rotate(360deg); opacity: 0; }
         }
 
         .back-nav {
@@ -56,7 +79,7 @@
             height: 450px;
             margin-top: 40px;
             overflow: hidden;
-            border-radius: 40px; /* Softened the corners for a 'homie' look */
+            border-radius: 40px;
             box-shadow: 0 15px 40px rgba(109, 84, 67, 0.15);
             z-index: 2;
         }
@@ -64,7 +87,7 @@
         .cover-photo { 
             width: 100%; height: 100%; 
             object-fit: cover; 
-            filter: sepia(0.2) brightness(0.9); /* Adds a vintage, cozy warmth */
+            filter: sepia(0.2) brightness(0.9);
         }
 
         .cover-title {
@@ -95,7 +118,7 @@
             background: var(--glass-white);
             backdrop-filter: blur(10px);
             padding: 20px 30px;
-            border-radius: 30px; /* More organic shape */
+            border-radius: 30px;
             display: flex;
             align-items: center;
             text-decoration: none;
@@ -151,12 +174,12 @@
 </head>
 <body>
 
-    <div class="aesthetic-overlay" id="aestheticOverlay"></div>
+    <div id="aestheticOverlay"></div>
 
     <a href="../Bookpages/book1.html" class="back-nav">← back to library</a>
 
     <div class="cover-container">
-        <img src="Book1pages/self/img/s2.png" class="cover-photo" alt="Self-Help Banner">
+        <img src="Book1pages/self/img/s2.jpg" class="cover-photo" alt="Self-Help Banner">
         <h1 class="cover-title">Self-Help</h1>
     </div>
 
@@ -173,20 +196,50 @@
 
     <script>
         const overlay = document.getElementById('aestheticOverlay');
-        // Changed to "Homie" elements: Coffee, Tea, House, Stars, Leaves
         const elements = ['☕', '☁️', '🏡', '🧸', '🍃', '🍵'];
 
         function createFloatingElement() {
             const el = document.createElement('div');
             el.className = 'element';
             el.innerText = elements[Math.floor(Math.random() * elements.length)];
-            el.style.left = Math.random() * 100 + 'vw';
-            el.style.bottom = '-50px'; 
+            
+            // Randomize starting position and destination
+            const side = Math.floor(Math.random() * 4); // 0: Top, 1: Right, 2: Bottom, 3: Left
+            let startX, startY, moveX, moveY;
+
+            if(side === 0) { // Start Top
+                startX = Math.random() * 100 + "vw";
+                startY = "-5vh";
+                moveX = (Math.random() - 0.5) * 200 + "px";
+                moveY = "110vh";
+            } else if(side === 1) { // Start Right
+                startX = "105vw";
+                startY = Math.random() * 100 + "vh";
+                moveX = "-110vw";
+                moveY = (Math.random() - 0.5) * 200 + "px";
+            } else if(side === 2) { // Start Bottom
+                startX = Math.random() * 100 + "vw";
+                startY = "105vh";
+                moveX = (Math.random() - 0.5) * 200 + "px";
+                moveY = "-110vh";
+            } else { // Start Left
+                startX = "-5vw";
+                startY = Math.random() * 100 + "vh";
+                moveX = "110vw";
+                moveY = (Math.random() - 0.5) * 200 + "px";
+            }
+
+            el.style.left = startX;
+            el.style.top = startY;
+            el.style.setProperty('--dx', moveX);
+            el.style.setProperty('--dy', moveY);
             el.style.fontSize = (Math.random() * 15 + 15) + 'px';
+            
             overlay.appendChild(el);
             setTimeout(() => el.remove(), 12000);
         }
-        setInterval(createFloatingElement, 2000);
+        
+        setInterval(createFloatingElement, 1500);
     </script>
 
 </body>
