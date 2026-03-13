@@ -59,7 +59,7 @@
             background: var(--compass-gold);
             padding: 12px 24px; font-weight: bold; z-index: 100;
             text-transform: uppercase;
-            border-radius: 50px; /* Rounded pill shape to match Fantasy style */
+            border-radius: 50px;
             box-shadow: 4px 4px 0px var(--expedition-brown);
         }
 
@@ -67,8 +67,8 @@
             position: relative;
             width: 100%;
             max-width: 1200px;
-            height: 500px; /* Your desired height */
-            overflow: hidden; /* Important: This crops the image into the rounded corners */
+            height: 500px;
+            overflow: hidden;
             border-bottom-left-radius: 80px; 
             border-bottom-right-radius: 80px;
             border-bottom: 10px solid var(--compass-gold);
@@ -76,12 +76,11 @@
             z-index: 2;
         }
 
-        /* THIS WAS THE MISSING PIECE */
         .cover-photo {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Forces image to fill the 500px rectangle */
-            object-position: center; /* Keeps the middle of the image focused */
+            object-fit: cover;
+            object-position: center;
             display: block;
         }
 
@@ -101,22 +100,54 @@
             z-index: 2; padding-bottom: 100px;
         }
 
+        /* --- UPDATED LIST ITEM WITH ADVENTURE SYMBOLS --- */
         .list-item {
+            position: relative;
             background: var(--paper-white);
-            padding: 25px; border: 2px solid #d4c4a8;
-            display: flex; align-items: center; text-decoration: none;
-            border-radius: 50px; /* Matching the pill-style list items */
+            padding: 25px 60px; /* Increased side padding for symbols */
+            border: 3px double var(--compass-gold); /* Double border for "Explorer" look */
+            display: flex; 
+            align-items: center; 
+            text-decoration: none;
+            border-radius: 50px;
             background-image: url('https://www.transparenttextures.com/patterns/aged-paper.png');
-            transition: transform 0.3s;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
-        .list-item:hover { transform: translateY(-5px); }
+        /* Compass on the left */
+        .list-item::before {
+            content: '🧭';
+            position: absolute;
+            left: 15px;
+            font-size: 24px;
+            filter: sepia(1);
+        }
+
+        /* Mountain on the right */
+        .list-item::after {
+            content: '🏔️';
+            position: absolute;
+            right: 15px;
+            font-size: 24px;
+            filter: sepia(1);
+        }
+
+        .list-item:hover { 
+            transform: scale(1.02); 
+            border-color: var(--expedition-brown);
+        }
+
+        .list-item:hover::before, .list-item:hover::after {
+            filter: sepia(0); /* Make symbols pop on hover */
+        }
 
         .view-btn {
             margin-left: auto; padding: 15px 35px;
             background: var(--expedition-brown); color: var(--map-khaki);
             font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
             font-weight: bold; border: none; border-radius: 50px;
+            z-index: 5;
         }
     </style>
 </head>
