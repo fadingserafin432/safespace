@@ -32,20 +32,6 @@
             color: var(--warm-brown);
         }
 
-        .element {
-            position: absolute;
-            user-select: none;
-            opacity: 0.5;
-            animation: drift 12s linear forwards;
-        }
-
-        @keyframes drift {
-            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.6; }
-            90% { opacity: 0.6; }
-            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
-        }
-
         .back-nav {
             position: absolute; top: 30px; left: 30px;
             color: var(--warm-brown); text-decoration: none; 
