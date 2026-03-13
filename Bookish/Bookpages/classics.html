@@ -15,10 +15,14 @@
             --ink-glaze: rgba(43, 35, 25, 0.8);
         }
 
-        html { height: 100%; margin: 0; padding: 0; }
+        html, body { 
+            margin: 0; padding: 0; 
+            min-height: 100vh;
+            width: 100%;
+            overflow-x: hidden;
+        }
 
         body {
-            margin: 0; padding: 0;
             font-family: 'Playfair Display', serif;
             background: url('Book1pages/classics/img/c1.jpg') no-repeat center center fixed;
             background-size: cover;
@@ -26,12 +30,10 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 100vh;
-            width: 100%;
-            overflow-x: hidden;
             color: var(--russet-leather);
         }
 
+        /* Overlay effects */
         body::before {
             content: "";
             position: fixed;
@@ -50,28 +52,28 @@
             z-index: 10;
         }
 
-        /* --- UI STYLES --- */
+        /* --- NAVIGATION --- */
         .back-nav {
-            position: absolute; top: 15px; left: 15px;
+            position: absolute; top: 20px; left: 20px;
             color: var(--caramel-white); 
             text-decoration: none; 
             background: var(--russet-leather);
-            padding: 6px 12px; 
-            font-size: 10px;
+            padding: 8px 18px; 
+            font-size: 0.8rem;
             z-index: 100;
             text-transform: uppercase;
             letter-spacing: 1px;
             border: 1px solid var(--antique-gold);
         }
 
+        /* --- UNIFIED HEADER --- */
         .cover-container {
             position: relative;
             width: 100%;
-            /* Locked to mobile width */
-            max-width: 450px; 
-            height: 250px; 
+            height: 40vh; /* Scaled to viewport height */
+            min-height: 250px;
             overflow: hidden;
-            border-bottom: 5px double var(--antique-gold);
+            border-bottom: 8px double var(--antique-gold);
             box-shadow: 0 10px 30px rgba(0,0,0,0.7);
             z-index: 2;
         }
@@ -82,69 +84,85 @@
             position: absolute; top: 50%; left: 50%;
             transform: translate(-50%, -50%);
             font-family: 'Cinzel', serif; 
-            /* Scaled down for mobile-only look */
-            font-size: 40px; 
+            font-size: clamp(2.5rem, 8vw, 6rem); /* Dynamically scales based on screen size */
             color: var(--caramel-white); 
             text-align: center; width: 100%;
             z-index: 3; 
-            letter-spacing: 8px;
-            text-shadow: 2px 2px 0px var(--antique-gold), 4px 4px 10px rgba(0,0,0,0.8);
+            letter-spacing: 0.2em;
+            text-shadow: 3px 3px 0px var(--antique-gold), 5px 5px 15px rgba(0,0,0,0.8);
+            margin: 0;
         }
 
-        /* --- MOBILE-FORMAT BOOK LIST --- */
+        /* --- UNIFIED LIST --- */
         .book-list-container {
             width: 90%;
-            /* Locked to mobile width */
-            max-width: 400px; 
-            margin: 30px auto;
-            display: flex; flex-direction: column; gap: 15px; 
-            z-index: 2; padding-bottom: 60px;
+            max-width: 800px; /* Comfortable reading width for all devices */
+            margin: 40px auto;
+            display: flex; 
+            flex-direction: column; 
+            gap: 20px;
+            z-index: 2; 
+            padding-bottom: 60px;
         }
 
         .list-item {
             background: var(--caramel-white);
-            padding: 12px;
+            padding: 1.5rem;
             border: 1px solid var(--antique-gold);
-            display: flex; align-items: center; text-decoration: none;
+            display: flex; 
+            align-items: center; 
+            text-decoration: none;
             position: relative;
             box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
-            transition: 0.3s ease;
+            transition: transform 0.3s ease;
         }
 
-        .list-item:hover { transform: translateX(5px); }
+        .list-item:hover { transform: translateX(10px); }
 
         .list-item::before {
-            content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+            content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 6px;
             background: var(--antique-gold);
         }
 
         .book-thumb {
-            width: 50px; height: 75px; 
-            margin-right: 15px; 
+            width: 80px; 
+            height: 120px; 
+            margin-right: 25px; 
             border: 1px solid #ddd;
             object-fit: cover;
+            flex-shrink: 0;
         }
 
-        .list-info { flex: 1; }
+        .list-info { flex-grow: 1; }
 
         .list-info h2 {
             margin: 0; color: var(--russet-leather); 
-            font-family: 'Cinzel'; font-size: 16px; 
-            margin-bottom: 2px;
+            font-family: 'Cinzel'; 
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            margin-bottom: 5px;
         }
 
         .list-info h3 {
             margin: 0; color: var(--moss-green); 
-            font-style: italic; font-weight: 400; font-size: 12px;
+            font-style: italic; font-weight: 400; 
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
         }
 
         .view-btn {
-            padding: 6px 10px;
+            padding: 10px 20px;
             background: transparent;
             color: var(--russet-leather);
             border: 1px solid var(--antique-gold);
-            font-size: 9px; letter-spacing: 1px; 
+            font-size: 0.7rem; 
+            letter-spacing: 1px; 
             text-transform: uppercase;
+            transition: 0.3s;
+            white-space: nowrap;
+        }
+
+        .list-item:hover .view-btn {
+            background: var(--russet-leather);
+            color: white;
         }
 
         /* Floating elements */
@@ -169,7 +187,7 @@
                 <h2>Vanity Fair</h2>
                 <h3>William Makepeace Thackeray</h3>
             </div>
-            <div class="view-btn">Read</div>
+            <div class="view-btn">Read Now</div>
         </a>
     </section>
 
@@ -181,8 +199,8 @@
             const el = document.createElement('div');
             el.className = 'literary-element';
             el.innerText = items[Math.floor(Math.random() * items.length)];
-            el.style.fontSize = '20px';
-            el.style.left = Math.random() * 90 + 'vw';
+            el.style.fontSize = '24px';
+            el.style.left = Math.random() * 95 + 'vw';
             const duration = Math.random() * 5 + 10;
             el.style.animation = `drift-down ${duration}s linear forwards`;
             overlay.appendChild(el);
