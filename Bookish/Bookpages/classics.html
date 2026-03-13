@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>THE CLASSICS ARCHIVE</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     
     <style>
@@ -11,184 +11,145 @@
             --caramel-white: #f7f1e3;
             --antique-gold: #c5a059;
             --russet-leather: #5d4037;
-            --moss-green: #4b5d44;
-            --ink-glaze: rgba(43, 35, 25, 0.8);
+            /* Fluid font size: scales between 14px and 18px based on screen size */
+            --base-font: clamp(14px, 2vw, 18px); 
         }
 
-        html, body { 
-            margin: 0; padding: 0; 
-            min-height: 100vh;
-            background-color: #2b2319;
-            overflow-x: hidden;
-        }
+        * { box-sizing: border-box; }
 
         body {
+            margin: 0; padding: 0;
             font-family: 'Playfair Display', serif;
-            background: url('Book1pages/classics/img/c1.jpg') no-repeat center center fixed;
+            background: #2b2319 url('Book1pages/classics/img/c1.jpg') no-repeat center center fixed;
             background-size: cover;
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Centers the mobile-view column on desktop */
-        }
-
-        /* Texture Overlays */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://www.transparenttextures.com/patterns/stardust.png');
-            opacity: 0.3;
-            pointer-events: none;
-            z-index: 5;
-        }
-
-        /* --- THE MASTER WRAPPER --- */
-        /* This keeps the website looking like a phone even on desktop */
-        .main-wrapper {
-            width: 100%;
-            max-width: 500px; /* Force mobile width on all screens */
+            color: var(--caramel-white);
             min-height: 100vh;
-            position: relative;
-            z-index: 2;
         }
 
-        /* --- NAVIGATION --- */
-        .back-nav {
-            position: absolute; top: 15px; left: 15px;
-            color: var(--caramel-white); 
-            text-decoration: none; 
-            background: rgba(93, 64, 55, 0.6);
-            padding: 5px 10px; 
-            font-size: 9px;
-            z-index: 100;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: 1px solid var(--antique-gold);
-        }
-
-        /* --- REDUCED COVER PHOTO --- */
+        /* --- THE COVER (Flexible Height) --- */
         .cover-container {
             position: relative;
             width: 100%;
-            height: 250px; /* Reduced height so it doesn't take half the page */
+            /* vh means 'viewport height'. This makes it look grand on any screen */
+            height: 40vh; 
+            min-height: 250px;
+            max-height: 450px;
             overflow: hidden;
             border-bottom: 4px solid var(--antique-gold);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
         }
 
-        .cover-photo { width: 100%; height: 100%; object-fit: cover; }
+        .cover-photo {
+            position: absolute;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            filter: brightness(0.6);
+            z-index: 1;
+        }
 
         .cover-title {
-            position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            font-family: 'Cinzel', serif; 
-            font-size: 38px; 
-            color: var(--caramel-white); 
-            text-align: center; width: 100%;
-            letter-spacing: 10px;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+            position: relative;
+            z-index: 2;
+            font-family: 'Cinzel', serif;
+            /* Scales the title so it's big on desktop, readable on mobile */
+            font-size: clamp(30px, 8vw, 60px); 
+            letter-spacing: 0.2em;
+            text-shadow: 3px 3px 15px rgba(0,0,0,0.9);
             margin: 0;
+            text-align: center;
         }
 
-        /* --- BOOK LIST (MATCHING SCREENSHOT) --- */
+        /* --- THE LIST (Adapts to Width) --- */
         .book-list-container {
-            width: 92%;
-            margin: 20px auto;
-            display: flex; 
-            flex-direction: column; 
+            max-width: 900px; /* Limits width on desktop so it's not "stretched" */
+            width: 95%;      /* Fills screen on mobile */
+            margin: 30px auto;
+            display: grid;
             gap: 15px;
+            padding-bottom: 50px;
         }
 
         .list-item {
             background: var(--caramel-white);
-            padding: 12px;
+            padding: 15px;
             border: 1px solid var(--antique-gold);
-            display: flex; 
-            align-items: center; 
+            display: flex;
+            align-items: center;
             text-decoration: none;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            transition: transform 0.2s;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
+        .list-item:hover {
+            transform: translateY(-3px);
+            background: #fff;
         }
 
         .book-thumb {
-            width: 45px; 
-            height: 70px; 
-            margin-right: 15px; 
-            border: 1px solid #ccc;
+            width: clamp(50px, 10vw, 80px); /* Thumbnail scales with screen */
+            aspect-ratio: 2/3;
+            margin-right: 20px;
             object-fit: cover;
+            border: 1px solid #999;
         }
 
-        .list-info { flex-grow: 1; }
+        .list-info { flex: 1; }
 
         .list-info h2 {
-            margin: 0; color: #333; 
-            font-family: 'Cinzel'; 
-            font-size: 16px; 
-            font-weight: 700;
+            margin: 0; color: #333;
+            font-family: 'Cinzel', serif;
+            font-size: clamp(16px, 4vw, 22px);
         }
 
         .list-info h3 {
-            margin: 0; color: #777; 
-            font-style: italic; font-weight: 400; 
-            font-size: 11px;
+            margin: 5px 0 0; color: #666;
+            font-style: italic;
+            font-size: clamp(12px, 2vw, 14px);
         }
 
         .view-btn {
-            padding: 5px 8px;
-            background: transparent;
+            padding: 10px 15px;
+            border: 1px solid var(--antique-gold);
             color: var(--russet-leather);
-            border: 1px solid #ddd;
-            font-size: 8px; 
+            font-size: 10px;
+            font-weight: bold;
             text-transform: uppercase;
-            white-space: nowrap;
         }
 
-        /* Floating elements */
-        .literary-element { position: fixed; user-select: none; opacity: 0; z-index: 11; pointer-events: none; }
-        @keyframes drift-down { 0% { transform: translateY(-10vh); opacity: 0; } 20% { opacity: 0.5; } 100% { transform: translateY(110vh); opacity: 0; } }
+        .back-nav {
+            position: fixed; top: 20px; left: 20px;
+            z-index: 100;
+            color: var(--caramel-white);
+            text-decoration: none;
+            background: rgba(0,0,0,0.5);
+            padding: 8px 12px;
+            border: 1px solid var(--antique-gold);
+            font-size: 12px;
+        }
     </style>
 </head>
 <body>
 
-    <div class="main-wrapper">
-        <a href="../Bookpages/book1.html" class="back-nav">← Library</a>
+    <a href="../Bookpages/book1.html" class="back-nav">← LIBRARY</a>
 
-        <div class="cover-container">
-            <img src="Book1pages/classics/img/c2.jpg" class="cover-photo" alt="Historical Spines">
-            <h1 class="cover-title">CLASSICS</h1>
-        </div>
-
-        <section class="book-list-container">
-            <a href="Book1pages/classics/vf.html" class="list-item">
-                <img src="Book1pages/classics/img/vf.jpg" class="book-thumb" alt="Vanity Fair">
-                <div class="list-info">
-                    <h2>Vanity Fair</h2>
-                    <h3>William Makepeace Thackeray</h3>
-                </div>
-                <div class="view-btn">Read Now</div>
-            </a>
-            
-            </section>
+    <div class="cover-container">
+        <img src="Book1pages/classics/img/c2.jpg" class="cover-photo" alt="Cover">
+        <h1 class="cover-title">CLASSICS</h1>
     </div>
 
-    <div class="classics-overlay" id="overlay"></div>
+    <section class="book-list-container">
+        <a href="Book1pages/classics/vf.html" class="list-item">
+            <img src="Book1pages/classics/img/vf.jpg" class="book-thumb" alt="Vanity Fair">
+            <div class="list-info">
+                <h2>Vanity Fair</h2>
+                <h3>William Makepeace Thackeray</h3>
+            </div>
+            <div class="view-btn">Read Now</div>
+        </a>
+    </section>
 
-    <script>
-        const overlay = document.getElementById('overlay');
-        const items = ['📜', '🗝️', '🕯️', '🖋️', '📖'];
-        
-        function createLiteraryElement() {
-            const el = document.createElement('div');
-            el.className = 'literary-element';
-            el.innerText = items[Math.floor(Math.random() * items.length)];
-            el.style.fontSize = '20px';
-            el.style.left = Math.random() * 100 + 'vw';
-            const duration = Math.random() * 5 + 10;
-            el.style.animation = `drift-down ${duration}s linear forwards`;
-            overlay.appendChild(el);
-            setTimeout(() => el.remove(), duration * 1000);
-        }
-        setInterval(createLiteraryElement, 4000);
-    </script>
 </body>
 </html>
