@@ -40,15 +40,34 @@
         .element {
             position: absolute;
             user-select: none;
-            opacity: 0.7;
-            animation: drift 12s linear forwards;
+            opacity: 0;
+            transition: opacity 0.5s;
         }
 
-        @keyframes drift {
-            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+        /* Multidirectional Animations */
+        @keyframes driftUp {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
             10% { opacity: 0.8; }
             90% { opacity: 0.8; }
-            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+        @keyframes driftDown {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(100vh) rotate(-360deg); opacity: 0; }
+        }
+        @keyframes driftRight {
+            0% { transform: translateX(-10vw) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateX(110vw) rotate(180deg); opacity: 0; }
+        }
+        @keyframes driftLeft {
+            0% { transform: translateX(110vw) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateX(-10vw) rotate(-180deg); opacity: 0; }
         }
 
         /* --- NAVIGATION --- */
@@ -97,12 +116,13 @@
             margin: 60px auto;
             display: flex;
             flex-direction: column;
-            gap: 25px; 
+            gap: 35px; 
             z-index: 10;
             padding-bottom: 100px;
         }
 
         .list-item {
+            position: relative;
             background: rgba(255, 255, 255, 0.94);
             padding: 20px 40px;
             border-radius: 100px;
@@ -110,14 +130,32 @@
             align-items: center;
             text-decoration: none;
             transition: 0.4s ease;
-            border: 1px solid var(--soft-pink);
+            border: 2px solid var(--soft-pink);
         }
+
+        /* --- HEART BORDERS --- */
+        .list-item::before, .list-item::after {
+            content: '❤';
+            position: absolute;
+            color: var(--petal-pink);
+            font-size: 18px;
+            transition: 0.4s;
+        }
+        /* Top-Left Heart */
+        .list-item::before { top: -10px; left: 50px; }
+        /* Bottom-Right Heart */
+        .list-item::after { bottom: -10px; right: 50px; }
 
         .list-item:hover {
             transform: translateY(-5px);
             background: #fff;
             box-shadow: 0 15px 35px rgba(142, 68, 68, 0.1);
             border-color: var(--petal-pink);
+        }
+        
+        .list-item:hover::before, .list-item:hover::after {
+            color: var(--deep-rose);
+            transform: scale(1.4);
         }
 
         .list-item img { 
@@ -127,12 +165,11 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.15);
         }
 
-        /* NEW ROMANTIC TYPOGRAPHY */
         .list-info h2 {
             margin: 0; 
             color: var(--deep-rose);
             font-size: 32px; 
-            font-family: 'Playfair Display', serif; /* Elegant, high-contrast serif */
+            font-family: 'Playfair Display', serif;
             font-style: italic;
             font-weight: 700;
         }
@@ -141,7 +178,7 @@
             margin: 2px 0 0 0; 
             color: #b08d8d;
             font-size: 22px; 
-            font-family: 'Great Vibes', cursive; /* Flowing handwritten script */
+            font-family: 'Great Vibes', cursive;
             font-weight: 400;
         }
 
@@ -183,19 +220,33 @@
     <script>
         const overlay = document.getElementById('romanceOverlay');
         const elements = ['❤', '🌸', '✨', '❣'];
+        const directions = ['driftUp', 'driftDown', 'driftLeft', 'driftRight'];
 
         function createHeart() {
             const el = document.createElement('div');
             el.className = 'element';
             el.innerText = elements[Math.floor(Math.random() * elements.length)];
+            
+            // Randomize starting position
             el.style.left = Math.random() * 100 + 'vw';
-            el.style.bottom = '-50px'; 
+            el.style.top = Math.random() * 100 + 'vh';
+            
+            // Randomize size and animation
             el.style.fontSize = (Math.random() * 20 + 15) + 'px';
             el.style.color = '#ffb1c1';
+            
+            const randomDir = directions[Math.floor(Math.random() * directions.length)];
+            const duration = Math.random() * 5 + 8; // 8-13 seconds
+            el.style.animation = `${randomDir} ${duration}s linear forwards`;
+
             overlay.appendChild(el);
-            setTimeout(() => el.remove(), 12000);
+            
+            // Clean up
+            setTimeout(() => el.remove(), duration * 1000);
         }
-        setInterval(createHeart, 1500);
+
+        // Create elements frequently
+        setInterval(createHeart, 800);
     </script>
 
 </body>
