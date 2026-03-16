@@ -1,317 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>If It Makes You Happy | Julie Olivia</title>
-    <meta name="viewport" content="width=1100">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Great+Vibes&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            /* Palette remains the same, adjusted for visibility against a dense pattern */
-            --deep-rose: #8e4444;
-            --soft-pink: #fce4ec;
-            --petal-pink: #ffc1cc;
-            --cream-white: #fffaf0;
-            --silk-white: rgba(255, 255, 255, 0.9);
-            --glow-pink: #ff2d75;
-            --dark-pink-bg: rgba(61, 6, 33, 0.85); 
-        }
+    <meta charset="UTF-8">
+    <title>If It Makes You Happy | Julie Olivia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Great+Vibes&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --glow-pink: #ff2d75;
+            --dark-pink-bg: rgba(45, 5, 25, 0.9); 
+            --petal-pink: #ffc1cc;
+            --cream-white: #fffaf0;
+        }
 
-        body {
-            margin: 0; padding: 0;
-            font-family: 'Jost', sans-serif;
-            color: var(--cream-white);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow-x: hidden;
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Jost', sans-serif;
+            color: var(--cream-white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            
+            /* Tiled Mosaic Effect (Like Fairydale) */
+            background-image: url('img/iimyh.jpg');
+            background-repeat: repeat;
+            background-position: center top;
+            background-size: 300px auto; /* Adjust this number to make the tiles bigger or smaller */
+            background-attachment: fixed;
+            background-color: #1a020d; /* Fallback color if image fails */
+        }
 
-            /* THE KEY BACKGROUND FORMAT CHANGE: 
-               Tiles the image small and repeats it both ways. */
-            background: url('img/iimyh.jpg') repeat center top;
-            background-size: 320px; /* Small tiled size, like the reference */
-            background-attachment: fixed;
-        }
+        .container {
+            width: 90%;
+            max-width: 850px;
+            margin: 60px auto;
+            z-index: 1;
+        }
 
-        .back-nav {
-            position: fixed; top: 30px; left: 30px;
-            color: #3d0621; text-decoration: none;
-            background: var(--petal-pink);
-            padding: 10px 25px; border-radius: 50px;
-            font-size: 14px; z-index: 100;
-            border: 1px solid var(--glow-pink);
-            transition: 0.3s;
-            text-transform: lowercase;
-            font-style: italic;
-            box-shadow: 0 0 15px rgba(255, 45, 117, 0.4);
-        }
-        .back-nav:hover { background: white; color: var(--glow-pink); }
+        /* Glowing Dark-Pink Section Cards */
+        section {
+            background: var(--dark-pink-bg);
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            border: 2px solid var(--glow-pink);
+            box-shadow: 0 0 20px rgba(255, 45, 117, 0.5), inset 0 0 15px rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
 
-        .container {
-            width: 850px;
-            margin-top: 60px;
-            padding-bottom: 80px;
-            z-index: 1;
-        }
+        .header-section {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 40px;
+            align-items: center;
+            flex-wrap: wrap; /* Helps with smaller screens/zooms */
+        }
 
-        .header-section {
-            display: flex;
-            gap: 40px;
-            margin-bottom: 40px;
-            align-items: center;
-        }
+        .book-cover {
+            width: 260px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            border: 2px solid var(--glow-pink);
+        }
 
-        .book-cover {
-            width: 260px;
-            border-radius: 12px;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.6);
-            flex-shrink: 0;
-            border: 2px solid var(--glow-pink);
-        }
+        h1 { 
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em; 
+            margin: 0; 
+            font-style: italic;
+            color: #fff; 
+            text-shadow: 0 0 10px var(--glow-pink), 0 0 20px var(--glow-pink);
+        }
+        
+        .author { 
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.2em; 
+            color: var(--petal-pink); 
+        }
 
-        h1 { 
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5em; 
-            margin: 0; 
-            font-style: italic;
-            color: #fff; 
-            text-shadow: 0 0 10px var(--glow-pink), 0 0 20px var(--glow-pink), 2px 2px 5px rgba(0,0,0,0.5); /* extra shadow for visibility */
-        }
-        
-        .author { 
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.2em; 
-            color: var(--petal-pink); 
-            margin-bottom: 15px; 
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* extra shadow for visibility */
-        }
+        h2 { 
+            text-transform: uppercase; 
+            letter-spacing: 4px; 
+            color: var(--glow-pink); 
+            text-shadow: 0 0 5px var(--glow-pink);
+            font-size: 1.2em;
+        }
 
-        .star-rating {
-            display: flex;
-            flex-direction: row-reverse;
-            justify-content: flex-end;
-            margin: 15px 0;
-        }
-        .star-rating input { display: none; }
-        .star-rating label {
-            font-size: 32px;
-            color: rgba(255,255,255,0.4); /* slightly higher alpha to pop */
-            cursor: pointer;
-            transition: 0.2s;
-            padding: 0 2px;
-        }
-        .star-rating label:hover,
-        .star-rating label:hover ~ label,
-        .star-rating input:checked ~ label {
-            color: var(--glow-pink);
-            text-shadow: 0 0 15px var(--glow-pink);
-            position: relative;
-            z-index: 2;
-        }
-        .star-rating label:after {
-            content: "";
-            position: absolute;
-            top: 1px; left: 1px;
-            text-shadow: 0px 0px 3px rgba(0,0,0,1);
-            z-index: 1;
-            opacity: 1;
-        }
+        .back-nav {
+            position: fixed; top: 20px; left: 20px;
+            color: #fff; text-decoration: none;
+            background: var(--glow-pink);
+            padding: 8px 20px; border-radius: 50px;
+            font-size: 13px; z-index: 100;
+            border: 1px solid white;
+            box-shadow: 0 0 10px rgba(255, 45, 117, 0.6);
+        }
 
-        section {
-            background: var(--dark-pink-bg);
-            padding: 40px;
-            border-radius: 20px;
-            margin-bottom: 25px;
-            border: 2px solid var(--glow-pink);
-            box-shadow: 0 0 25px rgba(255, 45, 117, 0.4), inset 0 0 50px rgba(0,0,0,0.3); /* slightly stronger box shadows */
-        }
+        .download-btn {
+            display: inline-block;
+            background: var(--glow-pink);
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 0 15px var(--glow-pink);
+            transition: 0.3s;
+        }
 
-        h2 { 
-            font-size: 1.1em; 
-            text-transform: uppercase; 
-            letter-spacing: 4px; 
-            margin-top: 0; 
-            color: var(--glow-pink); 
-            font-weight: 600;
-            text-shadow: 0 0 5px var(--glow-pink), 1px 1px 3px rgba(0,0,0,0.5); /* extra shadow for visibility */
-        }
+        .download-btn:hover { transform: scale(1.05); background: white; color: var(--glow-pink); }
 
-        .description-text { line-height: 2; font-size: 1.1em; color: #fff; }
+        textarea {
+            width: 100%; height: 100px;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid var(--glow-pink);
+            border-radius: 10px; padding: 10px;
+            color: white; margin-top: 10px;
+        }
 
-        .download-container { text-align: center; }
-        .download-btn {
-            display: inline-block;
-            background: var(--glow-pink);
-            color: white;
-            padding: 18px 50px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 14px;
-            letter-spacing: 1px;
-            transition: 0.3s;
-            box-shadow: 0 0 15px var(--glow-pink), 0 5px 10px rgba(0,0,0,0.3);
-            border: none;
-        }
-        .download-btn:hover { 
-            transform: scale(1.05); 
-            background: white; 
-            color: var(--glow-pink);
-            box-shadow: 0 0 25px white, 0 8px 15px rgba(0,0,0,0.4); 
-        }
-
-        textarea {
-            width: 100%;
-            height: 110px;
-            background: rgba(0,0,0,0.5); /* increased alpha */
-            border: 2px solid var(--glow-pink);
-            border-radius: 12px;
-            padding: 15px;
-            color: white;
-            font-family: inherit;
-            resize: none;
-            margin-top: 10px;
-            box-sizing: border-box;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
-        }
-        
-        .post-btn {
-            margin-top: 15px;
-            background: transparent;
-            color: white;
-            border: 2px solid var(--glow-pink);
-            padding: 10px 35px;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: 0.3s;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 12px;
-            letter-spacing: 1px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
-            box-shadow: 0 0 5px rgba(255, 45, 117, 0.3);
-        }
-        .post-btn:hover { background: var(--glow-pink); box-shadow: 0 0 15px var(--glow-pink); text-shadow: none; }
-
-        .comment-box { 
-            background: rgba(0,0,0,0.3); /* increased background alpha */
-            padding: 20px; 
-            border-radius: 12px; 
-            margin-bottom: 12px; 
-            border-left: 4px solid var(--glow-pink);
-            box-shadow: 0 3px 5px rgba(0,0,0,0.3);
-        }
-        .comment-time { display: block; font-size: 0.75em; color: var(--glow-pink); margin-bottom: 8px; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.8); }
-
-        footer { 
-            text-align: center; 
-            padding: 60px; 
-            font-size: 0.8em; 
-            color: white; 
-            text-shadow: 0 0 5px var(--glow-pink), 1px 1px 3px rgba(0,0,0,0.8); /* extra shadow for visibility */
-            letter-spacing: 3px; 
-        }
-    </style>
+        footer { padding: 40px; color: var(--glow-pink); letter-spacing: 2px; font-size: 0.8em; text-align: center; }
+    </style>
 </head>
 <body>
 
-    <a href="../../romance.html" class="back-nav">← back to romance</a>
+    <a href="../../romance.html" class="back-nav">← back to romance</a>
 
-    <div class="container">
-        
-        <div class="header-section">
-            <img src="img/iimyh.jpg" alt="If It Makes You Happy Cover" class="book-cover">
-            
-            <div class="book-meta">
-                <h1>If It Makes You Happy</h1>
-                <div class="author">By Julie Olivia</div>
-                
-                <div class="star-rating">
-                    <input type="radio" name="rate" id="rate-5" value="5"><label for="rate-5">★</label>
-                    <input type="radio" name="rate" id="rate-4" value="4"><label for="rate-4">★</label>
-                    <input type="radio" name="rate" id="rate-3" value="3"><label for="rate-3">★</label>
-                    <input type="radio" name="rate" id="rate-2" value="2"><label for="rate-2">★</label>
-                    <input type="radio" name="rate" id="rate-1" value="1"><label for="rate-1">★</label>
-                </div>
-                <p id="rating-label" style="font-size: 0.9em; opacity: 1; font-style: italic; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">How would you rate this story?</p>
-            </div>
-        </div>
+    <div class="container">
+        <div class="header-section">
+            <img src="img/iimyh.jpg" alt="Book Cover" class="book-cover">
+            <div class="book-meta">
+                <h1>If It Makes You Happy</h1>
+                <div class="author">By Julie Olivia</div>
+            </div>
+        </div>
 
-        <section>
-            <h2>The Story</h2>
-            <div class="description-text">
-                <p>If It Makes You Happy by Julie Olivia is a contemporary romance novel about healing, friendship, and finding love again in unexpected places...</p>
-                <p>Set in the cozy autumn of 1997, it explores themes like grief, personal growth, and choosing happiness over expectations. Readers love this slow-burn friends-to-lovers tale for its heart and small-town warmth.</p>
-            </div>
-        </section>
+        <section>
+            <h2>The Story</h2>
+            <p>If It Makes You Happy by Julie Olivia is a contemporary romance novel about healing, friendship, and finding love again in unexpected places...</p>
+        </section>
 
-        <section class="download-container">
-            <h2>The Archive</h2>
-            <p style="margin-bottom: 25px; font-style: italic; opacity: 1; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">"Happiness is a choice, even in the middle of a storm."</p>
-            <a href="files/iimyh.epub" class="download-btn" download>Download Digital Copy</a>
-        </section>
+        <section style="text-align: center;">
+            <h2>The Archive</h2>
+            <p style="font-style: italic; margin-bottom: 20px;">"Happiness is a choice, even in the middle of a storm."</p>
+            <a href="files/iimyh.epub" class="download-btn" download>Download Digital Copy</a>
+        </section>
 
-        <section>
-            <h2>Reader Reflections</h2>
-            <div class="comment-area">
-                <textarea id="comment-input" placeholder="Share your heart on this story..."></textarea>
-                <button class="post-btn" onclick="saveComment()">Post Reflection</button>
-            </div>
-            <div id="comment-list" class="saved-comments"></div>
-        </section>
+        <section>
+            <h2>Reader Reflections</h2>
+            <textarea placeholder="Share your heart on this story..."></textarea>
+        </section>
 
-        <footer>© 2026 FADING SPACES | ROMANCE ARCHIVE</footer>
-
-    </div>
-
-    <script>
-        // --- JS Logic remains the same, IDs are fixed ---
-        window.onload = function() {
-            displayComments();
-            loadRating();
-        };
-
-        const stars = document.querySelectorAll('input[name="rate"]');
-        stars.forEach(star => {
-            star.onclick = function() {
-                localStorage.setItem('iimyh_rating', this.value);
-                document.getElementById('rating-label').innerText = "You shared " + this.value + " stars of love";
-            }
-        });
-
-        function loadRating() {
-            const savedRating = localStorage.getItem('iimyh_rating');
-            if (savedRating) {
-                document.getElementById('rate-' + savedRating).checked = true;
-                document.getElementById('rating-label').innerText = "You shared " + savedRating + " stars of love";
-            }
-        }
-
-        function saveComment() {
-            const input = document.getElementById('comment-input');
-            const text = input.value.trim();
-            if (text === "") return;
-
-            const comments = JSON.parse(localStorage.getItem('iimyh_comments') || "[]");
-            comments.unshift({ text: text, time: new Date().toLocaleString() });
-            localStorage.setItem('iimyh_comments', JSON.stringify(comments));
-            input.value = "";
-            displayComments();
-        }
-
-        function displayComments() {
-            const list = document.getElementById('comment-list');
-            const comments = JSON.parse(localStorage.getItem('iimyh_comments') || "[]");
-            list.innerHTML = comments.map(c => `
-                <div class="comment-box">
-                    <span class="comment-time">${c.time}</span>
-                    <div style="color: white; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">${c.text}</div>
-                </div>
-            `).join('');
-        }
-    </script>
+        <footer>© 2026 FADING SPACES | ROMANCE ARCHIVE</footer>
+    </div>
 
 </body>
 </html>
