@@ -3,157 +3,310 @@
 <head>
     <meta charset="UTF-8">
     <title>If It Makes You Happy | Julie Olivia</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Great+Vibes&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-    
+    <meta name="viewport" content="width=1100">
     <style>
         :root {
-            --glow-pink: #ff2d75;
-            --dark-pink-bg: rgba(45, 5, 25, 0.9); 
-            --petal-pink: #ffc1cc;
-            --cream-white: #fffaf0;
+            /* REVISED ROMANCE COLOR PALETTE */
+            --petal-pink: #fdf2f4;      /* Soft background */
+            --rose-dust: #e2b4bd;      /* Borders and accents */
+            --deep-berry: #7b2c3c;     /* Primary text/headings */
+            --vintage-gold: #b89c52;   /* Stars and interactive elements */
+            --pure-white: #ffffff;     /* Card backgrounds */
+            --text-gray: #5a4a4a;      /* Readable body text */
+            --soft-shadow: rgba(123, 44, 60, 0.1);
         }
 
         body {
             margin: 0; padding: 0;
-            font-family: 'Jost', sans-serif;
-            color: var(--cream-white);
+            font-family: 'Georgia', serif; /* More romantic, classic feel */
+            color: var(--text-gray);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            
-            /* Tiled Mosaic Effect (Like Fairydale) */
-            background-image: url('img/iimyh.jpg');
-            background-repeat: repeat;
-            background-position: center top;
-            background-size: 300px auto; /* Adjust this number to make the tiles bigger or smaller */
+            /* Using a soft gradient instead of a dark overlay */
+            background: var(--rose-dust) url('img/iimyh.jpg') no-repeat center center fixed;
             background-attachment: fixed;
-            background-color: #1a020d; /* Fallback color if image fails */
         }
+
+        /* Decorative top border */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0; width: 100%; height: 5px;
+            background: linear-gradient(90deg, var(--rose-dust), var(--vintage-gold));
+            z-index: 1000;
+        }
+
+        .back-nav {
+            position: fixed; top: 30px; left: 30px;
+            color: var(--deep-berry); text-decoration: none;
+            background: var(--pure-white);
+            padding: 10px 25px; border-radius: 50px;
+            font-size: 13px; z-index: 100;
+            border: 1px solid var(--rose-dust);
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px var(--soft-shadow);
+        }
+        .back-nav:hover { background: var(--deep-berry); color: var(--pure-white); }
 
         .container {
-            width: 90%;
-            max-width: 850px;
-            margin: 60px auto;
+            width: 850px;
+            margin-top: 100px;
+            padding-bottom: 80px;
             z-index: 1;
-        }
-
-        /* Glowing Dark-Pink Section Cards */
-        section {
-            background: var(--dark-pink-bg);
-            padding: 40px;
-            border-radius: 20px;
-            margin-bottom: 30px;
-            border: 2px solid var(--glow-pink);
-            box-shadow: 0 0 20px rgba(255, 45, 117, 0.5), inset 0 0 15px rgba(0,0,0,0.5);
-            backdrop-filter: blur(5px);
         }
 
         .header-section {
             display: flex;
+            align-items: flex-end; 
             gap: 40px;
-            margin-bottom: 40px;
-            align-items: center;
-            flex-wrap: wrap; /* Helps with smaller screens/zooms */
+            margin-bottom: 50px;
         }
 
         .book-cover {
-            width: 260px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            border: 2px solid var(--glow-pink);
+            width: 240px;
+            border-radius: 4px;
+            box-shadow: 15px 15px 0px var(--rose-dust); /* Modern stylized shadow */
+            flex-shrink: 0;
+            border: 1px solid var(--rose-dust);
+        }
+
+        .book-meta {
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 15px;
         }
 
         h1 { 
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5em; 
+            font-size: 3.2em; 
             margin: 0; 
-            font-style: italic;
-            color: #fff; 
-            text-shadow: 0 0 10px var(--glow-pink), 0 0 20px var(--glow-pink);
+            color: var(--deep-berry); 
+            line-height: 1.1;
+            font-weight: normal;
         }
-        
+
         .author { 
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.2em; 
-            color: var(--petal-pink); 
+            font-size: 1.5em; 
+            color: var(--vintage-gold); 
+            margin: 10px 0 20px 0; 
+            font-family: 'Times New Roman', serif;
+            font-style: italic; 
+        }
+
+        /* Star Rating */
+        .star-rating {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+        }
+        .star-rating input { display: none; }
+        .star-rating label {
+            font-size: 32px;
+            color: #ddd;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .star-rating label:hover,
+        .star-rating label:hover ~ label,
+        .star-rating input:checked ~ label {
+            color: var(--vintage-gold);
+        }
+
+        #rating-label {
+            font-size: 0.85em;
+            color: var(--deep-berry);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 8px;
+        }
+
+        section {
+            background: var(--pure-white);
+            padding: 45px;
+            border-radius: 2px; /* Sharper, more "stationery" feel */
+            margin-bottom: 30px;
+            border: 1px solid var(--rose-dust);
+            box-shadow: 0 10px 30px var(--soft-shadow);
         }
 
         h2 { 
+            font-size: 0.9em; 
             text-transform: uppercase; 
             letter-spacing: 4px; 
-            color: var(--glow-pink); 
-            text-shadow: 0 0 5px var(--glow-pink);
-            font-size: 1.2em;
+            margin-top: 0; 
+            color: var(--vintage-gold);
+            border-bottom: 1px solid var(--petal-pink);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
         }
 
-        .back-nav {
-            position: fixed; top: 20px; left: 20px;
-            color: #fff; text-decoration: none;
-            background: var(--glow-pink);
-            padding: 8px 20px; border-radius: 50px;
-            font-size: 13px; z-index: 100;
-            border: 1px solid white;
-            box-shadow: 0 0 10px rgba(255, 45, 117, 0.6);
-        }
+        .description-text { line-height: 1.8; font-size: 1.1em; }
 
         .download-btn {
             display: inline-block;
-            background: var(--glow-pink);
-            color: white;
-            padding: 15px 40px;
+            background: var(--deep-berry);
+            color: var(--pure-white);
+            padding: 18px 50px;
             text-decoration: none;
-            border-radius: 50px;
             font-weight: bold;
-            box-shadow: 0 0 15px var(--glow-pink);
-            transition: 0.3s;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: 0.4s;
+            border-radius: 0;
         }
-
-        .download-btn:hover { transform: scale(1.05); background: white; color: var(--glow-pink); }
+        .download-btn:hover { background: var(--vintage-gold); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
 
         textarea {
-            width: 100%; height: 100px;
-            background: rgba(0,0,0,0.4);
-            border: 1px solid var(--glow-pink);
-            border-radius: 10px; padding: 10px;
-            color: white; margin-top: 10px;
+            width: 100%; height: 120px;
+            background: var(--petal-pink);
+            border: 1px solid var(--rose-dust);
+            padding: 15px;
+            color: var(--deep-berry);
+            font-family: inherit;
+            resize: none;
+            box-sizing: border-box;
         }
 
-        footer { padding: 40px; color: var(--glow-pink); letter-spacing: 2px; font-size: 0.8em; text-align: center; }
+        .post-btn {
+            margin-top: 15px;
+            background: transparent;
+            color: var(--deep-berry);
+            border: 1px solid var(--deep-berry);
+            padding: 12px 35px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+        .post-btn:hover { background: var(--deep-berry); color: white; }
+
+        .comment-box { 
+            background: var(--petal-pink); 
+            padding: 20px; 
+            margin-top: 20px;
+            border-left: 4px solid var(--rose-dust);
+        }
+        .comment-time { color: var(--vintage-gold); font-size: 0.75em; font-weight: bold; }
+
+        footer { 
+            text-align: center; 
+            padding: 60px; 
+            font-size: 0.8em; 
+            color: var(--deep-berry); 
+            letter-spacing: 2px;
+            opacity: 0.6; 
+        }
     </style>
 </head>
 <body>
 
-    <a href="../../romance.html" class="back-nav">← back to romance</a>
+    <a href="../../romance.html" class="back-nav">← collections</a>
 
     <div class="container">
+        
         <div class="header-section">
             <img src="img/iimyh.jpg" alt="Book Cover" class="book-cover">
+            
             <div class="book-meta">
                 <h1>If It Makes You Happy</h1>
-                <div class="author">By Julie Olivia</div>
+                <div class="author">by Julie Olivia</div>
+                
+                <div class="star-rating">
+                    <input type="radio" name="rate" id="rate-5" value="5"><label for="rate-5">★</label>
+                    <input type="radio" name="rate" id="rate-4" value="4"><label for="rate-4">★</label>
+                    <input type="radio" name="rate" id="rate-3" value="3"><label for="rate-3">★</label>
+                    <input type="radio" name="rate" id="rate-2" value="2"><label for="rate-2">★</label>
+                    <input type="radio" name="rate" id="rate-1" value="1"><label for="rate-1">★</label>
+                </div>
+                <p id="rating-label">Share your love</p>
             </div>
         </div>
 
         <section>
             <h2>The Story</h2>
-            <p>If It Makes You Happy by Julie Olivia is a contemporary romance novel about healing, friendship, and finding love again in unexpected places...</p>
+            <div class="description-text">
+                <p>If It Makes You Happy by Julie Olivia is a contemporary romance novel about healing, friendship, and finding love again in unexpected places...</p>
+            </div>
         </section>
 
         <section style="text-align: center;">
-            <h2>The Archive</h2>
-            <p style="font-style: italic; margin-bottom: 20px;">"Happiness is a choice, even in the middle of a storm."</p>
+            <h2>The Library</h2>
+            <p style="margin-bottom: 30px; font-style: italic;">"A story waiting to be told..."</p>
             <a href="files/iimyh.epub" class="download-btn" download>Download Digital Copy</a>
         </section>
 
         <section>
             <h2>Reader Reflections</h2>
-            <textarea placeholder="Share your heart on this story..."></textarea>
+            <div class="comment-area">
+                <textarea id="comment-input" placeholder="How did this story make you feel?"></textarea>
+                <button class="post-btn" onclick="saveComment()">Post Reflection</button>
+            </div>
+            <div id="comment-list"></div>
         </section>
 
         <footer>© 2026 FADING SPACES | ROMANCE ARCHIVE</footer>
+
     </div>
 
+    <script>
+        // Logic remains the same as your original, just updated keys to be unique
+        const STORAGE_KEY = 'iimyh_comments';
+        const RATING_KEY = 'iimyh_rating';
+
+        window.onload = function() {
+            displayComments();
+            loadRating();
+        };
+
+        const stars = document.querySelectorAll('input[name="rate"]');
+        stars.forEach(star => {
+            star.onclick = function() {
+                localStorage.setItem(RATING_KEY, this.value);
+                document.getElementById('rating-label').innerText = "You gave this " + this.value + " stars";
+            }
+        });
+
+        function loadRating() {
+            const savedRating = localStorage.getItem(RATING_KEY);
+            if (savedRating) {
+                const radio = document.getElementById('rate-' + savedRating);
+                if(radio) radio.checked = true;
+                document.getElementById('rating-label').innerText = "You gave this " + savedRating + " stars";
+            }
+        }
+
+        function saveComment() {
+            const input = document.getElementById('comment-input');
+            const text = input.value.trim();
+            if (text === "") return;
+
+            const comments = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+            comments.unshift({
+                text: text,
+                time: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
+            });
+
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(comments));
+            input.value = "";
+            displayComments();
+        }
+
+        function displayComments() {
+            const list = document.getElementById('comment-list');
+            const comments = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+            
+            list.innerHTML = comments.map(c => `
+                <div class="comment-box">
+                    <span class="comment-time">${c.time}</span>
+                    <div style="margin-top:8px; font-style: italic; line-height: 1.6;">"${c.text}"</div>
+                </div>
+            `).join('');
+        }
+    </script>
 </body>
 </html>
