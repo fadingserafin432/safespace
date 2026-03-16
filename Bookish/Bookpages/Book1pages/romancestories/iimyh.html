@@ -11,6 +11,7 @@
             /* Palette adjusted slightly for better contrast without the filter */
             --deep-rose: #8e4444;
             --dark-oak: #412010;
+            --white-yellow: #FFFBE6;
             --soft-pink: #fce4ec;
             --petal-pink: #d88a9a; /* Slightly deepened for visibility */
             --cream-white: #fffaf0;
@@ -94,7 +95,7 @@
         .star-rating input { display: none; }
         .star-rating label {
             font-size: 32px;
-            color: rgba(0,0,0,0.2);
+            color: rgba(255, 251, 230, 0.2);
             cursor: pointer;
             transition: 0.2s;
             padding: 0 2px;
@@ -102,7 +103,7 @@
         .star-rating label:hover,
         .star-rating label:hover ~ label,
         .star-rating input:checked ~ label {
-            color: var(--petal-pink);
+            color: var(--white-yellow);
             text-shadow: 0 0 5px rgba(0,0,0,0.1);
         }
 
